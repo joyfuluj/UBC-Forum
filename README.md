@@ -1,14 +1,9 @@
 This project was completed for COSC360 Web Development By:
 
-<<<<<<< HEAD
-- Adam Badry
-- 
-- 
-=======
 - Adam Badry ()
 - Tanner Dyck (65670747)
 - Joy Umejiego (81265373)
->>>>>>> f33a19cb7c6b9d72e2c9abea3084d2fe4e82d5e0
+
 
 Title: UBC Forums (MyDiscussionForum Website)
 
