@@ -1,7 +1,7 @@
 This project was completed for COSC360 Web Development By:
 
 - Adam Badry
-- 
+- Joy Umejiego No.81265373
 - 
 
 Title: UBC forums
