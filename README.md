@@ -1,6 +1,9 @@
+Project Goal:
+    Create a website for users to interact freely with other students and faculty at the university of british columbia with an app similar in function to reddit.
+
 This project was completed for COSC360 Web Development By:
 
-- Adam Badry ()
+- Adam Badry (92262062)
 - Tanner Dyck (65670747)
 - ()
 
@@ -11,7 +14,7 @@ Project Deliverables:
 Terminology:
     - Forum admin is referred to as FAdmin.
     - Site admin is referred to as SAdmin.
-    - User refers to any client acting outside of an admin account.
+    - User refers to any client acting outside of an admin context.
 
 System Requirements:
 
@@ -31,16 +34,17 @@ System Requirements:
         - Error handling. (bad navigation)
         - Users can register.
         - Registration determines user interactions, and users may view site content without registration.
+        - Allow seperate forums for different clubs.
+        - Allow users to like and dislike content.
+        - Allow Users to sort posts by popular, user interaction, and date.
+        - Allow Users to comment on posts.
 
     MINOR (Additional):
         - Search and analysis for topics/items.
         - Hot threads/hot item tracking.
-        - Visual display of updates, etc. (site usage charts, etc)
         - Activity by date.
-        - Tracking. (including utilizing tracking API or your own with visualization tools)
         - Collapsible items/treads without page reloading.
         - Alerts on page changes.
-        - Admin view reports on usage. (with filtering)
         - Styling flourishes.
         - Responsive layout for mobile.
         - Tracking comment history from a user’s perspective.
@@ -50,10 +54,8 @@ User Requirements:
 
     Unregistered Users:
         MAJOR:
-            - Allow seperate forums for different clubs.
-            - Allow users to like and dislike content.
-            - Allow Users to sort posts by popular, user interaction, and date.
-            - Allow Users to comment on posts.
+            - Allow users to register with an email and password
+            - Allow 
 
         MINOR:
             - Allow Forum managers to "Pin" posts so that they are seen first when the forum is viewed.
@@ -62,7 +64,12 @@ User Requirements:
 
     Registered Users:
         MAJOR:
+            - Show User login state through manipulation of UI elements
+            - Allow Users to log out
+            - Allow Users to delete their accounts
+            - Allow Users to 
         MINOR:
+            - 
 
     Moderators:
         MAJOR:
@@ -80,5 +87,3 @@ User Requirements:
             - FAdmin should be able to view post interactions.
             - FAdmin should be able to pin posts.
 
-Project Goal:
-    Create a website for users to interact freely with other students and faculty at the university of british columbia.
