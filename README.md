@@ -5,9 +5,13 @@ This project was completed for COSC360 Web Development By:
 
 - Adam Badry (92262062)
 - Tanner Dyck (65670747)
-- ()
+- Joy Umejiego (81265373)
+
 
 Title: UBC Forums (MyDiscussionForum Website)
+
+Project Goal:
+    Create a website for users to interact freely with other students and faculty at the university of british columbia. This application is similar to other forums such as Reddit and HackerNews.
 
 Project Deliverables:
 
