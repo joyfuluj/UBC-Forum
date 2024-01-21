@@ -1,5 +1,3 @@
-Project Goal:
-    Create a website for users to interact freely with other students and faculty at the university of british columbia with an app similar in function to reddit.
 
 This project was completed for COSC360 Web Development By:
 
@@ -36,12 +34,8 @@ System Requirements:
         - Simple discussion (topics) grouping and display.
         - Navigation breadcrumb strategy. (i.e. users can determine where they are in threads)
         - Error handling. (bad navigation)
-        - Users can register.
-        - Registration determines user interactions, and users may view site content without registration.
         - Allow seperate forums for different clubs.
-        - Allow users to like and dislike content.
-        - Allow Users to sort posts by popular, user interaction, and date.
-        - Allow Users to comment on posts.
+        
 
     MINOR (Additional):
         - Search and analysis for topics/items.
@@ -59,7 +53,7 @@ User Requirements:
     Unregistered Users:
         MAJOR:
             - Allow users to register with an email and password
-            - Allow 
+            - Allow users to view content without an account
 
         MINOR:
             - Allow Forum managers to "Pin" posts so that they are seen first when the forum is viewed.
@@ -71,13 +65,11 @@ User Requirements:
             - Show User login state through manipulation of UI elements
             - Allow Users to log out
             - Allow Users to delete their accounts
-            - Allow Users to 
+            - Allow users to like and dislike content.
+            - Allow Users to sort posts by popular, user interaction, and date.
+            - Allow Users to comment on posts.
         MINOR:
-            - 
-
-    Moderators:
-        MAJOR:
-        MINOR:
+            - Allow Users to delete comments and posts
 
     Administrators:
         MAJOR:
@@ -88,6 +80,5 @@ User Requirements:
         MINOR:
             - FAdmin should be able to invite people to moderate. 
             - FAdmin should be able to remove moderators that are newer than them.
-            - FAdmin should be able to view post interactions.
             - FAdmin should be able to pin posts.
 
