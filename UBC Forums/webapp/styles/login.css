@@ -1,0 +1,97 @@
+.login-container, input[type="email"], input[type="password"], button[type="submit"], a
+{
+    border-radius: 3em;
+}
+
+body 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f8f8;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1
+{
+    font-size: 26pt;
+    font-style: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.login-container 
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    padding: 2em;
+    border-radius: 3em;
+    background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
+    box-shadow: 0pt 0pt 15pt 0pt rgba(0, 0, 0, 0.15);
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"] 
+{
+    font-size: 12pt;
+    width: 75%;
+    padding: 1em;
+    border: 3pt solid white;
+    margin-bottom: 2em;
+}
+
+.login-container input[type="email"]:hover,
+.login-container input[type="password"]:hover 
+{
+    border-color: #ea526f;
+}
+
+.login-container button[type="submit"] 
+{
+    width: 40%;
+    padding: 1em;
+    color: white;
+    background-color: #ea526f;
+    border: 3pt solid #ea526f;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12pt;
+    margin-bottom: 2em;
+}
+
+.login-container button[type="submit"]:hover 
+{
+    color: gray;
+    background-color: white;
+}
+
+.login-container a.sign-up-link 
+{
+    color: white;
+    text-decoration: none;
+    font-size: 14pt;
+    font-weight: bold;
+}
+.login-container a.sign-up-link:hover
+{
+    color: #ea526f;
+    text-decoration: underline;
+}
+
+.login-container a 
+{
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.login-container a:hover 
+{
+    text-decoration: underline;
+}
