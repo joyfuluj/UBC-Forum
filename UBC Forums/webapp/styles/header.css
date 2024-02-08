@@ -1,0 +1,36 @@
+header{
+    padding:0%;
+    margin:0%;
+    position: fixed;
+    top:0;
+}
+header div{
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 8vh;
+    background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
+    border-radius: 0 0 var(--DefaultBR) var(--DefaultBR);
+}
+header div > a{
+    padding:  0.5vh 0.5vw;
+    color: #000;
+    background-color: var(--Cream);
+}
+header div{
+
+}
+header form{
+    padding:  0.5vh 0.5vw;
+    width: 45%;
+    color: #000;
+    border-radius: var(--DefaultBR);
+    background-color: var(--Cream);
+}
+header form > input{
+    color: #000;
+    border-radius: var(--DefaultBR);
+    background-color: var(--Cream);
+    width: 100%;
+}
