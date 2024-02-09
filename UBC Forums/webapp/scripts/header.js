@@ -1,4 +1,4 @@
-document.write(`
+document.getElementById("header").innerHTML = `
     <div>
         <a href="index.html">
             <img src="../images/logo.png" alt="UBC Forums">
@@ -11,4 +11,4 @@ document.write(`
         <a id = 'user' href=""><img alt = 'Profile'src = ''></a>
         <a class = "hidden" href="login.html">Login</a>
     </div>
-`);
+`;
