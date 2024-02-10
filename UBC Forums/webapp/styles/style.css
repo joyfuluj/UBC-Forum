@@ -45,6 +45,6 @@ a{
     text-decoration: none;
     color: #FFF;
     border-radius: 18px;
-    background-color: ;
+    background: linear-gradient(90deg, var(--CoralRed), var(--Coral));
     padding: 1vh 1vw;
 }
