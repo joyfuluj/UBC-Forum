@@ -13,25 +13,26 @@
 <!--Body-->
 <body>
     <!--Header-->
-    <header>
-        <script src="../scripts/header.js"></script>
+    <header id="header">
     </header>
     <!--Login Container-->
     <div class="login-container">
         <main>
             <h1>Login to UBC Forums</h1>
             <div class="fields">
-                <form class="login-form">
-                    <input type="email" placeholder="Your email or username" required>
-                    <input type="password" placeholder="Your password" required>
+                <div id="error"></div>
+                <form id="login-form" action="#" method="GET">
+                    <input type="email" id="email" name="email" placeholder="Your email or username" required>
+                    <input type="password" id="password" name="password" placeholder="Your password" required>
+                    <button type="submit" class="login">Login</button>
                 </form>
-                <button class="login">Login</button>
                 <nav>
                     <a class="sign-up-link" href="register.html">Or Register Here</a>
                 </nav>
             </div>
         </main>
     </div>
+    <script src="../scripts/login-validation.js"></script>
 </body>
 <!--Footer-->
 <footer>

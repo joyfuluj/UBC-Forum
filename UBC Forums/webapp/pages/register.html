@@ -17,23 +17,25 @@
         <script src="../scripts/header.js"></script>
     </header>
     <!--Login Container-->
-    <div class="login-container">
+    <div class="register-container">
         <main>
             <h1>Register for UBC Forums</h1>
             <div class="fields">
-                <form class="login-form">
-                    <input type="text" placeholder="Choose a username" required>
-                    <input type="email" placeholder="Your email address" required>
-                    <input type="password" placeholder="Choose a password" required>
-                    <input type="password" placeholder="Reenter password" required>
-                </form>
-                <button class="login">Create Account</button>
+                <div id="error"></div>
+                <form id="register-form" action="#" method="POST">
+                    <input type="text" id="username" placeholder="Choose a username" required>
+                    <input type="email" id="email" placeholder="Your email address" required>
+                    <input type="password" id="password1" placeholder="Choose a password" required>
+                    <input type="password" id="password2" placeholder="Reenter password" required>
+                    <button type="submit" class="create-account">Create Account</button>
+                </form>                
                 <nav>
                     <a class="sign-up-link" href="login.html">Go Back to Login</a>
                 </nav>
             </div>
         </main>
     </div>
+    <script src="../scripts/register-validation.js"></script>
 </body>
 <!--Footer-->
 <footer>

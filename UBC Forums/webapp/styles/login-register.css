@@ -1,4 +1,4 @@
-.login-container, input[type="text"], input[type="email"], input[type="password"], button.login, a
+.login-container, .register-container, input[type="text"], input[type="email"], input[type="password"], button.login, a
 {
     border-radius: 3em;
 }
@@ -23,7 +23,14 @@ h1
     margin-bottom: 1em;
 }
 
-.login-container 
+#error
+{
+    color: red;
+    font-size: 12pt;
+    margin-bottom: 1em;
+}
+
+.login-container, .register-container
 {
     display: flex;
     flex-direction: column;
@@ -35,16 +42,17 @@ h1
     box-shadow: 0pt 0pt 15pt 0pt rgba(0, 0, 0, 0.15);
 }
 
-.login-container .fields
+.login-container .fields, .register-container .fields
 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-.login-container input[type="text"],
-.login-container input[type="email"],
-.login-container input[type="password"] 
+.fields input[type="text"],
+.fields input[type="email"],
+.fields input[type="password"]
 {
     display: block;
     text-align: center;
@@ -57,22 +65,24 @@ h1
     margin-bottom: 2em;
 }
 
-.login-container input[type="text"]:hover,
-.login-container input[type="email"]:hover,
-.login-container input[type="password"]:hover 
+.fields input[type="text"]:hover,
+.fields input[type="email"]:hover,
+.fields input[type="password"]:hover
 {
     border-color: #ea526f;
 }
 
-.login-container button.login
+.fields button[type="submit"]
 {
     display: block;
+    margin: auto;
     padding-top: 1em;
     padding-bottom: 1em;
     padding-left: 2em;
     padding-right: 2em;
     color: white;
     background-color: #ea526f;
+    border-radius: 3em;
     border: 3pt solid #ea526f;
     cursor: pointer;
     font-weight: bold;
@@ -80,21 +90,21 @@ h1
     margin-bottom: 2em;
 }
 
-.login-container button.login:hover 
+.fields button[type="submit"]:hover
 {
     color: white;
     border-color: white;
     background-color: transparent;
 }
 
-.login-container a.sign-up-link 
+.login-container a.sign-up-link, .register-container a.sign-up-link 
 {
     color: white;
     text-decoration: none;
     font-size: 14pt;
     font-weight: bold;
 }
-.login-container a.sign-up-link:hover
+.login-container a.sign-up-link:hover, .register-container a.sign-up-link:hover
 {
     color: #ea526f;
 }
