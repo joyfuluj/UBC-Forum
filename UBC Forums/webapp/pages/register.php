@@ -1,4 +1,4 @@
-
+docker-compose.yml
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +28,7 @@
                     <input type="password" id="password1" placeholder="Choose a password" required>
                     <input type="password" id="password2" placeholder="Reenter password" required>
                     <button type="submit" class="create-account">Create Account</button>
-                </form>                
+                </form>
                 <nav>
                     <a class="sign-up-link" href="login.html">Go Back to Login</a>
                 </nav>
@@ -43,4 +43,3 @@
     </nav>
 </footer>
 </html>
-

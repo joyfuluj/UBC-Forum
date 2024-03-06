@@ -21,7 +21,7 @@
             <h1>Login to UBC Forums</h1>
             <div class="fields">
                 <div id="error"></div>
-                <form id="login-form" action="#" method="GET">
+                <form id="login-form" action="authenticate.php" method="POST">
                     <input type="email" id="email" name="email" placeholder="Your email or username" required>
                     <input type="password" id="password" name="password" placeholder="Your password" required>
                     <button type="submit" class="login">Login</button>
