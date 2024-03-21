@@ -38,10 +38,11 @@ CREATE TABLE memberOf(
 
 CREATE TABLE posts (
     postId INT AUTO_INCREMENT,
-    postDesc VARCHAR(200),
-    communityID INT,
+    postTitle VARCHAR(200),
+    communityId INT,
     userId INT,
     promos INT,
+    postType VARCHAR(10), 
     postTime DATETIME
     FOREIGN KEY (userId) REFERENCES users(userId).
     FOREIGN KEY (communityID) REFERENCES community(communityID)
