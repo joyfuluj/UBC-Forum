@@ -1,5 +1,7 @@
 CREATE DATABASE Forums
 
+USE Forums
+
 CREATE TABLE users (
     userId INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30),

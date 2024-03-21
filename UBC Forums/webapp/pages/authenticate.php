@@ -24,4 +24,5 @@
         echo "Wrong request method silly!";
     }
 ?>
+
 </html>
