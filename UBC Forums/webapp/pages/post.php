@@ -1,55 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>UBC Forums - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="../styles/post.css">
+    <link rel="stylesheet" type="text/css" href="../styles/header.css">
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
+</head>
+<body>
+    <!--Header import-->
+    <header id="header">
+        <script src="../scripts/header.js"></script>
+    </header>
+
+    <form method="POST" action="insert.php">
+        <div id="post">
+            <input type="text" id="textPost" name="postDesc">
+            <select id="community" name="communities" style="top: 25px; left: 10px">
+                <option value="all">Choose a Community</option>
+                <option value="travel">travel</option>
+                <option value="sport">sport</option>
+                <option value="game">game</option>
+                <option value="school">school</option>
+            </select>
+        </div>
+        <input type="file" name="image" accept="image/*" id="uploadImg" style="top: 600px; left: 450px; width:250px" >
+        <input type="submit" value="post" id="postbutton" style="top: 590px;right: 450px;padding:20px;">
+    </form>
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "Project";
+// //Debugging
+//     $sql = "SELECT * FROM posts;";
 
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-    function customError($errno, $errstr) {
-        echo "<b>Error:</b> [$errno] $errstr";
-      }
-    // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+//     $results = mysqli_query($conn, $sql);
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $communityName = $_POST["communities"];
-        $postDesc = $_POST["postDesc"];
-        echo $communityName ."<br>". $postDesc ."";
-        if ($communityName != "all" && $postDesc) {
-            $sql = "SELECT communityID FROM community WHERE communityName=?";
-            if ($statement = mysqli_prepare($conn, $sql)) {
-                mysqli_stmt_bind_param($statement, 's', $communityName);
-                mysqli_stmt_execute($statement);
-                $result = mysqli_stmt_get_result($statement);
-                if ($row = mysqli_fetch_assoc($result)) {
-                    $communityID = $row['communityID'];
-                    echo ''. $communityID .'<br>';
-                    $postDesc = $_POST["postDesc"];
-                    
-                    $sql = "INSERT INTO posts (communityID, userId, postTime) VALUES ('$communityID', 1, NOW())";
-                    if (mysqli_query($conn, $sql)) {
-                        // set_error_handler("customError");
-                        $postID = mysqli_insert_id($conn);
-                        $fileName = "$communityID"."_"."$postID.txt";
-                        $sql = "UPDATE posts SET postDesc='$fileName' WHERE postId = $postID";
-                        if (mysqli_query($conn, $sql)) {
-                            $filePath = "../posts/$fileName";
-                            $newFile = fopen("$filePath", "w") or die("Unable to open file!");
-                            fwrite($newFile, $postDesc);
-                            fclose($newFile);
-                            echo "CREATED!!!!";
-                        }
-                        else {
-                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                        }
-                    } else {
-                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                    }
-                }
-            }
-        }
-    }
+  
+//     if (mysqli_num_rows($results) > 0) {
+//         while ($row = mysqli_fetch_assoc($results))
+//         {
+//             echo "<br><br>";
+//             echo $row['postDesc']."<br/>";
+//         }
+//     }else{
+//         echo "Nothing is here.";
+//     }
     ?>
-    <a href="index.php">Go back to main page</a>
+
+</body>
+</html>
