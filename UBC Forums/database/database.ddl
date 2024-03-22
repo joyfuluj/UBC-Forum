@@ -10,6 +10,7 @@ CREATE TABLE users (
     lastName VARCHAR(25),
     signUpDate DATETIME
 );
+);
 
 CREATE TABLE community (
     communityID INT AUTO_INCREMENT PRIMARY KEY,
@@ -17,6 +18,7 @@ CREATE TABLE community (
     communityDesc VARCHAR(200),
     ownerId INT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(userId)
+);
 );
 
 DELIMITER //
@@ -44,6 +46,7 @@ CREATE TABLE memberOf (
     PRIMARY KEY (communityID, userId),
     FOREIGN KEY (userId) REFERENCES users(userId),
     FOREIGN KEY (communityID) REFERENCES community(communityID)
+);
 );
 
 CREATE TABLE posts (
