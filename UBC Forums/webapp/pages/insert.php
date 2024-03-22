@@ -17,7 +17,7 @@
         $communityName = $_POST["communities"];
         $postDesc = $_POST["postDesc"];
         echo $communityName ."<br>". $postDesc ."";
-        if ($communityName != "all" && $postDesc) {
+        if ($postDesc) {
             $sql = "SELECT communityID FROM community WHERE communityName=?";
             if ($statement = mysqli_prepare($conn, $sql)) {
                 mysqli_stmt_bind_param($statement, 's', $communityName);
@@ -25,30 +25,33 @@
                 $result = mysqli_stmt_get_result($statement);
                 if ($row = mysqli_fetch_assoc($result)) {
                     $communityID = $row['communityID'];
-                    echo ''. $communityID .'<br>';
-                    $postDesc = $_POST["postDesc"];
-                    
+                    $postDesc = $_POST["postDesc"];        
                     $sql = "INSERT INTO posts (communityID, userId, postTime) VALUES ('$communityID', 1, NOW())";
                     if (mysqli_query($conn, $sql)) {
-                        // set_error_handler("customError");
                         $postID = mysqli_insert_id($conn);
-                        $fileName = "$communityID"."_"."$postID.txt";
+                        $fileName = "$communityID" . "_" . "$postID.txt";
                         $sql = "UPDATE posts SET postDesc='$fileName' WHERE postId = $postID";
                         if (mysqli_query($conn, $sql)) {
                             $filePath = "../posts/$fileName";
-                            $newFile = fopen("$filePath", "w") or die("Unable to open file!");
-                            fwrite($newFile, $postDesc);
-                            fclose($newFile);
-                            echo "CREATED!!!!";
-                        }
-                        else {
-                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                            $newFile = fopen("$filePath", "w");
+                            if ($newFile) {
+                                fwrite($newFile, $postDesc);
+                                fclose($newFile);
+                                echo "Post created";
+                            } else {
+                                echo "Error creating file!";
+                            }
+                        } else {
+                            echo "Error updating post description: " . mysqli_error($conn);
                         }
                     } else {
-                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        echo "Error inserting post: " . mysqli_error($conn);
                     }
                 }
             }
+        }
+        else{
+            echo "Query not done.";
         }
     }
     ?>
