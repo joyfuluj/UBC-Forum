@@ -1,4 +1,5 @@
 CREATE DATABASE Forums
+USE Forums
 
 CREATE TABLE users (
     userId INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,7 +9,7 @@ CREATE TABLE users (
     firstName VARCHAR(25),
     lastName VARCHAR(25),
     signUpDate DATETIME
-)
+);
 
 CREATE TABLE community(
     communityID INT AUTO_INCREMENT PRIMARY KEY,
@@ -16,7 +17,7 @@ CREATE TABLE community(
     communityDesc VARCHAR(200),
     ownerId INT,
     FOREIGN KEY (ownerId) REFERENCES users(userId)
-)
+);
 
 //A trigger that makes the oldest moderator the new owner if the owner leaves the community
 CREATE TRIGGER newOwner
@@ -34,7 +35,7 @@ CREATE TABLE memberOf(
     type ENUM('member', 'moderator'),
     FOREIGN KEY (userId) REFERENCES users(userId),
     FOREIGN KEY (communityID) REFERENCES community(communityID)
-)
+);
 
 CREATE TABLE posts (
     postId INT AUTO_INCREMENT,
@@ -42,11 +43,11 @@ CREATE TABLE posts (
     communityID INT,
     userId INT,
     promos INT,
-    postTime DATETIME
-    FOREIGN KEY (userId) REFERENCES users(userId).
-    FOREIGN KEY (communityID) REFERENCES community(communityID)
+    postTime DATETIME,
+    FOREIGN KEY (userId) REFERENCES users(userId),
+    FOREIGN KEY (communityID) REFERENCES community(communityID),
     PRIMARY KEY (postId, communityID)
-)
+);
 
 CREATE TABLE comments(
     commentId INT AUTO_INCREMENT,
@@ -58,4 +59,4 @@ CREATE TABLE comments(
     FOREIGN KEY (postId) REFERENCES posts(postId)
     FOREIGN KEY (userId) REFERENCES users(userId)
     PRIMARY KEY (postId, commentId)
-)
+);
