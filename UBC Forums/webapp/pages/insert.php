@@ -29,24 +29,26 @@
                     $postDesc = $_POST["postDesc"];
                     
                     $sql = "INSERT INTO posts (communityID, userId, postTime) VALUES ('$communityID', 1, NOW())";
+                if (mysqli_query($conn, $sql)) {
+                    $postID = mysqli_insert_id($conn);
+                    $fileName = "$communityID" . "_" . "$postID.txt";
+                    $sql = "UPDATE posts SET postDesc='$fileName' WHERE postId = $postID";
                     if (mysqli_query($conn, $sql)) {
-                        // set_error_handler("customError");
-                        $postID = mysqli_insert_id($conn);
-                        $fileName = "$communityID"."_"."$postID.txt";
-                        $sql = "UPDATE posts SET postDesc='$fileName' WHERE postId = $postID";
-                        if (mysqli_query($conn, $sql)) {
-                            $filePath = "../posts/$fileName";
-                            $newFile = fopen("$filePath", "w") or die("Unable to open file!");
+                        $filePath = "../posts/$fileName";
+                        $newFile = fopen("$filePath", "w");
+                        if ($newFile) {
                             fwrite($newFile, $postDesc);
                             fclose($newFile);
-                            echo "CREATED!!!!";
-                        }
-                        else {
-                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                            echo "Post created";
+                        } else {
+                            echo "Error creating file!";
                         }
                     } else {
-                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        echo "Error updating post description: " . mysqli_error($conn);
                     }
+                } else {
+                    echo "Error inserting post: " . mysqli_error($conn);
+                }
                 }
             }
         }
