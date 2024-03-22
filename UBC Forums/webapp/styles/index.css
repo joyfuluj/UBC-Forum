@@ -11,9 +11,7 @@ div{
     width: 100vw;
     height: 75vh;
 }
-#posts, #sideMenu{
-    
-}
+
 #posts{
     overflow: scroll;
     border-radius: var(--DefaultBR);
@@ -28,4 +26,9 @@ div{
     margin: 1vh 4vw;
     width:20vw;
     height: 80%
+}
+hr{
+    border: 0.5pt solid;
+    width: 95%;
+    margin-left: 20px;
 }
