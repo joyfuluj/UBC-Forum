@@ -70,3 +70,12 @@ CREATE TABLE comments (
     FOREIGN KEY (postId) REFERENCES posts(postId),
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
+
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'all', NULL, NULL);
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'travel', NULL, NULL);
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'game', NULL, NULL);INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'al', NULL, NULL);
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'school', NULL, NULL);
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'sports', NULL, NULL);
+
+
+INSERT INTO `users` (`userId`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, 'bob328', 'bobob', 'bob@gmail.com', 'Bob', 'BB', NOW());
