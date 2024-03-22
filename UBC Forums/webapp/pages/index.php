@@ -38,7 +38,7 @@
         <section id = "sideMenu">
     
         </section>
-        <section id = "posts">
+        <section id = "posts" style="position: relative;">
         
     <?php
    
@@ -116,22 +116,26 @@
                     $userRow = mysqli_fetch_assoc($resultName);
                     $user = $userRow["username"];
                 }
+                
                 echo "<span style=\"height: 50px;
                 width: 50px;
                 background-color: #bbb;
                 border-radius: 50%;
                 display: inline-block;
                 margin: 10px\"></span>";
-                echo "<pmargin-left: 20px;><strong>".$user;
+                echo "<strong>".$user."</strong>";
                 while (!feof($file)) {
                     echo "<br>";
                     $ln = fgets($file);
                     if ($input != null && !empty($input)) {
                         if (strpos($ln, $input) !== false) {
-                            echo "<p><strong>"."<br>".$ln."</strong></p>";
+                            echo "<p style=\"position: absolute;\"><strong>"."<br>".$ln."</strong></p>";
                             echo "<hr style=\"border: 0.5pt solid;width: 95%;margin-left: 20px\">";                        }
                     } else {
-                        echo "<p style=\"margin-left: 20px;\"><strong>".$postTime."<br>".$ln."</strong></p>";
+                        echo "<p style=\"margin-left: 20px;position: absolute;\"><strong>".$postTime."<br>".$ln."</strong></p>";
+                        echo "<div id=\"imagePost\" style= \"display: flex;height: 200px;\">
+                <img src=\"../images/5_94.png\" style=\"width: 200px;height: 150px\">
+            </div>";
                         echo "<hr style=\"border: 0.5pt solid;width: 95%;margin-left: 20px\">"; 
                     }
                 }
@@ -139,7 +143,8 @@
         }      
     }
             
-    ?></section>
+    ?>
+    </section>
         
     </div>
     
