@@ -15,7 +15,7 @@
         <script src="../scripts/header.js"></script>
     </header>
 
-    <form method="POST" action="insert.php">
+    <form method="POST" action="insert.php" enctype="multipart/form-data">
         <div id="post">
             <input type="text" id="textPost" name="postDesc">
             <select id="community" name="communities" style="top: 25px; left: 10px">
@@ -26,7 +26,7 @@
                 <option value="school">school</option>
             </select>
         </div>
-        <input type="file" name="image" accept="image/*" id="uploadImg" style="top: 600px; left: 450px; width:250px" >
+        <input type="file" name="image" id="uploadImg" style="top: 600px; left: 450px; width:250px" >
         <input type="submit" value="post" id="postbutton" style="top: 590px;right: 450px;padding:20px;">
     </form>
 <?php
