@@ -12,6 +12,9 @@ header div{
     background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
     border-radius: 0 0 var(--DefaultBR) var(--DefaultBR);
 }
+#logo{
+    height: 8vh;
+}
 header div > a{
     padding:  0.5vh 0.8vw;
     color: #000;
