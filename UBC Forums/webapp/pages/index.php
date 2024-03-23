@@ -18,12 +18,28 @@
     </header>
     <!--Body-->
     <?php
+    // include '/home/joyu0218/config.php';
+    include '/home/joyu0218/config.php';
+
+    // $servername = $host;
+    // $username = $user;
+    // $password = $pass;
+    // $dbname = $db;
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "Project";
 
+    
     $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+
+    // $servername = "localhost";
+    // $username = "root";
+    // $password = "";
+    // $dbname = "Project";
+
+    // $conn = mysqli_connect($servername, $username, $password, $dbname);
 
     // Check connection
     if (!$conn) {

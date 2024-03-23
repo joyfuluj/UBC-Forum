@@ -1,7 +1,7 @@
 document.getElementById("header").innerHTML = `
     <div>
         <a href="index.html">
-            <img src="../images/logo.png" alt="UBC Forums">
+            <img src="../images/logo.png" alt="UBC Forums" id="logo">
         </a>
         <form action="index.php" metho="GET" >
             <select id="communities" name="communities" style="width: 15%">
