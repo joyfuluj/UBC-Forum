@@ -4,6 +4,7 @@ body{
 section{
     background-color: var(--Cream);
 }
+
 #posts{
     margin:0;
 }
@@ -20,4 +21,9 @@ section{
     margin: 0 2vw;
     width:20vw;
     height: 80%
+}
+hr{
+    border: 0.5pt solid;
+    width: 95%;
+    margin-left: 20px;
 }

@@ -18,12 +18,14 @@ header div > a{
     background-color: var(--Cream);
 }
 
-header form{
+header form, select{
     padding:  0.5vh 0.5vw;
-    width: 45%;
+    width: 50%;
     color: #000;
     border-radius: var(--DefaultBR);
     background-color: var(--Cream);
+    display: flex;
+    align-items: center;
 }
 header form > input{
     color: #000;

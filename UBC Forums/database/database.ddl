@@ -1,4 +1,5 @@
-CREATE DATABASE Forums
+CREATE DATABASE Forums;
+USE Forums;
 
 CREATE TABLE users (
     userId INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,33 +9,45 @@ CREATE TABLE users (
     firstName VARCHAR(25),
     lastName VARCHAR(25),
     signUpDate DATETIME
-)
+);
+);
 
-CREATE TABLE community(
+CREATE TABLE community (
     communityID INT AUTO_INCREMENT PRIMARY KEY,
     communityName VARCHAR(20) UNIQUE,
     communityDesc VARCHAR(200),
-    ownerId INT,
+    ownerId INT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(userId)
-)
+);
+);
 
-//A trigger that makes the oldest moderator the new owner if the owner leaves the community
+DELIMITER //
 CREATE TRIGGER newOwner
 AFTER DELETE ON users
 FOR EACH ROW
 BEGIN
     UPDATE community
-    SET ownerId = (SELECT userId FROM memberOf WHERE communityID = communityID AND type = 'moderator' ORDER BY joinDate ASC LIMIT 1)
+    SET ownerId = (
+        SELECT userId
+        FROM memberOf
+        WHERE communityID = communityID AND type = 'moderator'
+        ORDER BY joinDate ASC
+        LIMIT 1
+    )
     WHERE ownerId = OLD.userId;
-END
+END//
+DELIMITER ;
 
-CREATE TABLE memberOf(
+CREATE TABLE memberOf (
     communityID INT,
     userId INT,
     type ENUM('member', 'moderator'),
+    joinDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (communityID, userId),
     FOREIGN KEY (userId) REFERENCES users(userId),
     FOREIGN KEY (communityID) REFERENCES community(communityID)
-)
+);
+);
 
 CREATE TABLE posts (
     postId INT AUTO_INCREMENT,
@@ -46,17 +59,24 @@ CREATE TABLE posts (
     postTime DATETIME
     FOREIGN KEY (userId) REFERENCES users(userId).
     FOREIGN KEY (communityID) REFERENCES community(communityID)
-    PRIMARY KEY (postId, communityID)
-)
+);
 
-CREATE TABLE comments(
-    commentId INT AUTO_INCREMENT,
+CREATE TABLE comments (
+    commentId INT AUTO_INCREMENT PRIMARY KEY,
     postId INT,
     commentContent VARCHAR(900),
     commentTime DATETIME,
     promos INT,
     userId INT,
-    FOREIGN KEY (postId) REFERENCES posts(postId)
+    FOREIGN KEY (postId) REFERENCES posts(postId),
     FOREIGN KEY (userId) REFERENCES users(userId)
-    PRIMARY KEY (postId, commentId)
-)
+);
+
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'all', NULL, NULL);
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'travel', NULL, NULL);
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'game', NULL, NULL);INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'al', NULL, NULL);
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'school', NULL, NULL);
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'sports', NULL, NULL);
+
+
+INSERT INTO `users` (`userId`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, 'bob328', 'bobob', 'bob@gmail.com', 'Bob', 'BB', NOW());

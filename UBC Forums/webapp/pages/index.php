@@ -20,11 +20,11 @@
     </header>
     <!--Body-->
     <div class = 'bodyDiv'>
-
         <section id = "sideMenu">
     
         </section>
         <section id = "posts">
+
             
         </section>
         
