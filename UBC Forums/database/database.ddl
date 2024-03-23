@@ -50,13 +50,14 @@ CREATE TABLE memberOf (
 );
 
 CREATE TABLE posts (
-    postId INT AUTO_INCREMENT PRIMARY KEY,
-    postDesc VARCHAR(200),
-    communityID INT,
+    postId INT AUTO_INCREMENT,
+    postTitle VARCHAR(200),
+    communityId INT,
     userId INT,
     promos INT,
-    postTime DATETIME,
-    FOREIGN KEY (userId) REFERENCES users(userId),
+    postType VARCHAR(10), 
+    postTime DATETIME
+    FOREIGN KEY (userId) REFERENCES users(userId).
     FOREIGN KEY (communityID) REFERENCES community(communityID)
 );
 
