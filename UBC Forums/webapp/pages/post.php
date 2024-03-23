@@ -17,35 +17,20 @@
 
     <form method="POST" action="insert.php" enctype="multipart/form-data">
         <div id="post">
+            <!-- <input type="text" id="title" name="title"> -->
             <input type="text" id="textPost" name="postDesc">
             <select id="community" name="communities" style="top: 25px; left: 10px">
                 <option value="all">Choose a Community</option>
                 <option value="travel">travel</option>
-                <option value="sport">sport</option>
+                <option value="sports">sports</option>
                 <option value="game">game</option>
                 <option value="school">school</option>
             </select>
+            
         </div>
         <input type="file" name="image" id="uploadImg" style="top: 600px; left: 450px; width:250px" >
+        <?php if (isset($_GET['invalid'])) echo "<p style=\"position: absolute; top: 600px;left: 740px;font-size: 15px;color: red;\">Only images are valid.</p>"; ?>
         <input type="submit" value="post" id="postbutton" style="top: 590px;right: 450px;padding:20px;">
     </form>
-<?php
-// //Debugging
-//     $sql = "SELECT * FROM posts;";
-
-//     $results = mysqli_query($conn, $sql);
-
-  
-//     if (mysqli_num_rows($results) > 0) {
-//         while ($row = mysqli_fetch_assoc($results))
-//         {
-//             echo "<br><br>";
-//             echo $row['postDesc']."<br/>";
-//         }
-//     }else{
-//         echo "Nothing is here.";
-//     }
-    ?>
-
 </body>
 </html>

@@ -1,6 +1,6 @@
 document.getElementById("header").innerHTML = `
     <div>
-        <a href="index.html">
+        <a href="index.php">
             <img src="../images/logo.png" alt="UBC Forums" id="logo">
         </a>
         <form action="index.php" metho="GET" >
@@ -17,7 +17,7 @@ document.getElementById("header").innerHTML = `
         <a href="post.php">Post</a>
         <a href="">Dashboard</a>
         <a href="">Forums</a>
-        <a id = 'user' href=""><img alt = 'Profile'src = ''></a>
+        <a id = 'user' href="register.php"><img alt = 'Profile'src = ''></a>
         <a class = "hidden" href="login.html">Login</a>
     </div>
 `;
