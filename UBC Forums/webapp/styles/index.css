@@ -4,28 +4,26 @@ body{
 section{
     background-color: var(--Cream);
 }
-div{
-    display: inline-flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100vw;
-    height: 75vh;
-}
-#posts, #sideMenu{
-    
-}
-#posts{
-    overflow: scroll;
-    border-radius: var(--DefaultBR);
 
-    margin: 13% 4vw;
-    width: 65vw;
-    height: 100%;
+#posts{
+    margin:0;
+}
+.bodyDiv{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 85vh;
 }
 #sideMenu{
     background: linear-gradient(to bottom, var(--Coral), var(--Cream));
     border-radius: var(--DefaultBR);
-    margin: 1vh 4vw;
+    margin: 0 2vw;
     width:20vw;
     height: 80%
+}
+hr{
+    border: 0.5pt solid;
+    width: 95%;
+    margin-left: 20px;
 }
