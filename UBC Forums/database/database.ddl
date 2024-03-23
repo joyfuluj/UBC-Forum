@@ -93,3 +93,4 @@ INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `owner
 
 
 INSERT INTO `users` (`userId`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, 'bob328', 'bobob', 'bob@gmail.com', 'Bob', 'BB', NOW());
+
