@@ -73,7 +73,8 @@ CREATE TABLE comments (
 
 INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'all', NULL,1);
 INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'travel', NULL,1);
-INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'game', NULL,1);INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'al', NULL, 1);
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'game', NULL,1);
+INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'al', NULL, 1);
 INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'school', NULL,1);
 INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'sports', NULL,1);
 

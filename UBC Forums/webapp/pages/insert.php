@@ -34,12 +34,16 @@
                 if ($row = mysqli_fetch_assoc($result)) {
                     $communityID = $row['communityID'];
                     $postDesc = $_POST["postDesc"];        
-                    $sql = "INSERT INTO posts (communityID, userId, postTime) VALUES ('$communityID', 1, NOW())";
-                    if (mysqli_query($conn, $sql)) {
+                    $sql = "INSERT INTO posts (communityID, userId, postTime) VALUES (?, 1, NOW())";
+                    if ($statement = mysqli_prepare($conn, $sql)) {
+                        mysqli_stmt_bind_param($statement, 's', $communityID);
+                        mysqli_stmt_execute($statement);
+                        $postType="";
+                        $fileName="";
                         $postID = mysqli_insert_id($conn);
-                        $fileName = "$communityID" . "-" . "$postID.txt";
-                        $sql = "UPDATE posts SET postDesc='$fileName' WHERE postId = $postID";
-                        if (mysqli_query($conn, $sql)) {
+                        if($postDesc){
+                            $fileName = "$communityID" . "-" . "$postID.txt";
+                            $postType="text";
                             $filePath = "../posts/$fileName";
                             //Upload Text post
                             $newFile = fopen("$filePath", "w");
@@ -50,18 +54,29 @@
                             } else {
                                 echo "Error creating file!";
                             }
+                            $fileName = "$communityID" . "-" . "$postID.txt";
+                        } 
+                        else{
+                            $postType= "image";
                             $targetFile = $_FILES["image"]["name"];
                             //upload image file
                             $parts = explode(".", $targetFile);
                             $extension = end($parts);
-                            $newFileName = $communityID . "-" . $postID . "." .$extension;
+                            $fileName = $communityID . "-" . $postID . "." .$extension;
                             $tempFile = $_FILES["image"]["tmp_name"];
-                            $destination = "../images/" . $newFileName;
+                            $destination = "../posts/" . $fileName;
                             if(copy($_FILES["image"]["tmp_name"], $destination)){
                                 echo "The image was uploaded and moved successfully!";
                             } else {
                                 echo "There was a problem uploading the file";
                             }
+                        }
+                        
+                        $sql = "UPDATE posts SET postDesc=?, postType=? WHERE postId=?";
+                        if ($statement = mysqli_prepare($conn, $sql)) {
+                            mysqli_stmt_bind_param($statement, "ssi", $fileName, $postType, $postID);
+                            mysqli_stmt_execute($statement);
+                            echo "Successfully Posted!";
                         }else {
                             echo "Error inserting post: " . mysqli_error($conn);
                         }
