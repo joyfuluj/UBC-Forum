@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS db_81265373;
 USE db_81265373;
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     userId INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30),
     password VARCHAR(25),
@@ -11,7 +11,7 @@ CREATE TABLE users (
     signUpDate DATETIME
 );
 
-CREATE TABLE community (
+CREATE TABLE IF NOT EXISTS community (
     communityId INT AUTO_INCREMENT PRIMARY KEY,
     communityName VARCHAR(20) UNIQUE,
     communityDesc VARCHAR(200),
@@ -20,7 +20,7 @@ CREATE TABLE community (
 );
 
 
-CREATE TABLE memberOf (
+CREATE TABLE IF NOT EXISTS memberOf (
     communityId INT,
     userId INT,
     type ENUM('member', 'moderator'),
@@ -30,7 +30,7 @@ CREATE TABLE memberOf (
     FOREIGN KEY (communityId) REFERENCES community(communityId)
 );
 
-CREATE TABLE posts (
+CREATE TABLE IF NOT EXISTS posts (
     postId INT AUTO_INCREMENT PRIMARY KEY,
     postTitle VARCHAR(200),
     communityId INT,
@@ -43,7 +43,7 @@ CREATE TABLE posts (
     UNIQUE(postId, communityId)
 );
 
-CREATE TABLE comments(
+CREATE TABLE IF NOT EXISTS comments(
     commentId INT AUTO_INCREMENT PRIMARY KEY,
     postId INT,
     communityId INT,
@@ -56,8 +56,9 @@ CREATE TABLE comments(
     FOREIGN KEY (communityId) REFERENCES community(communityId),
     UNIQUE (postId, communityId, commentId)
 );
-/*
+
 DELIMITER //
+/*
 CREATE TRIGGER newOwner
 AFTER DELETE ON users
 FOR EACH ROW
@@ -72,9 +73,11 @@ BEGIN
     )
     WHERE ownerId = OLD.userId;
 END//
+*/
 DELIMITER ;
 
 DELIMITER //
+/*
 CREATE TRIGGER addOwnerAsModerator
 AFTER INSERT ON community
 FOR EACH ROW
@@ -82,8 +85,10 @@ BEGIN
     INSERT INTO memberOf (communityId, userId, type, joinDate)
     VALUES (NEW.communityId, NEW.ownerId, 'moderator', NOW);
 END //
-DELIMITER ;
 */
+DELIMITER ;
+
+INSERT INTO `users` (`userId`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, 'bob328', 'bobob', 'bob@gmail.com', 'Bob', 'BB', NOW());
 
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Travel', NULL,1);
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Game', NULL,1);
@@ -92,5 +97,4 @@ INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `owner
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Sports', NULL,1);
 
 
-INSERT INTO `users` (`userId`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, 'bob328', 'bobob', 'bob@gmail.com', 'Bob', 'BB', NOW());
 
