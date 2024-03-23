@@ -17,12 +17,15 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
+    $targetFile = $_FILES["image"]["name"];
+    if (isset($_FILES["image"]["name"]) && $_FILES["image"]["error"] == 0) {
+        echo "<br>file name is: ".$_FILES["image"]["name"];
+    } 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $communityName = $_POST["communities"];
         $postDesc = $_POST["postDesc"];
-        echo $communityName ."<br>". $postDesc ."";
-        if ($postDesc) {
+        if ($postDesc || $targetFile) {
             $sql = "SELECT communityID FROM community WHERE communityName=?";
             if ($statement = mysqli_prepare($conn, $sql)) {
                 mysqli_stmt_bind_param($statement, 's', $communityName);
@@ -38,26 +41,38 @@
                         $sql = "UPDATE posts SET postDesc='$fileName' WHERE postId = $postID";
                         if (mysqli_query($conn, $sql)) {
                             $filePath = "../posts/$fileName";
+                            //Upload Text post
                             $newFile = fopen("$filePath", "w");
                             if ($newFile) {
                                 fwrite($newFile, $postDesc);
                                 fclose($newFile);
-                                echo "Post created";
+                                echo "Post created!";
                             } else {
                                 echo "Error creating file!";
                             }
-                        } else {
-                            echo "Error updating post description: " . mysqli_error($conn);
+                            $targetFile = $_FILES["image"]["name"];
+                            //upload image file
+                            $parts = explode(".", $targetFile);
+                            $extension = end($parts);
+                            $newFileName = $communityID . "-" . $postID . "." .$extension;
+                            $tempFile = $_FILES["image"]["tmp_name"];
+                            $destination = "../images/" . $newFileName;
+                            if(copy($_FILES["image"]["tmp_name"], $destination)){
+                                echo "The image was uploaded and moved successfully!";
+                            } else {
+                                echo "There was a problem uploading the file";
+                            }
+                        }else {
+                            echo "Error inserting post: " . mysqli_error($conn);
                         }
-                    } else {
-                        echo "Error inserting post: " . mysqli_error($conn);
                     }
                 }
             }
-        }
-        else{
-            echo "Query not done.";
-        }
+            else{
+                echo "Query not done.";
+            }
+    
+        }   
     }
     ?>
     <a href="index.php">Go back to main page</a>
