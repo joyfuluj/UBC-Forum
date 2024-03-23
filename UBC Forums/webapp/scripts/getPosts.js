@@ -1,9 +1,9 @@
 posts = [];
-
+let postRenderDate = new Date();
 async function requestPosts(){
     var xhr = new XMLHttpRequest();
     //get relative path
-    xhr.open("GET", "/postData.php", true);
+    xhr.open("GET", "./pages/postData.php", true);
     //interpret data from MySQL database
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
@@ -11,7 +11,9 @@ async function requestPosts(){
         }
     }
 }
-
+async function getTextPosts(text){
+    
+}
 function addPosts(){
     let feed = $("#posts");
     posts.forEach(post => {
