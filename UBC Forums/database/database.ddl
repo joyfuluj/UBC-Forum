@@ -1,3 +1,4 @@
+CREATE DATABASE IF NOT EXISTS db_81265373;
 USE db_81265373;
 
 CREATE TABLE users (
@@ -9,73 +10,58 @@ CREATE TABLE users (
     lastName VARCHAR(25),
     signUpDate DATETIME
 );
-);
 
 CREATE TABLE community (
-    communityID INT AUTO_INCREMENT PRIMARY KEY,
+    communityId INT AUTO_INCREMENT PRIMARY KEY,
     communityName VARCHAR(20) UNIQUE,
     communityDesc VARCHAR(200),
     ownerId INT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(userId)
 );
-);
 
-DELIMITER //
-CREATE TRIGGER newOwner
-AFTER DELETE ON users
-FOR EACH ROW
-BEGIN
-    UPDATE community
-    SET ownerId = (
-        SELECT userId
-        FROM memberOf
-        WHERE communityID = communityID AND type = 'moderator'
-        ORDER BY joinDate ASC
-        LIMIT 1
-    )
-    WHERE ownerId = OLD.userId;
-END//
-DELIMITER ;
 
 CREATE TABLE memberOf (
-    communityID INT,
+    communityId INT,
     userId INT,
     type ENUM('member', 'moderator'),
     joinDate DATETIME DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (communityID, userId),
+    PRIMARY KEY (communityId, userId),
     FOREIGN KEY (userId) REFERENCES users(userId),
-    FOREIGN KEY (communityID) REFERENCES community(communityID)
-);
+    FOREIGN KEY (communityId) REFERENCES community(communityId)
 );
 
 CREATE TABLE posts (
-    postId INT AUTO_INCREMENT,
+    postId INT AUTO_INCREMENT PRIMARY KEY,
     postTitle VARCHAR(200),
     communityId INT,
     userId INT,
     promos INT,
     postType VARCHAR(10), 
-    postTime DATETIME
-    FOREIGN KEY (userId) REFERENCES users(userId).
-    FOREIGN KEY (communityID) REFERENCES community(communityID)
+    postTime DATETIME,
+    FOREIGN KEY (userId) REFERENCES users(userId),
+    FOREIGN KEY (communityId) REFERENCES community(communityId),
+    UNIQUE(postId, communityId)
 );
 
-CREATE TABLE comments (
+CREATE TABLE comments(
     commentId INT AUTO_INCREMENT PRIMARY KEY,
     postId INT,
+    communityId INT,
     commentContent VARCHAR(900),
     commentTime DATETIME,
     promos INT,
     userId INT,
     FOREIGN KEY (postId) REFERENCES posts(postId),
-    FOREIGN KEY (userId) REFERENCES users(userId)
+    FOREIGN KEY (userId) REFERENCES users(userId),
+    FOREIGN KEY (communityId) REFERENCES community(communityId),
+    UNIQUE (postId, communityId, commentId)
 );
 
-INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'all', NULL,1);
-INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'travel', NULL,1);
-INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'game', NULL,1);INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'al', NULL, 1);
-INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'school', NULL,1);
-INSERT INTO `community` (`communityID`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'sports', NULL,1);
+INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Travel', NULL,1);
+INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Game', NULL,1);
+INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Nature', NULL, 1);
+INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'School', NULL,1);
+INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Sports', NULL,1);
 
 
 INSERT INTO `users` (`userId`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, 'bob328', 'bobob', 'bob@gmail.com', 'Bob', 'BB', NOW());
