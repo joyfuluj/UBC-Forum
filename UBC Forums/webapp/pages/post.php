@@ -18,13 +18,15 @@
     <form method="POST" action="insert.php" enctype="multipart/form-data">
         <div id="post">
             <!-- <input type="text" id="title" name="title"> -->
-            <input type="text" id="textPost" name="postDesc">
+            <input type="text" id="textPost" name="postDesc" style="<?php if(isset($_GET['nopost'])) echo 'border: 1px solid red;'; ?>">
+            <?php if (isset($_GET['nopost'])) echo "<p style=\"position: absolute; top: 100px;left: 60px;font-size: 15px;color: red;\">Please enter something here or post the image file.</p>"; ?>
             <select id="community" name="communities" style="top: 25px; left: 10px">
-                <option value="all">Choose a Community</option>
-                <option value="travel">travel</option>
-                <option value="sports">sports</option>
-                <option value="game">game</option>
-                <option value="school">school</option>
+            <option value="All">Choose a Community</option>
+            <option value="Travel">Travel</option>
+            <option value="Game">Game</option>
+            <option value="Nature">Nature</option>
+            <option value="School">School</option>
+            <option value="Sports">Sports</option>
             </select>
             
         </div>

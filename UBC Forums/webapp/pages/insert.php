@@ -9,7 +9,7 @@ ini_set('display_errors', 1);
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "Project";
+    $dbname = "db_81265373";
 
     
     $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -42,7 +42,7 @@ ini_set('display_errors', 1);
     } 
     
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['communities'])) {
         $communityName = $_POST["communities"];
         $postDesc = $_POST["postDesc"];
         if ($postDesc || $targetFile) {
@@ -108,11 +108,17 @@ ini_set('display_errors', 1);
             else{
                 echo "Couldn't find the community.";
             }
-        }else{
-            echo "Nothing posted.";
+        }else if($postDesc&&$targetFile){
+            header("Location: post.php?both");
+            exit();
+        }
+        else{
+            header("Location: post.php?nopost");
+            exit();
         }
     }else{
-        echo "No request.";
+        header("Location: post.php?nocomm");
+            exit();
     }
     ?>
     <a href="index.php">Go back to main page</a>
