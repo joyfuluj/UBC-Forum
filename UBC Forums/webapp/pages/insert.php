@@ -45,7 +45,7 @@ ini_set('display_errors', 1);
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['communities'])) {
         $communityName = $_POST["communities"];
         $postDesc = $_POST["postDesc"];
-        if ($postDesc || $targetFile) {
+        if ($postDesc xor $targetFile) {
             $sql = "SELECT communityId FROM community WHERE communityName = ?";
             if ($statement = mysqli_prepare($conn, $sql)) {
                 mysqli_stmt_bind_param($statement, 's', $communityName);
@@ -110,7 +110,8 @@ ini_set('display_errors', 1);
                 echo "Couldn't find the community.";
             }
         }else if($postDesc&&$targetFile){
-            header("Location: post.php?both");
+            $postDesc = $_POST["postDesc"];
+            header("Location: post.php?both&postDesc=$postDesc");
             exit();
         }
         else{
