@@ -9,7 +9,7 @@ ini_set('display_errors', 1);
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "Project";
+    $dbname = "db_81265373";
 
     
     $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -42,10 +42,10 @@ ini_set('display_errors', 1);
     } 
     
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['communities'])) {
         $communityName = $_POST["communities"];
         $postDesc = $_POST["postDesc"];
-        if ($postDesc || $targetFile) {
+        if ($postDesc xor $targetFile) {
             $sql = "SELECT communityId FROM community WHERE communityName = ?";
             if ($statement = mysqli_prepare($conn, $sql)) {
                 mysqli_stmt_bind_param($statement, 's', $communityName);
@@ -72,7 +72,7 @@ ini_set('display_errors', 1);
                         if ($newFile) {
                             fwrite($newFile, $postDesc);
                             fclose($newFile);
-                            echo "Post created!";
+                            // echo "Post created!";
                         } else {
                             echo "Error creating file!";
                         }
@@ -88,7 +88,7 @@ ini_set('display_errors', 1);
                         $tempFile = $_FILES["image"]["tmp_name"];
                         $destination = "../posts/" . $fileName;
                         if(copy($_FILES["image"]["tmp_name"], $destination)){
-                            echo "The image was uploaded and moved successfully!";
+                            // echo "The image was uploaded and moved successfully!";
                         } else {
                             echo "There was a problem uploading the file";
                         }
@@ -97,22 +97,31 @@ ini_set('display_errors', 1);
                     if ($statement = mysqli_prepare($conn, $sql)) {
                         mysqli_stmt_bind_param($statement, "si", $postType, $postID);
                         mysqli_stmt_execute($statement);
-                        echo "Successfully Posted!";
+                        // echo "Successfully Posted!";
                     }else {
                         echo "Error inserting post: " . mysqli_error($conn);
                     }
+                    header("Location: post.php?posted");
+                    exit();
                 }else{
                     echo "Error with storing first info.";
                 }
-            }
-            else{
+            }else{
                 echo "Couldn't find the community.";
             }
-        }else{
-            echo "Nothing posted.";
+        }else if($postDesc&&$targetFile){
+            $postDesc = $_POST["postDesc"];
+            header("Location: post.php?both&postDesc=$postDesc");
+            exit();
+        }
+        else{
+            header("Location: post.php?nopost");
+            exit();
         }
     }else{
-        echo "No request.";
+        $postDesc = $_POST["postDesc"];
+        header("Location: post.php?nocomm&postDesc=$postDesc");
+        exit();
     }
     ?>
     <a href="index.php">Go back to main page</a>
