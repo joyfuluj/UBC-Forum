@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +6,6 @@
     <title>UBC Forums - Login</title>
     <link rel="stylesheet" type="text/css" href="../styles/reset.css">
     <link rel="stylesheet" type="text/css" href="../styles/login-register.css">
-    <link rel="stylesheet" type="text/css" href="../styles/header.css">
-    <link rel="stylesheet" type="text/css" href="../styles/postFrag.css">
-    <link rel="stylesheet" type="text/css" href="../styles/style.css">
 </head>
 <!--Body-->
 <body>
@@ -22,13 +18,16 @@
             <h1>Login to UBC Forums</h1>
             <div class="fields">
                 <div id="error"></div>
-                <form id="login-form" action="authenticate.php" method="POST">
+                <form id="login-form" action="authenticate.php" method="POST" novalidate>
+                    <div id="username-error"></div>
                     <input type="email" id="email" name="email" placeholder="Your email or username" required>
+                    <div id="password-error"></div>
                     <input type="password" id="password" name="password" placeholder="Your password" required>
                     <button type="submit" class="login">Login</button>
                 </form>
                 <nav>
-                    <a class="sign-up-link" href="register.html">Or Register Here</a>
+                    <a class="nav-link" href="register.php">Register Here</a>
+                    <a class="nav-link" href="index.php">Homepage</a>
                 </nav>
             </div>
         </main>
@@ -41,4 +40,5 @@
     </nav>
 </footer>
 </html>
+
 

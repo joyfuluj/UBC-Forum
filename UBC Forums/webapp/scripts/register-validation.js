@@ -4,40 +4,92 @@ const username = document.getElementById("username");
 const email = document.getElementById("email");
 const password1 = document.getElementById("password1");
 const password2 = document.getElementById("password2");
-const errorMsg = document.getElementById("error");
+const usernameErrorMsg = document.getElementById("username-error");
+const emailErrorMsg = document.getElementById("email-error");
+const passwordErrorMsg = document.getElementById("password-error");
 
 // Validate all field values and display error messages when necessary.
 form.addEventListener("submit", (e) => 
 {
-    let messages = [];
+    e.preventDefault(); // prevent form from submitting by default
 
-    if(username.value.length < 6) 
+    // Clear previous error messages
+    usernameErrorMsg.innerText = "";
+    emailErrorMsg.innerText = "";
+    passwordErrorMsg.innerText = "";
+
+    // Username validation
+    if(username.value == "" || username.value == null) 
     {
-        messages.push("Username must be longer than 6 characters.");
+        usernameErrorMsg.innerText = "Username cannot be left empty.";
+        username.style.borderColor = "red";
     } 
-    else if(username.value.length > 16)
+    else if(username.value.length >= 1 && username.value.length <= 6) 
     {
-        messages.push("Username must be shorter than 20 characters.");
+        usernameErrorMsg.innerText = "Username must be longer than 6 characters.";
+        username.style.borderColor = "red";
+    } 
+    else if(username.value.length >= 16)
+    {
+        usernameErrorMsg.innerText = "Username must be shorter than 16 characters.";
+        username.style.borderColor = "red";
+    }
+    else
+    {
+        username.style.borderColor = "green";
     }
 
-    //if (email.value){}
-
-    if(password1.value.length < 6) 
+    // Email validation
+    if(email.value == "" || email.value == null) 
     {
-        messages.push("Password must be longer than 6 characters.");
+        emailErrorMsg.innerText = "Email cannot be left empty.";
+        email.style.borderColor = "red";
     } 
-    else if(password1.value.length > 16)
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value))
     {
-        messages.push("Password must be shorter than 20 characters.");
+        emailErrorMsg.innerText = "Please enter a valid email address.";
+        email.style.borderColor = "red";
     }
+    else
+    {
+        email.style.borderColor = "green";
+    }
+
+    // Password validation
     if (password2.value !== password1.value) 
     {
-        messages.push("Passwords do not match. Please try again.");
+        passwordErrorMsg.innerText = "Passwords do not match. Please try again.";
+        password1.style.borderColor = "red";
+        password2.style.borderColor = "red";
     }
-
-    if (messages.length > 0) 
+    else if(password1.value == "" || password1.value == null || password2.value == "" || password2.value == null)
     {
-        e.preventDefault();
-        errorMsg.innerText = messages.join(", ");
+        passwordErrorMsg.innerText = "Password cannot be left empty.";
+        password1.style.borderColor = "red";
+        password2.style.borderColor = "red";
+    }
+    else if(password1.value.length >= 1 && password1.value.length <= 6) 
+    {
+        passwordErrorMsg.innerText = "Password must be longer than 6 characters.";
+        password1.style.borderColor = "red";
+        password2.style.borderColor = "red";
+    } 
+    else if(password1.value.length >= 16)
+    {
+        passwordErrorMsg.innerText = "Password must be shorter than 16 characters.";
+        password1.style.borderColor = "red";
+        password2.style.borderColor = "red";
+    }
+    else
+    {
+        password1.style.borderColor = "green";
+        password2.style.borderColor = "green";
+    }
+    
+
+    // only submit the form when there are no validation errors
+    if (!usernameErrorMsg.innerText && !emailErrorMsg.innerText && !passwordErrorMsg.innerText) 
+    {
+        form.submit();
     }
 });

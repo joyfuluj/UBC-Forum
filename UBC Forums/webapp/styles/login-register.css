@@ -1,3 +1,13 @@
+:root 
+{
+    --AquaBlue: #25ced1;
+    --OffWhite: #ffffff;
+    --Cream: #fceade;
+    --Coral: #ff8a5b;
+    --CoralRed: #ea526f;
+    --DefaultBR: 18px;
+}
+
 .login-container, .register-container, input[type="text"], input[type="email"], input[type="password"], button.login, a
 {
     border-radius: 3em;
@@ -23,10 +33,11 @@ h1
     margin-bottom: 1em;
 }
 
-#error
+#username-error, #email-error, #password-error
 {
     color: red;
     font-size: 12pt;
+    text-align: center;
     margin-bottom: 1em;
 }
 
@@ -63,6 +74,8 @@ h1
     padding-right: 3em;
     border: 3pt solid white;
     margin-bottom: 2em;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .fields input[type="text"]:hover,
@@ -81,7 +94,7 @@ h1
     padding-left: 2em;
     padding-right: 2em;
     color: white;
-    background-color: #ea526f;
+    background: linear-gradient(90deg, var(--CoralRed), var(--Coral));
     border-radius: 3em;
     border: 3pt solid #ea526f;
     cursor: pointer;
@@ -89,22 +102,33 @@ h1
     font-size: 12pt;
     margin-bottom: 2em;
 }
-
 .fields button[type="submit"]:hover
 {
     color: white;
     border-color: white;
-    background-color: transparent;
+    background: transparent;
 }
 
-.login-container a.sign-up-link, .register-container a.sign-up-link 
+.nav-link
 {
-    color: white;
+    display: inline-block;
     text-decoration: none;
-    font-size: 14pt;
+    margin: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    color: var(--OffWhite);
+    background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
+    border-radius: 3em;
+    border: 3pt solid var(--OffWhite);
+    cursor: pointer;
     font-weight: bold;
+    font-size: 12pt;
+    margin-bottom: 2em;
 }
-.login-container a.sign-up-link:hover, .register-container a.sign-up-link:hover
+.nav-link:hover
 {
-    color: #ea526f;
+    color: var(--CoralRed);
+    border-color: var(--CoralRed);
 }
