@@ -1,71 +1,106 @@
 posts = [];
-
-async function requestPosts(){
-    var xhr = new XMLHttpRequest();
-    //get relative path
-    xhr.open("GET", "/postData.php", true);
-    //interpret data from MySQL database
-    xhr.onreadystatechange = function(){
-        if(xhr.readyState == 4 && xhr.status == 200){
-            posts = JSON.parse(xhr.responseText);
+let pageNum = 0;
+let feedLoad = true;
+async function loadPosts(){
+    await requestPosts().then(() =>{
+        if (posts.length <= 0) {
+            feedLoad = false;
         }
+        addPosts()
+        console.log(posts);
+    });
+}
+async function requestPosts() {
+    //await return
+    const response = await fetch(`../pages/postData.php?pageNum=${encodeURIComponent(pageNum)}`);;
+    if (response.ok) {
+        posts = await response.json();
+        pageNum +=1;
+    } else {
+        console.error('HTTP error', response.status);
     }
 }
+async function getTextPosts(text){
+    const postText = await fetch(text);
+    if(!postText.ok){
+        console.log("error");
+    }
+    else{
+        let result = await postText.text();
+        return result;
+    }
 
-function addPosts(){
+}
+
+async function addPosts(){
     let feed = $("#posts");
-    posts.forEach(post => {
-        let postContent;
-        if(post.postType == "txt"){
-            //TODO: implement text reading from file
-            postContent =
-            $(`
-            <div id = 'post-${post.postId}-${post.communityId}' class = 'textPost'>
-                <div class = 'postHeader'>
-                    <h3>${post.postTitle}</h3>
-                    <div class = 'postDetails'>
-                        <h4>${post.userId}</h4>
-                        <h5>${post.postTime}</h5>
-                    </div>
-                </div>
-                <div class = 'postContent'>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class = 'postOptions'>
-                    <button class = 'likeButton'></button>
-                    <button 
-                </div>
-            </div>`
-            );
-           
-        }
-        else{
-            
-            postContent = 
-            $(`
-                <div id = 'post-${post.postId}-${post.communityId}' class = 'post'>
+    if(posts.length == 0){
+        console.log("no posts");
+        return;
+    }
+    if(posts.length > 0){
+        posts.forEach(async post => {
+            let username = await fetch(`../pages/getUsername.php?userId=${post.userId}`);
+            username = await username.json();
+            username = username.username;
+            let postContent;
+            if(post.postType == "txt"){
+                //TODO: implement text reading from file
+                let text = "Failed to load";
+                text = await getTextPosts(`../posts/${post.postId}-${post.communityId}.${post.postType}`);
+                postContent = 
+                $(`
+                <div id = 'post-${post.postId}-${post.communityId}' class = 'textPost'>
                     <div class = 'postHeader'>
                         <h3>${post.postTitle}</h3>
                         <div class = 'postDetails'>
-                            <h4>${post.userId}</h4>
+                            <h4>${username}</h4>
                             <h5>${post.postTime}</h5>
                         </div>
                     </div>
                     <div class = 'postContent'>
-                    <a class = 'blank'>
-                        <img src="../posts/${post.postId}-${post.communityId}.${post.postType}">
-                    </a>
+                        <p>${text}</p>
                     </div>
                     <div class = 'postOptions'>
-
-                        Promos: ${post.promos} <button class = 'likeButton'></button>
-                        <button>
+                        Promos: ${post.promos} <button id = '${post.postId}-${post.communityId}' class = 'likeButton'></button>
+                        <button 
                     </div>
                 </div>`
-            );
-        }
-        feed.append(postContent);
-    });
+                );
+            
+            }
+            else{
+                
+                postContent = 
+                $(`
+                    <div id = 'post-${post.postId}-${post.communityId}' class = 'post'>
+                        <div class = 'postHeader'>
+                            <h3>${post.postTitle}</h3>
+                            <div class = 'postDetails'>
+                                <h4>${username}</h4>
+                                <h5>${post.postTime}</h5>
+                            </div>
+                        </div>
+                        <div class = 'postContent'>
+                        <a class = 'blank' href = '../posts/${post.postId}-${post.communityId}.${post.postType}'>
+                            <img src="../posts/${post.postId}-${post.communityId}.${post.postType}">
+                        </a>
+                        </div>
+                        <div class = 'postOptions'>
+                            Promos: ${post.promos}
+                            <button class = 'promo' onClick = 'handlePromo(${post.postId}, ${post.communityId})'>^</button>
+                            <button class = 'commentButton' onClick = 'handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
+
+                        </div>
+                    </div>`
+                );
+
+                
+
+            }
+            feed.append(postContent);
+        });
+    }
 }
             /*
             postId INT AUTO_INCREMENT,
@@ -111,9 +146,23 @@ function getTestPosts(){
     posts.push(post);
     
 }
-
+function handlePromo(postId, communityId) {
+    // Handle promo logic here
+    console.log(`Promo clicked for post ${postId} in community ${communityId}`);
+}
+function handleLoadComments(postId, communityId) {
+    // Handle comment loading logic here
+    console.log(`Comments clicked for post ${postId} in community ${communityId}`);
+}
 window.onload = function(){
-    //requestPosts();
-    getTestPosts();
-    addPosts();
+    loadPosts();
+    feed = $("#posts");
+    feed.scroll(function() {
+        
+        if ( $(feed).scrollTop() + $(feed).height() > $(feed).prop('scrollHeight') - 100) {
+            loadPosts();
+        }
+    });
+    //getTestPosts();
+    //addPosts();
 };

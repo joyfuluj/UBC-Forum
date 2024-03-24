@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <link rel="stylesheet" type="text/css" href="../styles/postFrag.css">
     
+    
 </head>
     
 <body>
@@ -21,7 +22,10 @@
     <!--Body-->
     <div class = 'bodyDiv'>
         <section id = "sideMenu">
-    
+            <button id = 'loadDefault' onClick = 'loadDefaults()'>X</button>
+            <div id = "sideMenuContent">
+                <h3>To be filled Dashboard Options</h3>
+            </div>
         </section>
         <section id = "posts">
 
@@ -38,5 +42,6 @@
 </body>
 <script src="../scripts/header.js"></script>
 <script src = "../scripts/getPosts.js"></script>
+<script src = "../scripts/dashOptions.js"></script>
 </html>
 
