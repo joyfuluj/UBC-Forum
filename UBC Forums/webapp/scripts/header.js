@@ -1,6 +1,6 @@
 document.getElementById("header").innerHTML = `
     <div>
-        <a href="index.html">
+        <a href="index.php">
             <img src="../images/logo.png" alt="UBC Forums">
         </a>
         <form action="index.php" metho="GET" >

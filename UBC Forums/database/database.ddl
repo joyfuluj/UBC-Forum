@@ -84,6 +84,7 @@ BEGIN
 END //
 DELIMITER ;
 */
+INSERT INTO `users` (`userId`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, 'bob328', 'bobob', 'bob@gmail.com', 'Bob', 'BB', NOW());
 
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Travel', NULL,1);
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Game', NULL,1);
@@ -91,6 +92,6 @@ INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `owner
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'School', NULL,1);
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Sports', NULL,1);
 
-
-INSERT INTO `users` (`userId`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, 'bob328', 'bobob', 'bob@gmail.com', 'Bob', 'BB', NOW());
-
+INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "Cool post", 1, 1,0, "txt", NOW());
+INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "Cool post", 1, 1,0, "jpg", NOW());
+INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "Cool post", 1, 1,0, "png", NOW());
