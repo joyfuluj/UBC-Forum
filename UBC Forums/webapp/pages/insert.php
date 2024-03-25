@@ -2,17 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-    // $servername = $host;
-    // $username = $user;
-    // $password = $pass;
-    // $dbname = $db;
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "db_81265373";
-
+    include('connection.php');
     
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
     function customError($errno, $errstr) {
         echo "<b>Error:</b> [$errno] $errstr";
       }

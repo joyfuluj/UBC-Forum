@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +21,25 @@
         <main>
             <h1>Login to UBC Forums</h1>
             <div class="fields">
-                <div id="error"></div>
-                <form id="login-form" action="authenticate.php" method="POST" novalidate>
+                <div id="msg" style="color: green; font-size: 12pt; text-align: center; margin-bottom: 1em;">
+                    <?php 
+                        if(isset($_GET['msg'])) 
+                        {
+                            echo $_GET['msg'];
+                            unset($_GET['msg']);
+                        }
+                    ?>
+                    </div>
+                <div id="error" style="color: red; font-size: 12pt; text-align: center; margin-bottom: 1em;">
+                    <?php 
+                        if(isset($_GET['error'])) 
+                        {
+                            echo $_GET['error'];
+                            unset($_GET['error']);
+                        }
+                    ?>
+                    </div>
+                <form id="login-form" action="../scripts/login_authenticate.php" method="POST" novalidate>
                     <div id="username-error"></div>
                     <input type="email" id="email" name="email" placeholder="Your email or username" required>
                     <div id="password-error"></div>

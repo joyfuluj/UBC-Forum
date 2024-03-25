@@ -33,7 +33,7 @@ h1
     margin-bottom: 1em;
 }
 
-#username-error, #email-error, #password-error
+#username-error, #email-error, #password-error, #fname-error, #lname-error
 {
     color: red;
     font-size: 12pt;

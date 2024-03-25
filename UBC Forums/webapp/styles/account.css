@@ -1,10 +1,13 @@
-body{
+body
+{
     background-color: #f8f8f8;
 }
-div{
+div
+{
     position: relative;
 }
-#post{
+#post
+{
     position: absolute;
     display: block;
     height: 700px;
@@ -16,7 +19,8 @@ div{
     overflow: scroll;
     font-family: 'Roboto', sans-serif;
 }
-#info{
+#info
+{
     position: absolute;
     display: block;
     height: 450px;
@@ -27,14 +31,16 @@ div{
     border-radius: 25px;
     font-family: 'Roboto', sans-serif;
 }
-#post h2{
+#post h2
+{
     position: relative;
     text-align: center;
     top: 50%;
     font-size: 1.5em;
     opacity: 0.6;
 }
-#info h2{
+#info h2
+{
     position: relative;
     top: 55%;
     left: 30px;
@@ -46,7 +52,8 @@ div{
     padding: 0.4em;
     border-radius: 25px;
 }
-#info #newPost{
+#info #newPost
+{
     position: relative;
     top: 300px;
     left: 30px;
@@ -58,8 +65,9 @@ div{
     padding: 0.4em;
     border-radius: 25px;
 }
-#info #sub{
-    position: absolute;
+#info #sub
+{
+    position: relative;
     top: 150px;
     height: 300px;
     display: block;
@@ -69,14 +77,16 @@ div{
     padding: 0.4em;
     border-radius: 0 0 25px 25px;
 }
-#name{
+#name
+{
     position: absolute;
     top: 25px;
     color: black;
     font-size: 1em;
     margin-left: 2em;
 }
-#info #pic{
+#info #pic
+{
     position: absolute;
     top: 50px;
     left: 20px;
@@ -87,8 +97,10 @@ div{
     color: white;
     border-radius: 15px;
 }
-#pic img{
+#pic img
+{
     position: absolute;
     top: 50px;
     left: 50px;
 }
+

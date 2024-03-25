@@ -4,8 +4,9 @@ USE db_81265373;
 
 CREATE TABLE IF NOT EXISTS users (
     userId INT AUTO_INCREMENT PRIMARY KEY,
+    privilege ENUM('1', '2'),
     username VARCHAR(30),
-    password VARCHAR(25),
+    password VARCHAR(60),
     email VARCHAR(50),
     firstName VARCHAR(25),
     lastName VARCHAR(25),
@@ -92,8 +93,8 @@ END //
 */
 DELIMITER ;
 
-
-INSERT INTO `users` (`userId`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, 'bob328', 'bobob', 'bob@gmail.com', 'Bob', 'BB', NOW());
+INSERT INTO `users` (`userId`, `privilege`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, '1', 'jdoe101', 'johndoepw', 'john@gmail.com', 'John', 'Doe', NOW());
+INSERT INTO `users` (`userId`, `privilege`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, '2', 'jdoe102', 'janedoepw', 'jane@gmail.com', 'Jane', 'Doe', NOW());
 
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Travel', NULL,1);
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Game', NULL,1);

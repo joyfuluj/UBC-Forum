@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,13 +21,26 @@
         <main>
             <h1>Register for UBC Forums</h1>
             <div class="fields">
-                <form id="register-form" action="#" method="POST" novalidate>
+                <div id="error" style="color: red; font-size: 12pt; text-align: center; margin-bottom: 1em;">
+                    <?php 
+                        if(isset($_GET['error'])) 
+                        {
+                            echo $_GET['error'];
+                            unset($_GET['error']);
+                        }
+                    ?>
+                </div>
+                <form id="register-form" action="../scripts/register_authenticate.php" method="POST" novalidate>
+                    <div id="fname-error"></div>
+                    <input type="text" id="fname" name="fname" placeholder="Enter your first name" required>
+                    <div id="lname-error"></div>
+                    <input type="text" id="lname" name="lname" placeholder="Enter your last name" required>
                     <div id="username-error"></div>
-                    <input type="text" id="username" placeholder="Choose a username" required>
+                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
                     <div id="email-error"></div>
-                    <input type="email" id="email" placeholder="Your email address" required>
+                    <input type="email" id="email" name="email" placeholder="Your email address" required>
                     <div id="password-error"></div>
-                    <input type="password" id="password1" placeholder="Choose a password" required>
+                    <input type="password" id="password1" name="password" placeholder="Choose a password" required>
                     <input type="password" id="password2" placeholder="Reenter password" required>
                     <button type="submit" class="create-account">Create Account</button>
                 </form>

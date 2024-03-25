@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +21,8 @@
 <body>
     <!--Header import-->
     <header id ="header">
-        <script src="../scripts/header.js"></script>
+        <?php include('../scripts/header.php'); ?>
+        <!--<script src="../scripts/header.js"></script>-->
     </header>
     <!--Body-->
     <div class = 'bodyDiv'>
@@ -40,7 +45,7 @@
         </nav>
     </footer>
 </body>
-<script src="../scripts/header.js"></script>
+<!--<script src="../scripts/header.js"></script>-->
 <script src = "../scripts/getPosts.js"></script>
 <script src = "../scripts/dashOptions.js"></script>
 </html>

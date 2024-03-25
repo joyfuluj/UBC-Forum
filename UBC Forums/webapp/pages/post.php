@@ -12,7 +12,8 @@
 <body>
     <!--Header import-->
     <header id="header">
-        <script src="../scripts/header.js"></script>
+        <?php include_once('../scripts/header.php'); ?>
+        <!--<script src="../scripts/header.js"></script>-->
     </header>
 
     <form method="POST" action="insert.php" enctype="multipart/form-data">

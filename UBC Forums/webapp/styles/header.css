@@ -1,9 +1,12 @@
-header{
+header
+{
     padding:0%;
     margin:0 0 5vh 0;
     top:0;
 }
-header div{
+
+header div
+{
     display: inline-flex;
     justify-content: space-around;
     align-items: center;
@@ -12,16 +15,21 @@ header div{
     background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
     border-radius: 0 0 var(--DefaultBR) var(--DefaultBR);
 }
-#logo{
+
+#logo
+{
     height: 8vh;
 }
-header div > a{
+
+header div > a
+{
     padding:  0.5vh 0.8vw;
     color: #000;
     background-color: var(--Cream);
 }
 
-header form, select{
+header form, select
+{
     padding:  0.5vh 0.5vw;
     width: 50%;
     color: #000;
@@ -30,7 +38,9 @@ header form, select{
     display: flex;
     align-items: center;
 }
-header form > input{
+
+header form > input
+{
     color: #000;
     border-radius: var(--DefaultBR);
     background-color: var(--Cream);
