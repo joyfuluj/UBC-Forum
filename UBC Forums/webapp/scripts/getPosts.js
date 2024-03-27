@@ -1,17 +1,13 @@
-posts = [];
+let posts = [];
 let pageNum = 0;
-let feedLoad = true;
+let morePosts = true;   
 async function loadPosts(){
     await requestPosts().then(() =>{
-        if (posts.length <= 0) {
-            feedLoad = false;
-        }
         addPosts()
-        console.log(posts);
     });
 }
 async function requestPosts() {
-    //await return
+    //await returnReferenceError: handleLoadComments is not defined
     const response = await fetch(`../pages/postData.php?pageNum=${encodeURIComponent(pageNum)}`);;
     if (response.ok) {
         posts = await response.json();
@@ -34,11 +30,7 @@ async function getTextPosts(text){
 
 async function addPosts(){
     let feed = $("#posts");
-    if(posts.length == 0){
-        console.log("no posts");
-        return;
-    }
-    if(posts.length > 0){
+    if(posts.length > 0 && morePosts == true){
         posts.forEach(async post => {
             let username = await fetch(`../pages/getUsername.php?userId=${post.userId}`);
             username = await username.json();
@@ -62,8 +54,10 @@ async function addPosts(){
                         <p>${text}</p>
                     </div>
                     <div class = 'postOptions'>
-                        Promos: ${post.promos} <button id = '${post.postId}-${post.communityId}' class = 'likeButton'></button>
-                        <button 
+                        Promos: ${post.promos}
+                        <button class = 'promo' onClick = 'handlePromo(${post.postId}, ${post.communityId})'>^</button>
+                        <button class = 'commentButton' onClick = 'handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
+
                     </div>
                 </div>`
                 );
@@ -100,6 +94,11 @@ async function addPosts(){
             }
             feed.append(postContent);
         });
+    }else if(morePosts == true) {
+        feed.append(`
+            <h3>No more posts!</h3>
+        `);
+        morePosts = false;
     }
 }
             /*
@@ -149,10 +148,6 @@ function getTestPosts(){
 function handlePromo(postId, communityId) {
     // Handle promo logic here
     console.log(`Promo clicked for post ${postId} in community ${communityId}`);
-}
-function handleLoadComments(postId, communityId) {
-    // Handle comment loading logic here
-    console.log(`Comments clicked for post ${postId} in community ${communityId}`);
 }
 window.onload = function(){
     loadPosts();

@@ -27,7 +27,7 @@
         }
         else
         {
-            $sql2 = "INSERT INTO users (userId, privilege, username, password, email, firstName, lastName, signUpDate) VALUES (NULL, '1', '{$username}', '{$hashed_password}', '{$email}', '{$fname}', '{$lname}', NOW());";
+            $sql2 = "INSERT INTO users (userId, privilege, username, password, email, firstName, lastName, profilePic, signUpDate) VALUES (NULL, '1', '{$username}', '{$hashed_password}', '{$email}', '{$fname}', '{$lname}', 'default_account.jpg', NOW());";
             $stmt2 = $conn->prepare($sql2);
             if($stmt2->execute())
             {

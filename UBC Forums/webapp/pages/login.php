@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UBC Forums - Login</title>
     <link rel="stylesheet" type="text/css" href="../styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <link rel="stylesheet" type="text/css" href="../styles/login-register.css">
 </head>
 <!--Body-->
@@ -38,7 +39,7 @@
                             unset($_GET['error']);
                         }
                     ?>
-                    </div>
+                </div>
                 <form id="login-form" action="../scripts/login_authenticate.php" method="POST" novalidate>
                     <div id="username-error"></div>
                     <input type="email" id="email" name="email" placeholder="Your email or username" required>

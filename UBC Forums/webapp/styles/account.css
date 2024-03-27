@@ -1,106 +1,86 @@
-body
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Sets all font to Roboto */
+*
+{
+    font-family: Roboto;
+}
+
+/* Initializes some useful color values */
+:root 
+{
+    --AquaBlue: #25ced1;
+    --OffWhite: #ffffff;
+    --Cream: #fceade;
+    --Coral: #ff8a5b;
+    --CoralRed: #ea526f;
+    --DefaultBR: 18px;
+}
+
+/* Sets background color for body element */
+body 
 {
     background-color: #f8f8f8;
 }
-div
+
+/* Makes columns act responsively within container */
+.container 
 {
-    position: relative;
-}
-#post
-{
-    position: absolute;
-    display: block;
-    height: 700px;
-    width: 600px;
-    background-color: #FCEADE;
-    margin-left: 425px;
-    margin-top: 100px;
-    border-radius: 25px;
-    overflow: scroll;
-    font-family: 'Roboto', sans-serif;
-}
-#info
-{
-    position: absolute;
-    display: block;
-    height: 450px;
-    width: 350px;
-    background: linear-gradient(to bottom, #FF8A5B, #FCEADE);
-    right: 30px;
-    top: 110px;
-    border-radius: 25px;
-    font-family: 'Roboto', sans-serif;
-}
-#post h2
-{
-    position: relative;
-    text-align: center;
-    top: 50%;
-    font-size: 1.5em;
-    opacity: 0.6;
-}
-#info h2
-{
-    position: relative;
-    top: 55%;
-    left: 30px;
-    display: block;
-    width: 80%;
-    background: linear-gradient(90deg, #ea526f, #FCEADE);
-    color: white;
-    text-align: center;
-    padding: 0.4em;
-    border-radius: 25px;
-}
-#info #newPost
-{
-    position: relative;
-    top: 300px;
-    left: 30px;
-    display: block;
-    width: 80%;
-    background: linear-gradient(90deg, #ea526f, #FCEADE);
-    color: white;
-    text-align: center;
-    padding: 0.4em;
-    border-radius: 25px;
-}
-#info #sub
-{
-    position: relative;
-    top: 150px;
-    height: 300px;
-    display: block;
-    width: 337px;
-    background-color: beige;
-    color: white;
-    padding: 0.4em;
-    border-radius: 0 0 25px 25px;
-}
-#name
-{
-    position: absolute;
-    top: 25px;
-    color: black;
-    font-size: 1em;
-    margin-left: 2em;
-}
-#info #pic
-{
-    position: absolute;
-    top: 50px;
-    left: 20px;
-    height: 120px;
-    width: 120px;
-    display: block;
-    background-color: beige;
-    color: white;
-    border-radius: 15px;
-}
-#pic img
-{
-    position: absolute;
-    top: 50px;
-    left: 50px;
+    display: flex;
 }
 
+/* Specifies generic styling for all columns */
+.column 
+{
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 1em;
+    height: 100%;
+    margin: 0 auto;
+}
+
+/* Specifies styling for left column */
+#sidebar 
+{
+    flex: 0 1 15%;
+    margin-left: 2em;
+}
+
+/* Specifies styling for middle column */
+#recent_posts 
+{
+    flex: 1 0 15%;
+    margin-left: 2em;
+    margin-right: 2em;
+    background-color: #FCEADE;
+    overflow-y: scroll;
+}
+
+/* Specifies styling for right column */
+#user_info 
+{
+    flex: 0 1 15%;
+    margin-right: 2em;
+    background: linear-gradient(to bottom, #FF8A5B, #FCEADE);
+}
+/* Specifies styling for profile pictures border / outside div */
+#user_info #pic
+{
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin-top: 1em;
+    padding: 3pt;
+    display: block;
+    background-color: var(--Cream);
+    border-radius: 1em;
+}
+/* Specifies styling for profile pictures */
+#user_info #pic img 
+{
+    position: relative;
+    object-fit: cover;
+    width: 200px; 
+    height: 200px;
+    border-radius: 1em; 
+}

@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(50),
     firstName VARCHAR(25),
     lastName VARCHAR(25),
+    profilePic VARCHAR(50),
     signUpDate DATETIME
 );
 
@@ -45,10 +46,57 @@ CREATE TABLE IF NOT EXISTS posts (
     FOREIGN KEY (communityId) REFERENCES community(communityId),
     UNIQUE(postId, communityId)
 );
-
+CREATE TABLE IF NOT EXISTS comments(
+    commentId INT AUTO_INCREMENT PRIMARY KEY,
+    postId INT,
+    communityId INT,
+    commentContent VARCHAR(900),
+    commentTime DATETIME,
+    promos INT,
+    userId INT,
+    FOREIGN KEY (postId) REFERENCES posts(postId),
+    FOREIGN KEY (userId) REFERENCES users(userId),
+    FOREIGN KEY (communityId) REFERENCES community(communityId),
+    UNIQUE (postId, communityId, commentId)
+);
+CREATE TABLE IF NOT EXISTS commentLike (
+    commentId INT,
+    postId INT, 
+    communityId INT,
+    userId INT,
+    FOREIGN KEY (commentId) REFERENCES comments(commentId),
+    FOREIGN KEY (communityId) REFERENCES community(communityId),
+    FOREIGN KEY (postId) REFERENCES posts(postId),
+    FOREIGN KEY (userId) REFERENCES users(userId),
+    PRIMARY KEY (commentId, postId, communityId, userId)
+);
+CREATE TABLE IF NOT EXISTS postLike(
+    postId INT,
+    communityId INT,
+    userId INT,
+    FOREIGN KEY (communityId) REFERENCES community(communityId),
+    FOREIGN KEY (postId) REFERENCES posts(postId),
+    FOREIGN KEY (userId) REFERENCES users(userId),
+    PRIMARY KEY (postId, communityId, userId)
+);
 
 CREATE TABLE IF NOT EXISTS comments(
     commentId INT AUTO_INCREMENT PRIMARY KEY,
+    parentId INT,
+    postId INT,
+    communityId INT,
+    commentContent VARCHAR(900),
+    commentTime DATETIME,
+    promos INT,
+    userId INT,
+    FOREIGN KEY (postId) REFERENCES posts(postId),
+    FOREIGN KEY (userId) REFERENCES users(userId),
+    FOREIGN KEY (communityId) REFERENCES community(communityId),
+    UNIQUE (postId, communityId, commentId)
+);
+CREATE TABLE IF NOT EXISTS replies(
+    commentId INT AUTO_INCREMENT PRIMARY KEY,
+    parentId INT,
     postId INT,
     communityId INT,
     commentContent VARCHAR(900),
@@ -93,8 +141,8 @@ END //
 */
 DELIMITER ;
 
-INSERT INTO `users` (`userId`, `privilege`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, '1', 'jdoe101', 'johndoepw', 'john@gmail.com', 'John', 'Doe', NOW());
-INSERT INTO `users` (`userId`, `privilege`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, '2', 'jdoe102', 'janedoepw', 'jane@gmail.com', 'Jane', 'Doe', NOW());
+INSERT INTO `users` (`userId`, `privilege`, `username`, `password`, `email`, `firstName`, `lastName`, `profilePic`, `signUpDate`) VALUES (NULL, '1', 'jdoe101', '$2y$10$/5gnl1PQBHjTf5lDXxmEIe1dx0FCqwTzOXfVQBo.PTuW265hXqqTO', 'john@gmail.com', 'John', 'Doe', 'default_account.jpg', NOW());
+INSERT INTO `users` (`userId`, `privilege`, `username`, `password`, `email`, `firstName`, `lastName`, `profilePic`, `signUpDate`) VALUES (NULL, '2', 'jdoe102', '$2y$10$liNLLd9SPfHnPrhHy7HQxO9LEMDfqBcwmpa2nyr3cUvGGK9apwaMa', 'jane@gmail.com', 'Jane', 'Doe', 'default_account.jpg', NOW());
 
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Travel', NULL,1);
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Game', NULL,1);
@@ -105,3 +153,8 @@ INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `owner
 INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "Cool post", 1, 1,0, "txt", NOW());
 INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "Cool post", 1, 1,0, "jpg", NOW());
 INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "Cool post", 1, 1,0, "png", NOW());
+
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 1, 1, 'Great post!', NOW(), 0, 2);
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 1, 1, 'Nice work!', NOW(), 0, 1);
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 2, 1, 'Awesome!', NOW(), 0, 2);
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 3, 1, 'Keep it up!', NOW(), 0, 1);

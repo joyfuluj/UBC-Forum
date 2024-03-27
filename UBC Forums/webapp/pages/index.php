@@ -14,7 +14,9 @@
     <link rel="stylesheet" type="text/css" href="../styles/header.css">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <link rel="stylesheet" type="text/css" href="../styles/postFrag.css">
+    <link rel="stylesheet" type="text/css" href="../styles/commentFrag.css">
     <link rel="stylesheet" type="text/css" href="../styles/breadcrumb.css">
+
     
     
 </head>
@@ -22,7 +24,7 @@
 <body>
     <!--Header import-->
     <header id ="header">
-        <?php include('../scripts/header.php'); ?>
+        <?php include_once('../scripts/header.php'); ?>
         <ul class="breadcrumb">
         <li id=current>Home</li>
         </ul>
@@ -34,6 +36,9 @@
             <button id = 'loadDefault' onClick = 'loadDefaults()'>X</button>
             <div id = "sideMenuContent">
                 <h3>To be filled Dashboard Options</h3>
+            </div>
+            <div id = "sideOptions">
+            
             </div>
         </section>
         <section id = "posts">
@@ -50,6 +55,7 @@
     </footer>
 </body>
 <!--<script src="../scripts/header.js"></script>-->
+<script src = "../scripts/getComments.js"></script>
 <script src = "../scripts/getPosts.js"></script>
 <script src = "../scripts/dashOptions.js"></script>
 </html>

@@ -30,10 +30,6 @@ form.addEventListener("submit", (e) =>
         usernameErrorMsg.innerText = "Email or username must be shorter than 24 characters.";
         username.style.borderColor = "red";
     }
-    else
-    {
-        username.style.borderColor = "yellow";
-    }
 
     // Password validation
     if(password.value == "" || password.value == null)
@@ -50,10 +46,6 @@ form.addEventListener("submit", (e) =>
     {
         passwordErrorMsg.innerText = "Password must be shorter than 16 characters.";
         password.style.borderColor = "red";
-    }
-    else
-    {
-        password.style.borderColor = "yellow";
     }
     
     // only submit the form when there are no validation errors
