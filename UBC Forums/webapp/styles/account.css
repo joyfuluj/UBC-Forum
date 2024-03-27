@@ -27,13 +27,11 @@ body
 .container 
 {
     display: flex;
-    flex-wrap: wrap;
 }
 
 /* Specifies generic styling for all columns */
 .column 
 {
-    flex: 1 0 20%;
     background-color: #e9ecef;
     padding: 20px;
     border-radius: 1em;
@@ -44,12 +42,14 @@ body
 /* Specifies styling for left column */
 #sidebar 
 {
+    flex: 0 1 15%;
     margin-left: 2em;
 }
 
 /* Specifies styling for middle column */
 #recent_posts 
 {
+    flex: 1 0 15%;
     margin-left: 2em;
     margin-right: 2em;
     background-color: #FCEADE;
@@ -59,8 +59,21 @@ body
 /* Specifies styling for right column */
 #user_info 
 {
+    flex: 0 1 15%;
     margin-right: 2em;
     background: linear-gradient(to bottom, #FF8A5B, #FCEADE);
+}
+/* Specifies styling for profile pictures border / outside div */
+#user_info #pic
+{
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin-top: 1em;
+    padding: 3pt;
+    display: block;
+    background-color: var(--Cream);
+    border-radius: 1em;
 }
 /* Specifies styling for profile pictures */
 #user_info #pic img 

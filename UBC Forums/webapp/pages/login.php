@@ -39,7 +39,7 @@
                             unset($_GET['error']);
                         }
                     ?>
-                    </div>
+                </div>
                 <form id="login-form" action="../scripts/login_authenticate.php" method="POST" novalidate>
                     <div id="username-error"></div>
                     <input type="email" id="email" name="email" placeholder="Your email or username" required>

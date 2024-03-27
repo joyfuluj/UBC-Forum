@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(50),
     firstName VARCHAR(25),
     lastName VARCHAR(25),
+    profilePic VARCHAR(50),
     signUpDate DATETIME
 );
 
@@ -140,8 +141,8 @@ END //
 */
 DELIMITER ;
 
-INSERT INTO `users` (`userId`, `privilege`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, '1', 'jdoe101', '$2y$10$/5gnl1PQBHjTf5lDXxmEIe1dx0FCqwTzOXfVQBo.PTuW265hXqqTO', 'john@gmail.com', 'John', 'Doe', NOW());
-INSERT INTO `users` (`userId`, `privilege`, `username`, `password`, `email`, `firstName`, `lastName`, `signUpDate`) VALUES (NULL, '2', 'jdoe102', '$2y$10$liNLLd9SPfHnPrhHy7HQxO9LEMDfqBcwmpa2nyr3cUvGGK9apwaMa', 'jane@gmail.com', 'Jane', 'Doe', NOW());
+INSERT INTO `users` (`userId`, `privilege`, `username`, `password`, `email`, `firstName`, `lastName`, `profilePic`, `signUpDate`) VALUES (NULL, '1', 'jdoe101', '$2y$10$/5gnl1PQBHjTf5lDXxmEIe1dx0FCqwTzOXfVQBo.PTuW265hXqqTO', 'john@gmail.com', 'John', 'Doe', 'default_account.jpg', NOW());
+INSERT INTO `users` (`userId`, `privilege`, `username`, `password`, `email`, `firstName`, `lastName`, `profilePic`, `signUpDate`) VALUES (NULL, '2', 'jdoe102', '$2y$10$liNLLd9SPfHnPrhHy7HQxO9LEMDfqBcwmpa2nyr3cUvGGK9apwaMa', 'jane@gmail.com', 'Jane', 'Doe', 'default_account.jpg', NOW());
 
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Travel', NULL,1);
 INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `ownerId`) VALUES (NULL, 'Game', NULL,1);
