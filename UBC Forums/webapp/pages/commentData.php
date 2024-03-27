@@ -11,7 +11,7 @@ $postId = "";
 $communityId = "";
 
 if(isset($_GET['postId'])&& isset($_GET['communityId'])&& isset($_GET['pageNum'])){
-    $pageNum = 5*$_GET['pageNum'];
+    $pageNum = 10*$_GET['pageNum'];
     $postId = $_GET['postId'];
     $communityId = $_GET['communityId'];
 }else{
@@ -22,7 +22,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM comments WHERE postId = ? AND communityId = ? ORDER BY commentTime DESC LIMIT 5 OFFSET ?";
+$sql = "SELECT * FROM comments WHERE postId = ? AND communityId = ? ORDER BY commentTime DESC LIMIT 10 OFFSET ?";
 $prep = $conn->prepare($sql);
 $prep -> bind_param("sss", $postId, $communityId, $pageNum);
 if ($prep->execute() === false) {
