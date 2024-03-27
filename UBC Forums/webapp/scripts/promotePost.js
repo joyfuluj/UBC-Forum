@@ -1,18 +1,27 @@
-export async function promote(postId, communityId){
+async function promote(postId, communityId){
     fetch(`../pages/promotePost.php?postId=${postId}&communityId=${communityId}`).then(response => {
         if(response.ok){
-            if(response.text == 0){
-                alert("You have already promoted this post");
-            }
-            else if(response.text == -1)
-            {
-                alert("please Login to promote a post")
-            }
-            else{
-                let post = document.getElementById(`post-${postId}-${communityId}`);
-                let promos = post.getElementsByClassName("promos")[0];
-                promos.innerHTML = response.text;
-            }
+            response.text().then(text => {
+                console.log(text);
+                if(text == 1){
+                    let promo = document.getElementById(`promo-${postId}-${communityId}`);
+                    let newPromo = parseInt(promo.innerHTML.split(" ")[1]) + 1;
+                    promo.innerHTML = "Promos: " + newPromo;
+                }
+                else if(text == 2){
+                    let promo = document.getElementById(`promo-${postId}-${communityId}`);
+                    let newPromo = parseInt(promo.innerHTML.split(" ")[1]) - 1;
+                    promo.innerHTML = "Promos: " + newPromo;
+                }
+                else if(text == 3)
+                {
+                    alert("please Login to promote a post")
+                }
+                else{
+                    alert("error");
+                }
+            });
+            
         }
     });
 }

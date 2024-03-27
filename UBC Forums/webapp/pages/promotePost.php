@@ -1,13 +1,23 @@
 <?php
-include 'connection.php';
+error_reporting(E_ALL);
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "db_81265373";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+        
 //GET Request for promoting a post
-start_session();
+
 if(isset($_GET['postId']) && isset($_GET['communityId'])){
-    if(isset($_SESSION)){
-        $userId = $_SESSION['userId'];
+    if(!isset($_SESSION)){
+        session_start();
+    }   
+    if(isset($_SESSION['user_id'])){
+        $userId = $_SESSION['user_id'];
         $postId = $_GET['postId'];
         $communityId = $_GET['communityId'];
-        $sql = "SELECT * FROM postLikes WHERE postId = ? AND communityId = ? AND userId = ? LIMIT 1";
+        $sql = "SELECT * FROM postLike WHERE postId = ? AND communityId = ? AND userId = ? LIMIT 1";
         $prep = $conn -> prepare($sql);
         $prep -> bind_param("sss", $postId, $communityId, $userId);
         if($prep -> execute() === false){
@@ -16,15 +26,37 @@ if(isset($_GET['postId']) && isset($_GET['communityId'])){
         $result = $prep -> get_result();
         if($result -> num_rows <= 0){
             $row = $result -> fetch_assoc();
-            $sql = "UPDATE Posts SET promoted = 1 WHERE postId = ? AND communityId = ? LIMIT 1";
+            $sql = "UPDATE Posts SET promos = promos+1 WHERE postId = ? AND communityId = ? LIMIT 1";
             $prep = $conn -> prepare($sql);
             $prep -> bind_param("ss", $postId, $communityId);
             if($prep -> execute() === false){
                 die("Failed: " . $prep -> error);
             }
-            echo json_encode(array("status" => "success"));
-        } else {
+            $sql = "INSERT INTO postLike (postId, communityId, userId) VALUES (?, ?, ?)";
+            $prep = $conn -> prepare($sql);
+            $prep -> bind_param("sss", $postId, $communityId, $userId);
+            if($prep -> execute() === false){
+                die("Failed: " . $prep -> error);
+            }
             echo 1;
+        } else {
+            $row = $result -> fetch_assoc();
+            $sql = "UPDATE Posts SET promos = promos-1 WHERE postId = ? AND communityId = ? LIMIT 1";
+            $prep = $conn -> prepare($sql);
+            $prep -> bind_param("ss", $postId, $communityId);
+            if($prep -> execute() === false){
+                die("Failed: " . $prep -> error);
+            }
+            $sql = "DELETE FROM postLike WHERE postId = ? AND communityId = ? AND userId = ?";
+            $prep = $conn -> prepare($sql);
+            $prep -> bind_param("sss", $postId, $communityId, $userId);
+            if($prep -> execute() === false){
+                die("Failed: " . $prep -> error);
+            }
+            echo 2;
         }
+    }
+    else{
+        echo 3;
     }
 }

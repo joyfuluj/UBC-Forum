@@ -143,3 +143,8 @@
     background-color: var(--CoralRed);
     box-shadow: none;
 }
+.numPromo{
+    display: block;
+    float: left;
+    margin: 0;
+}

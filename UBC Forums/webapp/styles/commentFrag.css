@@ -6,6 +6,8 @@
     border-radius: 5px;
     background-color: #f9f9f9;
     font-size: small;
+    overflow-y: scroll;
+    
 }
 
 #commentInput{
@@ -34,4 +36,15 @@
     border-radius: var(--DefaultBR);
     background-color: var(--AquaBlue);
 
+}
+.commentContent{
+    padding: 5px 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    width: 100%;
+    text-wrap:wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    
 }

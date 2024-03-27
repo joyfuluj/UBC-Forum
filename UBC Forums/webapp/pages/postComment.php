@@ -13,7 +13,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $communityId = "";
     if(!isset($_SESSION)){
         session_start();
-        
     }
 
     if(isset($_GET['commentContent'])&& isset($_GET['postId'])&& isset($_GET['communityId'])){
@@ -26,8 +25,20 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
     if(isset($_SESSION['user_id'])){
         $userId = $_SESSION['user_id'];
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $sql = "INSERT INTO comments (postId, communityId, commentContent, commentTime, promos, userId) 
+                                    VALUES (?, ?, ?, NOW(), 0, ?)";    
+        $prep = $conn->prepare($sql);
+        $prep -> bind_param("iisi", $postId, $communityId, $commentContent, $userId);
+        if ($prep->execute() == false) {
+            die("Failed: " . $prep->error);
+        }
+        $prep->close();
+        $conn->close();
     }else{
-        echo -1;
+        echo -2;
     }
     
     /*
@@ -36,18 +47,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     communityId INT,
     commentContent VARCHAR(900),
     */
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    $sql = "INSERT INTO comments (postId, communityId, commentContent, commentTime, promos, userId) 
-                                VALUES (?, ?, ?, NOW(), 0, ?)";    
-    $prep = $conn->prepare($sql);
-    $prep -> bind_param("iisi", $postId, $communityId, $commentContent, $userId);
-    if ($prep->execute() == false) {
-        die("Failed: " . $prep->error);
-    }
-    $prep->close();
-    $conn->close();
+    
 }else{
     echo "Wrong request method silly!";
 }

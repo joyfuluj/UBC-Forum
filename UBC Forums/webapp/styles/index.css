@@ -22,7 +22,8 @@ section{
     margin: 0 2vw;
     padding: 8px 4px;
     width:20vw;
-    height: 80%
+    height: 80%;
+    overflow: hidden;
 }
 hr{
     border: 0.5pt solid;
@@ -44,6 +45,8 @@ hr{
     margin-top: 1%;
     height: 84%;
     overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
 }
 #sideOptions{
     display: flex;

@@ -23,6 +23,7 @@ async function requestComments(postId, communityId) {
         comments = await response.json();
         addComments()
         commentNum +=1;
+        
     } else {
         console.error('HTTP error', response.status);
     }
@@ -79,8 +80,17 @@ function sendComment(){
         let url = 'postComment.php?postId=' + postId + '&communityId=' + communityId + '&commentContent=' + content; 
         fetch(url).then((response) => {
             if (response.ok) {
-                handleLoadComments(postId, communityId);
+                response.text().then(text => {
+                    if(text === '-2'){
+                        alert("Please Login to comment");
+                        return;
+                    }else{
+                        handleLoadComments(postId, communityId);
+                    }
+                });   
             }
+
+
         })
         .catch((error) => {
         console.error('Error:', error);
