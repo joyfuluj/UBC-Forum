@@ -1,0 +1,36 @@
+.comment{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: small;
+}
+#commentInput{
+    box-sizing: border-box;
+    padding: 5px;
+    vertical-align: text-top;
+    width: 95%;
+    height: 60%;
+    align-self: center;
+    resize: none;
+    overflow-wrap: normal;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-radius: var(--DefaultBR);
+    float : left;
+    clear: right;
+}
+#newComment{
+    margin-top: 5px;
+    margin-right:2.5% ;
+    height: 25%;
+    width: 25%;
+    align-self:flex-end;
+    clear: left;
+    float: right;
+    border-radius: var(--DefaultBR);
+    background-color: var(--AquaBlue);
+
+}
