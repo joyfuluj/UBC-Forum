@@ -1,5 +1,6 @@
 let posts = [];
 let pageNum = 0;
+let morePosts = true;   
 async function loadPosts(){
     await requestPosts().then(() =>{
         addPosts()
@@ -29,7 +30,7 @@ async function getTextPosts(text){
 
 async function addPosts(){
     let feed = $("#posts");
-    if(posts.length > 0){
+    if(posts.length > 0 && morePosts == true){
         posts.forEach(async post => {
             let username = await fetch(`../pages/getUsername.php?userId=${post.userId}`);
             username = await username.json();
@@ -93,11 +94,11 @@ async function addPosts(){
             }
             feed.append(postContent);
         });
-    }else{
+    }else if(morePosts == true) {
         feed.append(`
-            <h3>No more posts! Lets start at the beginning</h3>
+            <h3>No more posts!</h3>
         `);
-        pageNum = 0;
+        morePosts = false;
     }
 }
             /*

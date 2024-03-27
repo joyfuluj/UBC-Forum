@@ -8,8 +8,7 @@ async function handleLoadComments(postId, communityId){
     commentFeed.empty();
     await requestComments(postId, communityId).then(() =>{
         if (comments.length <= 0) {
-            console.log("No more comments to load!");
-            return;
+          return;
         }
         
     });
@@ -18,15 +17,10 @@ async function handleLoadComments(postId, communityId){
 
 async function requestComments(postId, communityId) {
     //await return
-    console.log(commentNum);
-    console.log(postId);
-    console.log(communityId);
     let url = `../pages/commentData.php?postId=${postId}&communityId=${communityId}&pageNum=${commentNum}`;
-    console.log(url);
     const response = await fetch(url);
     if (response.ok) {
         comments = await response.json();
-        console.log(comments);
         addComments()
         commentNum +=1;
     } else {
@@ -44,7 +38,6 @@ async function addComments(){
             username = username.username;
             let postContent;
             
-            console.log(comment);
             postContent = 
             $(`
             <div id = 'comment-${comment.commentId}-${comment.postId}-${comment.communityId}' class = 'comment'>
@@ -68,7 +61,7 @@ async function addComments(){
         });
         let newForm = $(`
             <textarea type="text" id="commentInput" maxlength="900" name="commentInput" placeholder="New Comment..."></textarea>
-            <button id='newComment' onClick = ''>🤌</button>
+            <button id='newComment' onClick = 'sendComment()'>🤌</button>
             `);
             newComment.append(newForm);
 
@@ -78,7 +71,23 @@ async function addComments(){
         `);
     }
 }
-
+function sendComment(){
+    let content = $("#commentInput").val();
+    if(content != ""){
+        let postId = comments[0].postId;
+        let communityId = comments[0].communityId;
+        let url = 'postComment.php?postId=' + postId + '&communityId=' + communityId + '&commentContent=' + content; 
+        fetch(url).then((response) => {
+            if (response.ok) {
+                handleLoadComments(postId, communityId);
+            }
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
+    }
+    
+}
 function getTestComments(){
     let comment = {
         postId: 1,
