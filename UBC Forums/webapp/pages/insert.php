@@ -65,7 +65,7 @@ ini_set('display_errors', 1);
                     $fileName="";
                     $postID = mysqli_insert_id($conn);
                     if($postDesc){
-                        $fileName = "$communityId" . "-" . "$postID.txt";
+                        $fileName = "$postID" . "-" . "$communityId.txt";
                         $postType="txt";
                         $filePath = "../posts/$fileName";
                         //Upload Text post
@@ -80,12 +80,12 @@ ini_set('display_errors', 1);
                         $fileName = "$communityId" . "-" . "$postID.txt";
                     } 
                     else{
-                        $postType= "image";
-                        $targetFile = $_FILES["image"]["name"];
-                        //upload image file
                         $parts = explode(".", $targetFile);
                         $extension = end($parts);
-                        $fileName = $communityId . "-" . $postID . "." .$extension;
+                        $postType= $extension;
+                        $targetFile = $_FILES["image"]["name"];
+                        //upload image file
+                        $fileName = $postID . "-" . $communityId . "." .$extension;
                         $tempFile = $_FILES["image"]["tmp_name"];
                         $destination = "../posts/" . $fileName;
                         if(copy($_FILES["image"]["tmp_name"], $destination)){
