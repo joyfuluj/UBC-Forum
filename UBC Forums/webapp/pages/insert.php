@@ -2,13 +2,18 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "db_81265373";
+    $db_hostname = "localhost";
+    $db_username = "root";
+    $db_password = "";
+    $db_name = "db_81265373";
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-        
+    $conn = mysqli_connect($db_hostname, $db_username, $db_password, $db_name);
+
+    if ($conn->connect_error) 
+    {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    
     function customError($errno, $errstr) {
         echo "<b>Error:</b> [$errno] $errstr";
       }
