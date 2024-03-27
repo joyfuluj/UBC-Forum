@@ -66,7 +66,7 @@ ini_set('display_errors', 1);
                     $postID = mysqli_insert_id($conn);
                     if($postDesc){
                         $fileName = "$communityId" . "-" . "$postID.txt";
-                        $postType="text";
+                        $postType="txt";
                         $filePath = "../posts/$fileName";
                         //Upload Text post
                         $newFile = fopen("$filePath", "w");

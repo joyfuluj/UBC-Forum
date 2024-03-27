@@ -50,6 +50,7 @@
     </footer>
 </body>
 <!--<script src="../scripts/header.js"></script>-->
+<script src = "../scripts/promotePost.js"></script>
 <script src = "../scripts/getComments.js"></script>
 <script src = "../scripts/getPosts.js"></script>
 <script src = "../scripts/dashOptions.js"></script>
