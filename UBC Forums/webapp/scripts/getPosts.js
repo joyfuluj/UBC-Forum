@@ -1,3 +1,5 @@
+
+
 let posts = [];
 let pageNum = 0;
 let morePosts = true;   
@@ -147,6 +149,7 @@ function getTestPosts(){
 }
 function handlePromo(postId, communityId) {
     // Handle promo logic here
+    promote(postId, communityId);
     console.log(`Promo clicked for post ${postId} in community ${communityId}`);
 }
 window.onload = function(){
