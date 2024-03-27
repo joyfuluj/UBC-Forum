@@ -28,6 +28,12 @@ header div > a
     background-color: var(--Cream);
 }
 
+header div > a:hover{
+    padding:  0.5vh 0.8vw;
+    color: #000;
+    background: var(--Cream);
+}
+
 header form, select
 {
     padding:  0.5vh 0.5vw;
