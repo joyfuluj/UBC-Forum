@@ -63,13 +63,14 @@ async function addComments(){
                 </div>
             </div>`
             );
-            let newForm = $(`
-            <textarea type="text" id="commentInput" maxlength="900" name="commentInput" placeholder="New Comment..."></textarea>
-            <button id='newComment'>🤌</button>
-            `);
-            newComment.append(newForm);
+            
             commentFeed.append(postContent);
         });
+        let newForm = $(`
+            <textarea type="text" id="commentInput" maxlength="900" name="commentInput" placeholder="New Comment..."></textarea>
+            <button id='newComment' onClick = ''>🤌</button>
+            `);
+            newComment.append(newForm);
 
     }else{
         commentFeed.append(`
