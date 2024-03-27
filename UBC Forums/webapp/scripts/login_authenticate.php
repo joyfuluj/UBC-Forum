@@ -11,13 +11,16 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT userId, privilege, username, password, email, firstName, lastName FROM users WHERE username = '$username' OR email = '$username'";
-        $result = mysqli_query($conn, $sql);
+        $sql = "SELECT userId, privilege, username, password, email, firstName, lastName FROM users WHERE username = ? OR email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $username, $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if(mysqli_num_rows($result) == 1)
+
+        if($result->num_rows > 0)
         {
-            $row = mysqli_fetch_assoc($result);
-            echo "Submitted password: " . $password . "<br>";
+            $row = $result->fetch_assoc();
 
             if(password_verify($password, $row['password']))
             {
