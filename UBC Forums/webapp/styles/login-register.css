@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Sets all font to Roboto */
+*
+{
+    font-family: Roboto;
+}
+
+/* Initializes some useful color values */
 :root 
 {
     --AquaBlue: #25ced1;
@@ -30,7 +39,6 @@ h1
     font-style: bold;
     color: white;
     text-align: center;
-    margin-bottom: 1em;
 }
 
 #username-error, #email-error, #password-error, #fname-error, #lname-error

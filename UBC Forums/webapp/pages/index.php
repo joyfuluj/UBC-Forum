@@ -21,7 +21,7 @@
 <body>
     <!--Header import-->
     <header id ="header">
-        <?php include('../scripts/header.php'); ?>
+        <?php include_once('../scripts/header.php'); ?>
         <!--<script src="../scripts/header.js"></script>-->
     </header>
     <!--Body-->
