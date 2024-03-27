@@ -5,14 +5,19 @@
     <title>UBC Forums - Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/reset.css">
-    <link rel="stylesheet" type="text/css" href="../styles/post.css">
     <link rel="stylesheet" type="text/css" href="../styles/header.css">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../styles/post.css">
+    <link rel="stylesheet" type="text/css" href="../styles/breadcrumb.css">
 </head>
 <body>
     <!--Header import-->
     <header id="header">
         <?php include_once('../scripts/header.php'); ?>
+        <ul class="breadcrumb">
+        <li><a href="index.php">Home</a></li>/
+        <li id=current>Post</li>
+        </ul>
         <!--<script src="../scripts/header.js"></script>-->
     </header>
 
@@ -34,9 +39,9 @@
             </select>
             
         </div>
-        <input type="file" name="image" id="uploadImg" style="top: 600px; left: 450px; width:250px" >
+        <input type="file" name="image" id="uploadImg" style="top: 630px; left: 450px; width:250px" >
         <?php if (isset($_GET['invalid'])) echo "<p style=\"position: absolute; top: 600px;left: 740px;font-size: 15px;color: red;\">Only images are valid.</p>"; ?>
-        <input type="submit" value="post" id="postbutton" style="top: 590px;right: 450px;padding:20px;">
+        <input type="submit" value="post" id="postbutton" style="top: 620px;right: 450px;padding:20px;">
     </form>
 </body>
 </html>
