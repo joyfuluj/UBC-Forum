@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/header.css">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <link rel="stylesheet" type="text/css" href="../styles/postFrag.css">
+    <link rel="stylesheet" type="text/css" href="../styles/commentFrag.css">
     
     
 </head>
@@ -31,6 +32,9 @@
             <div id = "sideMenuContent">
                 <h3>To be filled Dashboard Options</h3>
             </div>
+            <div id = "sideOptions">
+            
+            </div>
         </section>
         <section id = "posts">
 
@@ -46,6 +50,7 @@
     </footer>
 </body>
 <!--<script src="../scripts/header.js"></script>-->
+<script src = "../scripts/getComments.js"></script>
 <script src = "../scripts/getPosts.js"></script>
 <script src = "../scripts/dashOptions.js"></script>
 </html>

@@ -76,9 +76,24 @@ CREATE TABLE IF NOT EXISTS postLike(
     FOREIGN KEY (communityId) REFERENCES community(communityId),
     FOREIGN KEY (postId) REFERENCES posts(postId),
     FOREIGN KEY (userId) REFERENCES users(userId),
-    PRIMARY KEY (postId, communityId, userId)
+    PRIMARY KEY (postId, communityId, userId);
+}
+
+CREATE TABLE IF NOT EXISTS comments(
+    commentId INT AUTO_INCREMENT PRIMARY KEY,
+    parentId INT,
+    postId INT,
+    communityId INT,
+    commentContent VARCHAR(900),
+    commentTime DATETIME,
+    promos INT,
+    userId INT,
+    FOREIGN KEY (postId) REFERENCES posts(postId),
+    FOREIGN KEY (userId) REFERENCES users(userId),
+    FOREIGN KEY (communityId) REFERENCES community(communityId),
+    UNIQUE (postId, communityId, commentId)
 );
-CREATE TABLE IF NOT EXISTS replies (
+CREATE IF NOT EXISTS replies(
     commentId INT AUTO_INCREMENT PRIMARY KEY,
     parentId INT,
     postId INT,

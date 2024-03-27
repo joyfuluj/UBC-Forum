@@ -22,13 +22,12 @@ if ($prep->execute() === false) {
 }
 $result = $prep->get_result();
 
-if ($result->num_rows > 0) {
-  $rows = array();
-  while($row = $result->fetch_assoc()) {
-      $rows[] = $row;
-  }
-  echo json_encode($rows);
-} else {
-echo "-1";
+$rows = array();
+while($row = $result->fetch_assoc()) {
+    $rows[] = $row;
 }
+echo json_encode($rows);
+
+
+$prep->close();
 $conn->close();
