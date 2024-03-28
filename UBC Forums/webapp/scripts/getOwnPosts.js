@@ -15,7 +15,7 @@ async function requestPosts(userId)
     let params = new URLSearchParams(window.location.search);
     let community = params.get('community');
     let search = params.get('search');
-    let url = `../pages/postData.php?pageNum=${encodeURIComponent(pageNum)}`;
+    let url = `../pages/postData.php?userId=${encodeURIComponent(userId)}&pageNum=${encodeURIComponent(pageNum)}`;
     
     if (userId) 
     {
