@@ -2,8 +2,8 @@ let comments = [];
 let commentNum = 0;
 async function handleLoadComments(postId, communityId){
     commentNum=0;
-    commentFeed = $("#sidebar");
     let newComment = $("#sideOptions");
+    let commentFeed = $("#sideMenuContent");
     newComment.empty();
     commentFeed.empty();
     await requestComments(postId, communityId).then(() =>{
