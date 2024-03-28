@@ -1,0 +1,36 @@
+.breadcrumb a{
+    font-size: 1em;
+    font-weight: 400;
+    margin: 1em 0;
+    text-decoration: underline;
+    color: black;
+    border-radius: var(--DefaultBR);
+    background: none;
+    padding: 1vh 1vw;
+    padding-left: 1em;
+}
+#current{
+    font-size: 1em;
+    font-weight: 400;
+    padding-left: 1em;
+}
+ul.breadcrumb li {
+    display: inline;
+    /* font-size: 18px; */
+}
+.breadcrumb{
+    padding-top: 1em;
+}
+/* .breadcrumb {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.breadcrumb li {
+    display: inline-block;
+    margin-right: 10px;
+}
+.breadcrumb li:last-child {
+    margin-right: 0;
+} */

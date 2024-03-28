@@ -18,18 +18,17 @@
     <div>
         <a href="../pages/index.php">UBC Forums</a>
         <form action="../pages/index.php" method="GET" >
-            <select id="communities" name="communities" style="width: 15%">
-            <option value="all">All</option>
-            <option value="travel">Travel</option>
-            <option value="sport">Sports</option>
-            <option value="game">Games</option>
-            <option value="school">School</option>
+            <select id="community" name="community" style="width: 15%">
+            <option value="">All</option>
+            <option value="1">Travel</option>
+            <option value="2">Sports</option>
+            <option value="3">Games</option>
+            <option value="4">School</option>
             </select><br>
             <input type='text' id="search_input" name="search" placeholder='Search' style="padding:  0.5vh 0.5vw;"/>
             <input type="submit" id="search_button" value="Search" style="border: 2pt solid var(--Coral); width:15%;"/>
         </form>
-            <a href="../pages/post.php">Post</a>
-            <a href="../pages/index.php">Dashboard</a>
+            
             <a href="../pages/index.php">Forums</a>
             <?php
                 if (!isset($user_privilege) || $user_privilege == 0) 
@@ -39,13 +38,17 @@
                 } 
                 else if ($user_privilege == 1) 
                 {
+                    echo '<a href="../pages/post.php">Post</a>';
                     echo '<a href="../pages/account.php">' . $user_fname . ' ' . $user_lname . '</a>';
                     echo '<a href="../scripts/logout.php">Logout</a>';
                 } 
                 else if ($user_privilege == 2) 
                 {
+                    echo '<a href="../pages/post.php">Post</a>';
+
                     echo '<a href="../pages/account.php">' . $user_fname . ' ' . $user_lname . ' (Admin)</a>';
                     echo '<a href="../scripts/logout.php">Logout</a>';
+
                 }
             ?>
     </div>

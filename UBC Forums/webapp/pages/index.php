@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <link rel="stylesheet" type="text/css" href="../styles/postFrag.css">
     <link rel="stylesheet" type="text/css" href="../styles/commentFrag.css">
+    <link rel="stylesheet" type="text/css" href="../styles/breadcrumb.css">
+
     
     
 </head>
@@ -23,6 +25,9 @@
     <!--Header import-->
     <header id ="header">
         <?php include_once('../scripts/header.php'); ?>
+        <ul class="breadcrumb">
+        <li id=current>Home</li>
+        </ul>
         <!--<script src="../scripts/header.js"></script>-->
     </header>
     <!--Body-->
@@ -30,7 +35,7 @@
         <section id = "sideMenu">
             <button id = 'loadDefault' onClick = 'loadDefaults()'>X</button>
             <div id = "sideMenuContent">
-                <h3>To be filled Dashboard Options</h3>
+                <h3>Dashboard Options</h3>
             </div>
             <div id = "sideOptions">
             

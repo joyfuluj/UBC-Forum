@@ -2,7 +2,12 @@
 
 let posts = [];
 let pageNum = 0;
-let morePosts = true;   
+let morePosts = true; 
+async function loadSearch(communityId, userId){
+    await requestSearch().then(() =>{
+        addPosts()
+    });
+}  
 async function loadPosts(){
     await requestPosts().then(() =>{
         addPosts()
@@ -10,13 +15,45 @@ async function loadPosts(){
 }
 async function requestPosts() {
     //await returnReferenceError: handleLoadComments is not defined
-    const response = await fetch(`../pages/postData.php?pageNum=${encodeURIComponent(pageNum)}`);;
-    if (response.ok) {
-        posts = await response.json();
-        pageNum +=1;
-    } else {
-        console.error('HTTP error', response.status);
+    let params = new URLSearchParams(window.location.search);
+    let community = params.get('community');
+    let search = params.get('search');
+    if(community != null && search != null){
+        const response = await fetch(`../pages/postData.php?community=${encodeURIComponent(community)}&search=${encodeURIComponent(search)}&pageNum=${encodeURIComponent(pageNum)}`);
+        if (response.ok) {
+            posts = await response.json();
+            pageNum +=1;
+        } else {
+            console.error('HTTP error', response.status);
+        }
     }
+    else if(community != null){
+        const response = await fetch(`../pages/postData.php?community=${encodeURIComponent(community)}&pageNum=${encodeURIComponent(pageNum)}`);
+        if (response.ok) {
+            posts = await response.json();
+            pageNum +=1;
+        } else {
+            console.error('HTTP error', response.status);
+        }
+    }else if(search != null){
+        const response = await fetch(`../pages/postData.php?search=${encodeURIComponent(search)}&pageNum=${encodeURIComponent(pageNum)}`);
+        if (response.ok) {
+            posts = await response.json();
+            pageNum +=1;
+        } else {
+            console.error('HTTP error', response.status);
+        }
+
+    }else{
+        const response = await fetch(`../pages/postData.php?pageNum=${encodeURIComponent(pageNum)}`);;
+        if (response.ok) {
+            posts = await response.json();
+            pageNum +=1;
+        } else {
+            console.error('HTTP error', response.status);
+        }
+    }
+    
 }
 async function getTextPosts(text){
     const postText = await fetch(text);

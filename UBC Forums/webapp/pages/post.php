@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
     <title>UBC Forums - Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/reset.css">
-    <link rel="stylesheet" type="text/css" href="../styles/post.css">
     <link rel="stylesheet" type="text/css" href="../styles/header.css">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../styles/breadcrumb.css">
+    <link rel="stylesheet" type="text/css" href="../styles/post.css">
+
 </head>
 <body>
     <!--Header import-->
     <header id="header">
         <?php include_once('../scripts/header.php'); ?>
-        <!--<script src="../scripts/header.js"></script>-->
+        <ul class="breadcrumb">
+        <li><a href="index.php">Home</a></li>/
+        <li id=current>Post</li>
+        </ul>
     </header>
-
-    <form method="POST" action="insert.php" enctype="multipart/form-data">
-        <div id="post">
+    <div id = postWrapper>
+        <form id = 'post' method="POST" action="insert.php" enctype="multipart/form-data">
             <!-- <input type="text" id="title" name="title"> -->
-            <?php if (isset($_GET['nocomm'])) echo "<p style=\"position: absolute; top: 60px;left: 60px;font-size: 15px;color: red;\">Please set the community.</p>"; ?>
-            <input type="text" id="textPost" name="postDesc" style="<?php if(isset($_GET['nopost'])) echo 'border: 1px solid red;'; ?>"value="<?php if($_GET['postDesc']) echo $_GET['postDesc']; ?>">
-            <?php if (isset($_GET['nopost'])) echo "<p style=\"position: absolute; top: 100px;left: 60px;font-size: 15px;color: red;\">Please enter something here or post the image file.</p>"; ?>
-            <?php if (isset($_GET['posted'])) echo "<p style=\"position: absolute; top: 60px;left: 60px;font-size: 15px;color: red;\">Successfully posted!</p>"; ?>
-            <?php if (isset($_GET['both'])) echo "<p style=\"position: absolute; top: 60px;left: 60px;font-size: 15px;color: red;\">Please post either text or image!</p>"; ?>
-            <select id="community" name="communities" style="top: 25px; left: 10px">
-            <option value="" disabled selected>Choose a Community</option>
-            <option value="Travel">Travel</option>
-            <option value="Game">Game</option>
-            <option value="Nature">Nature</option>
-            <option value="School">School</option>
-            <option value="Sports">Sports</option>
+            <?php if (isset($_GET['nocomm'])) echo "<p class = 'error'>Please set the community.</p>"; ?>
+            <?php if (isset($_GET['nopost'])) echo "<p class = 'error'>Please enter something here or post the image file.</p>"; ?>
+            <?php if (isset($_GET['posted'])) echo "<p class = 'error'>Successfully posted!</p>"; ?>
+            <?php if (isset($_GET['both'])) echo "<p class = 'error'>Please post either text or image!</p>"; ?>
+            <input type="text" id="title" name="title" placeholder="Put your title here">
+            <select id="community" name="communities">
+                <option value="" disabled selected>Choose a Community</option>
+                <option value="Travel">Travel</option>
+                <option value="Game">Game</option>
+                <option value="Nature">Nature</option>
+                <option value="School">School</option>
+                <option value="Sports">Sports</option>
             </select>
-            
-        </div>
-        <input type="file" name="image" id="uploadImg" style="top: 600px; left: 450px; width:250px" >
-        <?php if (isset($_GET['invalid'])) echo "<p style=\"position: absolute; top: 600px;left: 740px;font-size: 15px;color: red;\">Only images are valid.</p>"; ?>
-        <input type="submit" value="post" id="postbutton" style="top: 590px;right: 450px;padding:20px;">
-    </form>
+            <input type="text" id="textPost" name="postDesc" style="<?php if(isset($_GET['nopost'])) echo 'border: 1px solid red;'; ?>"value="<?php if($_GET['postDesc']) echo $_GET['postDesc']; ?>">
+            <input type="file" name="image" id="uploadImg">
+            <?php if (isset($_GET['invalid'])) echo "<p class ='error'>Only images are valid.</p>"; ?>
+            <input type="submit" value="Post" id="postbutton">
+        
+        </form>
+    </div>
 </body>
 </html>
