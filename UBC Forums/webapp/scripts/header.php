@@ -21,9 +21,10 @@
             <select id="community" name="community" style="width: 15%">
             <option value="">All</option>
             <option value="1">Travel</option>
-            <option value="2">Sports</option>
-            <option value="3">Games</option>
+            <option value="2">Games</option>
+            <option value="3">Nature</option>
             <option value="4">School</option>
+            <option value="5">Sports</option>
             </select><br>
             <input type='text' id="search_input" name="search" placeholder='Search' />
             <input type="submit" id="search_button" value="Search" style="border: 2pt solid var(--Coral); width:15%;"/>
