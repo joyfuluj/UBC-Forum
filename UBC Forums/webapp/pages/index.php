@@ -35,7 +35,7 @@
         <section id = "sideMenu">
             <button id = 'loadDefault' onClick = 'loadDefaults()'>X</button>
             <div id = "sideMenuContent">
-                <h3>To be filled Dashboard Options</h3>
+                <h3>Dashboard Options</h3>
             </div>
             <div id = "sideOptions">
             

@@ -29,7 +29,6 @@
             <input type="submit" id="search_button" value="Search" style="border: 2pt solid var(--Coral); width:15%;"/>
         </form>
             <a href="../pages/post.php">Post</a>
-            <a href="../pages/index.php">Dashboard</a>
             <a href="../pages/index.php">Forums</a>
             <?php
                 if (!isset($user_privilege) || $user_privilege == 0) 

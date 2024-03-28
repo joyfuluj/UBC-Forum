@@ -2,7 +2,12 @@
 
 let posts = [];
 let pageNum = 0;
-let morePosts = true;   
+let morePosts = true; 
+async function loadSearch(communityId, userId){
+    await requestSearch().then(() =>{
+        addPosts()
+    });
+}  
 async function loadPosts(){
     await requestPosts().then(() =>{
         addPosts()
