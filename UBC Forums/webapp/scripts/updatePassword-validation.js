@@ -49,6 +49,10 @@ form.addEventListener("submit", (e) =>
     // Only submit the form when there are no validation errors
     if (!passError.innerText) 
     {
+        if(!confirm("Are you sure you want to change your password?"))
+        {
+            e.preventDefault();
+        }
         form.submit();
     }
 });
