@@ -1,5 +1,8 @@
 <?php
 //TODO: Change when uploading to server
+$pageNum = "";
+$postId = "";
+$communityId = "";
 include_once('../scripts/connection.php');
 
 if(isset($_GET['postId'])&& isset($_GET['communityId'])&& isset($_GET['pageNum'])){

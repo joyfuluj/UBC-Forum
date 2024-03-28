@@ -1,5 +1,9 @@
 <?php
 //TODO: Change when uploading to server
+$userId = "";
+if(isset($_GET['userId'])){
+    $userId = $_GET['userId'];
+};
 include_once('../scripts/connection.php');
 
 
