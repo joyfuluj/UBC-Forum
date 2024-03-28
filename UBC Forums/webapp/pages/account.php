@@ -16,6 +16,7 @@
 
     // Echo the $user_id into a JavaScript variable
     echo "<script>let userId = $user_id;</script>";
+    echo "<script>let userPrivilege = $user_privilege;</script>";
 ?>
 
 <!DOCTYPE html>
