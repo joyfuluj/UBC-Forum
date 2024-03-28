@@ -21,7 +21,7 @@ async function requestComments(postId, communityId) {
     const response = await fetch(url);
     if (response.ok) {
         comments = await response.json();
-        addComments()
+        addComments(postId, communityId);
         commentNum +=1;
         
     } else {
@@ -29,7 +29,7 @@ async function requestComments(postId, communityId) {
     }
 }
 
-async function addComments(){
+async function addComments(postId, communityId){
     let commentFeed = $("#sideMenuContent");
     let newComment = $("#sideOptions");
     if(comments.length > 0){
@@ -60,23 +60,22 @@ async function addComments(){
             
             commentFeed.append(postContent);
         });
-        let newForm = $(`
-            <textarea type="text" id="commentInput" maxlength="900" name="commentInput" placeholder="New Comment..."></textarea>
-            <button id='newComment' onClick = 'sendComment()'>🤌</button>
-            `);
-            newComment.append(newForm);
 
     }else{
         commentFeed.append(`
             <h3>Be the first to comment!</h3>
         `);
+        
     }
+    let newForm = $(`
+            <textarea type="text" id="commentInput" maxlength="900" name="commentInput" placeholder="New Comment..."></textarea>
+            <button id='newComment' onClick = 'sendComment(${postId}, ${communityId})'>🤌</button>
+            `);
+            newComment.append(newForm);
 }
-function sendComment(){
+function sendComment(postId, communityId){
     let content = $("#commentInput").val();
     if(content != ""){
-        let postId = comments[0].postId;
-        let communityId = comments[0].communityId;
         let url = 'postComment.php?postId=' + postId + '&communityId=' + communityId + '&commentContent=' + content; 
         fetch(url).then((response) => {
             if (response.ok) {
