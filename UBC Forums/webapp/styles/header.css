@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 /* Sets all font to Roboto */
-header *
+header#header *
 {
     font-family: Roboto;
 }
@@ -17,14 +17,14 @@ header *
     --DefaultBR: 18px;
 }
 
-header
+header#header
 {
     padding: 0%;
     margin-bottom: 2em;
     top: 0;
 }
 
-header div
+header#header div
 {
     display: inline-flex;
     justify-content: space-around;
@@ -34,12 +34,12 @@ header div
     background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
 }
 
-header img#logo
+header#header img#logo
 {
     height: 8vh;
 }
 
-header div a
+header#header div a
 {
     padding:  1vh 1vw;
     color: #000;
@@ -49,13 +49,14 @@ header div a
     border-radius: var(--DefaultBR);
     background-clip: padding-box; /* Add this line */
 }
-header div a:hover
+header#header div a:hover
 {
     color: var(--OffWhite);
     background: transparent;
     border: 3pt solid var(--OffWhite);
 }
-header form, select
+
+header#header form, select
 {
     padding:  0.5vh 0.5vw;
     width: 50%;
@@ -65,12 +66,12 @@ header form, select
     display: flex;
     align-items: center;
 }
-header select:hover
+header#header select:hover
 {
     color: var(--Coral);
 }
 
-header form input
+header#header form input
 {
     padding:  0.5vh 0.5vw;
     margin-left: 3pt;
@@ -79,7 +80,7 @@ header form input
     background-color: var(--Cream);
     width: 100%;
 }
-header form input#search_button:hover
+header#header form input#search_button:hover
 {
     transition: background-color 0.3s;
     background-color: #ff8a5b;

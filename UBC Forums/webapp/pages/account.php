@@ -40,77 +40,103 @@
     <div class="container">
 
         <div class="column" id="sidebar">
-            Sidebar
+            <h1>Admin Panel</h1>
         </div>
 
         <div class="column" id="recent_posts">
-            Recent Posts
+            <h1>Recent Posts</h1>
         </div>
 
+        <!-- Account Information -->
         <div class="column" id="user_info">
-            
+            <div id="info">
+                <h1 style="text-decoration: underline;"><?php echo $user_name; ?></h1>
+                <div id="pic">
+                    <?php 
+                        $sql = "SELECT profilePic FROM users WHERE userId = ?";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param("i", $user_id);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        $row = $result->fetch_assoc();
+                        if($row['profilePic'] != NULL)
+                        {
+                            echo "<img src='../images/" . $row['profilePic'] . "'>";
+                        }
+                        else
+                        {
+                            echo "<img src='../images/img-6603a76f01ab77.05776938.jpg'>";
+                        }
+                    ?>
+                </div>
+                <h2 style="margin-top: 0.5em; margin-bottom: 0.5em;"><?php echo $user_fname . " " . $user_lname; ?></h2>
+            </div>
+
+            <!-- Account Options -->
+            <div id="options">
+                <h3 style="text-decoration: underline; margin-top: 0.25em; margin-bottom: 0.5em;">Account Settings</h3><br>
+
+                <!-- Change Profile Picture -->
+                <div id="change_pic">
+                    <h4>Change Profile Picture</h4>
+                    <div id="picError" style="color: red; font-size: 12pt; text-align: center;">
+                        <?php 
+                            if(isset($_GET['picError'])) 
+                            {
+                                echo $_GET['picError'];
+                                unset($_GET['picError']);
+                            }
+                        ?>
+                    </div>
+                    <div id="picMsg" style="color: green; font-size: 12pt; text-align: center;">
+                        <?php
+                            if(isset($_GET['picMsg'])) 
+                            {
+                                echo $_GET['picMsg'];
+                                unset($_GET['picMsg']);
+                            }
+                                
+                        ?>
+                    </div>
                     
-            <h1><?php echo $user_name; ?></h1>
-
-            <div id="pic">
-                <?php 
-                    $sql = "SELECT profilePic FROM users WHERE userId = ?";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("i", $user_id);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    $row = $result->fetch_assoc();
-                    if($row['profilePic'] != NULL)
-                    {
-                        echo "<img src='../images/" . $row['profilePic'] . "'>";
-                    }
-                    else
-                    {
-                        echo "<img src='../images/img-6603a76f01ab77.05776938.jpg'>";
-                    }
-                ?>
+                        <form action="../scripts/updateProfilePic.php" method="post" enctype="multipart/form-data">
+                            <input type="file" id="choose_file" name="new_pic">
+                            <input type="submit" id="upload_pic" name="submit" value="Upload">
+                        </form><br><br>
+                </div>
+                
+                <!-- Change Password -->
+                <div id="change_password">
+                    <h4 style="margin-bottom: 0.5em;">Change Password</h4>
+                    <div id="passError" style="color: red; font-size: 12pt; text-align: center;">
+                        <?php 
+                            if(isset($_GET['passError'])) 
+                            {
+                                echo $_GET['passError'];
+                                unset($_GET['passError']);
+                            }
+                        ?>
+                    </div>
+                    <div id="passMsg" style="color: green; font-size: 12pt; text-align: center;">
+                        <?php
+                            if(isset($_GET['passMsg'])) 
+                            {
+                                echo $_GET['passMsg'];
+                                unset($_GET['passMsg']);
+                            }
+                                
+                        ?>
+                    </div>
+                    <form id="change-password-form" action="../scripts/updatePassword_authenticate.php" method="post" style="margin-bottom: 0.5em;">
+                        <input type="password" id="old_password" name="old_password" placeholder="Current password" style="margin-bottom: 0.5em;"><br>
+                        <input type="password" id="new_password1" name="new_password1" placeholder="New password" style="margin-bottom: 0.5em;"><br>
+                        <input type="password" id="new_password2" name="new_password2" placeholder="Re-enter new password" style="margin-bottom: 0.5em;"><br>
+                        <input type="submit" value="Change Password">
+                    </form>
+                </div>
             </div>
-
-            <h3>Upload Profile Picture</h3>
-            <div id="error" style="color: red; font-size: 12pt; text-align: center;">
-                <?php 
-                    if(isset($_GET['picError'])) 
-                    {
-                        echo $_GET['picError'];
-                        unset($_GET['picError']);
-                    }
-                ?>
-            </div>
-            <div id="msg" style="color: green; font-size: 12pt; text-align: center;">
-                <?php
-                    if(isset($_GET['msg'])) 
-                    {
-                        echo $_GET['msg'];
-                        unset($_GET['msg']);
-                    }
-                        
-                ?>
-            </div>
-            <div id="upload_pic">
-                <form action="../scripts/updateProfilePic.php" method="post" enctype="multipart/form-data">
-                    <input type="file" id="choose_file" name="new_pic">
-                    <input type="submit" id="upload_pic" name="submit" value="Upload">
-                </form>
-            </div>
-            
-            <p>First Name: <?php echo $user_fname; ?></p>
-            <p>Last Name: <?php echo $user_lname; ?></p>
-            <p>Email: <?php echo $user_email; ?></p>
-            <h3>Change Password</h3>
-            <form action="change_password.php" method="post">
-                <label for="old_password">Old Password:</label><br>
-                <input type="password" id="old_password" name="old_password"><br>
-                <label for="new_password">New Password:</label><br>
-                <input type="password" id="new_password" name="new_password"><br>
-                <input type="submit" value="Change Password">
-            </form>
-            
         </div>
     </div>
+    <script src="../scripts/updatePassword-validation.js"></script>
 </body>
 </html>
