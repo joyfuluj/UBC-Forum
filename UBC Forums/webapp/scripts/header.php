@@ -28,7 +28,7 @@
             <input type='text' id="search_input" name="search" placeholder='Search' style="padding:  0.5vh 0.5vw;"/>
             <input type="submit" id="search_button" value="Search" style="border: 2pt solid var(--Coral); width:15%;"/>
         </form>
-            <a href="../pages/post.php">Post</a>
+            
             <a href="../pages/index.php">Forums</a>
             <?php
                 if (!isset($user_privilege) || $user_privilege == 0) 
@@ -38,13 +38,17 @@
                 } 
                 else if ($user_privilege == 1) 
                 {
+                    echo '<a href="../pages/post.php">Post</a>';
                     echo '<a href="../pages/account.php">' . $user_fname . ' ' . $user_lname . '</a>';
                     echo '<a href="../scripts/logout.php">Logout</a>';
                 } 
                 else if ($user_privilege == 2) 
                 {
+                    echo '<a href="../pages/post.php">Post</a>';
+
                     echo '<a href="../pages/account.php">' . $user_fname . ' ' . $user_lname . ' (Admin)</a>';
                     echo '<a href="../scripts/logout.php">Logout</a>';
+
                 }
             ?>
     </div>
