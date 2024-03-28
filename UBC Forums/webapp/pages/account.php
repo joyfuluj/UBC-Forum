@@ -26,10 +26,16 @@
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <link rel="stylesheet" type="text/css" href="../styles/header.css">
     <link rel="stylesheet" type="text/css" href="../styles/account.css">
+    <link rel="stylesheet" type="text/css" href="../styles/breadcrumb.css">
+
 </head>
 <body>
     <header id="header">
         <?php include_once('../scripts/header.php'); ?>
+        <ul class="breadcrumb">
+        <li><a href="index.php">Home</a></li>/
+        <li id=current>Account</li>
+        </ul>
     </header>
     <div class="container">
 
