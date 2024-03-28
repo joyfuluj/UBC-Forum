@@ -11,9 +11,11 @@
     $user_name = $_SESSION['user_name'];
     $user_id = $_SESSION['user_id'];
     $user_privilege = $_SESSION['user_privilege'];
-    $user_email = $_SESSION['user_email'];
     $user_fname = $_SESSION['user_fname']; 
     $user_lname = $_SESSION['user_lname'];
+
+    // Echo the $user_id into a JavaScript variable
+    echo "<script>let userId = $user_id;</script>";
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +24,7 @@
     <meta charset="utf-8">
     <title>UBC Forums - Account Hub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../styles/reset.css">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <link rel="stylesheet" type="text/css" href="../styles/header.css">
@@ -40,11 +43,14 @@
     <div class="container">
 
         <div class="column" id="sidebar">
-            <h1>Admin Panel</h1>
+            <h1 style="text-decoration: underline;">Admin Panel</h1>
         </div>
 
         <div class="column" id="recent_posts">
-            <h1>Recent Posts</h1>
+            <h1 style="text-decoration: underline; padding-bottom: 0.5em;"><?php echo $user_name . "'s Posts"; ?></h1>
+            <section id="posts" style="padding: 0;">
+
+            </section>
         </div>
 
         <!-- Account Information -->
@@ -65,7 +71,7 @@
                         }
                         else
                         {
-                            echo "<img src='../images/img-6603a76f01ab77.05776938.jpg'>";
+                            echo "<img src='../images/default_account.jpg'>";
                         }
                     ?>
                 </div>
@@ -124,7 +130,6 @@
                                 echo $_GET['passMsg'];
                                 unset($_GET['passMsg']);
                             }
-                                
                         ?>
                     </div>
                     <form id="change-password-form" action="../scripts/updatePassword_authenticate.php" method="post" style="margin-bottom: 0.5em;">
@@ -137,6 +142,7 @@
             </div>
         </div>
     </div>
+    <script src="../scripts/getOwnPosts.js"></script>
     <script src="../scripts/updatePassword-validation.js"></script>
 </body>
 </html>

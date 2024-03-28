@@ -2,7 +2,7 @@ let comments = [];
 let commentNum = 0;
 async function handleLoadComments(postId, communityId){
     commentNum=0;
-    commentFeed = $("#sideMenuContent");
+    commentFeed = $("#sidebar");
     let newComment = $("#sideOptions");
     newComment.empty();
     commentFeed.empty();

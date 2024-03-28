@@ -27,41 +27,41 @@ body
 .container 
 {
     display: flex;
+    width: 100vw;
 }
 
 /* Specifies generic styling for all columns */
 .column 
 {
-    background-color: #e9ecef;
     padding: 20px;
     border-radius: 1em;
-    height: 100%;
-    margin: 0 auto;
 }
 
 /* Specifies styling for left column */
 #sidebar 
 {
-    flex: 0 1 15%;
+    flex: 1;
     margin-left: 2em;
+    background: linear-gradient(to bottom, var(--Coral), var(--Cream));
+    height: fit-content;
 }
 
 /* Specifies styling for middle column */
 #recent_posts 
 {
-    flex: 1 0 15%;
+    flex: 2;
+    background-color: var(--Cream);
     margin-left: 2em;
     margin-right: 2em;
-    background-color: #FCEADE;
-    overflow-y: scroll;
 }
 
 /* Specifies styling for right column */
 #user_info 
 {
-    flex: 0 1 15%;
+    flex: 1;
     margin-right: 2em;
     background: linear-gradient(to bottom, #FF8A5B, #FCEADE);
+    height: fit-content;
 }
 /* Specifies styling for profile pictures border / outside div */
 #user_info #pic
@@ -122,4 +122,161 @@ body
     text-decoration: none;
     border: 3pt solid transparent;
     border-radius: var(--DefaultBR);
+}
+
+#posts
+{
+    border-radius: var(--DefaultBR);
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.post
+{
+    box-sizing: border-box;
+    background: linear-gradient(to bottom right, var(--Coral), var(--CoralRed));
+    float: inline-start;
+    width: 95%;
+    margin: 5%;
+    padding: 0px 2px;
+    border-radius: var(--DefaultBR);
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+}
+.textPost
+{
+    box-sizing: border-box;
+
+    background: linear-gradient(to bottom right, var(--Coral), var(--CoralRed));
+    display: flex;
+    float: inline-start;
+    clear: both;
+    max-height: 95%;
+    width: 95%;
+    margin: 5%;
+    padding: 0 2px;
+    border-radius: var(--DefaultBR);
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.textPost .postContent
+{
+    display: inline;
+    padding: 4px 15px;
+    margin: 15px 0 0 0;
+    text-align: left;
+    background-color: var(--Cream);
+    border-radius: var(--DefaultBR);
+    max-height: 100%;
+    overflow: scroll;
+    justify-content: center;
+    vertical-align:top;
+    align-items: center;
+}
+.postContent p {
+    padding: 0;
+    margin: 0;
+}
+.postContent img{
+    max-height: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+}
+.postHeader{
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items:normal;
+    padding: 10px 1% 10px 1%;
+    margin: 10px 0;
+}
+
+.postDetails{
+    display: flex;
+    flex-direction: column;
+    max-width: 45%;
+    height: 400px;
+}
+.postHeader h3{
+    display: block;
+    margin: 0;
+    padding: 0;
+    color: var(--OffWhite);
+}
+.postContent{
+    display: inline-block;
+    margin: 0 1px;
+    text-align: center;
+    background-color: var(--Cream);
+    max-width: 100%;
+    max-height: 45vh;
+}
+.postOptions{
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 5%;
+    display: inline-block;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 1% 20px 1%;
+    margin: 0;
+}
+.promo{
+    float: left;
+    text-align: center;
+    background-color: var(--AquaBlue);
+    border-radius: var(--DefaultBR);
+    border: none;
+    height: 20px;
+    width: 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1)
+}
+.promo:hover
+{
+    background-color: var(--OffWhite);
+}
+.promo:active
+{
+    background-color: var(--CoralRed);
+    box-shadow: none;
+}
+
+.commentButton
+{
+    float: right;
+    cursor: pointer;
+    padding: 5px;
+    margin-right: 5px;
+    background-color: var(--Coral);
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
+    border-radius: var(--DefaultBR);
+}
+.commentButton:hover
+{
+    background-color: var(--OffWhite);
+}
+.commentButton:active
+{
+    background-color: var(--CoralRed);
+    box-shadow: none;
+}
+.numPromo
+{
+    display: block;
+    float: left;
+    margin: 0;
 }

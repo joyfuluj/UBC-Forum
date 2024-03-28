@@ -24,6 +24,7 @@
 
             if(password_verify($password, $row['password']))
             {
+                session_destroy();
                 session_start();
                 $_SESSION['user_id'] = $row['userId'];
                 $_SESSION['user_privilege'] = $row['privilege'];

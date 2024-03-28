@@ -1,9 +1,11 @@
 <?php
 include_once('../scripts/connection.php');
 
-if($_SERVER['REQUEST_METHOD'] == 'GET'){
+if($_SERVER['REQUEST_METHOD'] == 'GET')
+{
   $pageNum = "";
-  if(isset($_GET['pageNum'])){
+  if(isset($_GET['pageNum']))
+  {
       $pageNum = 5*$_GET['pageNum'];
   };
   if ($conn->connect_error) {
