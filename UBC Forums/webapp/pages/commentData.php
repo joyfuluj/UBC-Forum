@@ -1,14 +1,6 @@
 <?php
 //TODO: Change when uploading to server
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_81265373";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-$pageNum = "";
-$postId = "";
-$communityId = "";
+include_once('../scripts/connection.php');
 
 if(isset($_GET['postId'])&& isset($_GET['communityId'])&& isset($_GET['pageNum'])){
     $pageNum = 10*$_GET['pageNum'];

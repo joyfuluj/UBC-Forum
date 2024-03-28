@@ -1,11 +1,6 @@
 <?php
 error_reporting(E_ALL);
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "db_81265373";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
+include_once('../scripts/connection.php');
         
 //GET Request for promoting a post
 

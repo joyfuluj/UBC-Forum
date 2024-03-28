@@ -1,18 +1,6 @@
 <?php
 //TODO: Change when uploading to server
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_81265373";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-$userId = "";
-if(isset($_GET['userId'])){
-    $userId = $_GET['userId'];
-};
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+include_once('../scripts/connection.php');
 
 
 $sql = "SELECT username FROM Users WHERE userId = ? LIMIT 2";

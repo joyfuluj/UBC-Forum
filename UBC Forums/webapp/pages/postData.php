@@ -1,11 +1,6 @@
 <?php
 //TODO: Change when uploading to server
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_81265373";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+include_once('../scripts/connection.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
   $pageNum = "";
