@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 //TODO: Change when uploading to server
 $userId = "";
 if(isset($_GET['userId'])){
@@ -7,7 +11,7 @@ if(isset($_GET['userId'])){
 include_once('../scripts/connection.php');
 
 
-$sql = "SELECT username FROM Users WHERE userId = ? LIMIT 2";
+$sql = "SELECT username FROM users WHERE userId = ? LIMIT 2";
 $prep = $conn->prepare($sql);
 $prep->bind_param("s", $userId);
 if ($prep->execute() === false) {
