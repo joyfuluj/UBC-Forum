@@ -21,7 +21,7 @@ if(isset($_GET['postId']) && isset($_GET['communityId'])){
         $result = $prep -> get_result();
         if($result -> num_rows <= 0){
             $row = $result -> fetch_assoc();
-            $sql = "UPDATE Posts SET promos = promos+1 WHERE postId = ? AND communityId = ? LIMIT 1";
+            $sql = "UPDATE posts SET promos = promos+1 WHERE postId = ? AND communityId = ? LIMIT 1";
             $prep = $conn -> prepare($sql);
             $prep -> bind_param("ss", $postId, $communityId);
             if($prep -> execute() === false){
@@ -36,7 +36,7 @@ if(isset($_GET['postId']) && isset($_GET['communityId'])){
             echo 1;
         } else {
             $row = $result -> fetch_assoc();
-            $sql = "UPDATE Posts SET promos = promos-1 WHERE postId = ? AND communityId = ? LIMIT 1";
+            $sql = "UPDATE posts SET promos = promos-1 WHERE postId = ? AND communityId = ? LIMIT 1";
             $prep = $conn -> prepare($sql);
             $prep -> bind_param("ss", $postId, $communityId);
             if($prep -> execute() === false){
