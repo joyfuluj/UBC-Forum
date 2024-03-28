@@ -25,7 +25,8 @@
                 include_once('../scripts/connection.php');
 
                 if (isset($_GET['search']) && isset($_GET['searchType'])) {
-                    $searchType = $_GET['Search Type'];
+                   
+                    $searchType = $_GET['searchType'];
                     $searchTerm = $_GET['search'];
                     if ($searchType == 1) {
                         $sql = "SELECT * FROM users WHERE username LIKE ? OR firstName LIKE ? OR lastName LIKE ? OR email LIKE ?";
@@ -53,12 +54,35 @@
                         }
                     } 
                     else if ($searchType == 2) {
-                        $sql = "SELECT * FROM posts WHERE postTitle LIKE ? OR postContent LIKE ?";
-                        $prep = $conn->prepare($sql);
-                        $searchTerm = "%".$searchTerm."%";
-                        $prep -> bind_param("ss", $searchTerm, $searchTerm);
+                        if($searchTerm == ""){
+                            $sql = "SELECT * FROM posts";
+                            $prep = $conn->prepare($sql);
+                        } 
+                        else {
+                            $sql = "SELECT * FROM posts WHERE postTitle LIKE ? OR postContent LIKE ?";
+                            $prep = $conn->prepare($sql);
+                            $searchTerm = "%".$searchTerm."%";
+                            $prep -> bind_param("ss", $searchTerm, $searchTerm);
+                        }
+                        
                         if ($prep->execute() === false) {
                             die("Failed: " . $prep->error);
+                        }
+                        $result = $prep->get_result();
+                        $rows = array();
+                        echo $result->num_rows;
+                        while($row = $result->fetch_assoc()) {
+                            $rows[] = $row;
+                        }
+                        foreach($rows as $row){
+                            echo 
+                                "<div class='post'>
+                                    <h3>{$row['postTitle']}</h3>
+                                    <h3>{$row['postTime']}</h3>
+                                    <div class='post-actions'>
+                                        <button class='delete-post' onclick='deletePost({$row['postId']}, {$row['communityId']})'>Delete</button>
+                                    </div>
+                                </div>";
                         }
                     }
                     else{
