@@ -18,8 +18,6 @@ async function requestPosts() {
     let params = new URLSearchParams(window.location.search);
     let community = params.get('community');
     let search = params.get('search');
-    console.log(community);
-    console.log(search);
     if(community != null && search != null){
         const response = await fetch(`../pages/postData.php?community=${encodeURIComponent(community)}&search=${encodeURIComponent(search)}&pageNum=${encodeURIComponent(pageNum)}`);
         if (response.ok) {
