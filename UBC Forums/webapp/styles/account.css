@@ -43,7 +43,7 @@ body
     flex: 1;
     margin-left: 2em;
     background: linear-gradient(to bottom, var(--Coral), var(--Cream));
-    height: fit-content;
+    height: 80vh;
 }
 
 /* Specifies styling for middle column */
@@ -53,6 +53,8 @@ body
     background-color: var(--Cream);
     margin-left: 2em;
     margin-right: 2em;
+    height: 80vh;
+    overflow-y: scroll;
 }
 
 /* Specifies styling for right column */
@@ -279,4 +281,7 @@ body
     display: block;
     float: left;
     margin: 0;
+}
+#adminDashboard{
+    margin-top: 10%;
 }

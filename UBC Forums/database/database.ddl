@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS community (
     communityName VARCHAR(20) UNIQUE,
     communityDesc VARCHAR(200),
     ownerId INT NOT NULL,
-    FOREIGN KEY (ownerId) REFERENCES users(userId)
+    FOREIGN KEY (ownerId) REFERENCES users(userId) ON DELETE CASCADE
 );
 
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS memberOf (
     joinDate DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (communityId, userId),
     FOREIGN KEY (userId) REFERENCES users(userId),
-    FOREIGN KEY (communityId) REFERENCES community(communityId)
+    FOREIGN KEY (communityId) REFERENCES community(communityId) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS posts (
@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS posts (
     promos INT,
     postType VARCHAR(10), 
     postTime DATETIME,
-    FOREIGN KEY (userId) REFERENCES users(userId),
-    FOREIGN KEY (communityId) REFERENCES community(communityId),
-    UNIQUE(postId, communityId)
+    FOREIGN KEY (userId) REFERENCES users(userId) ON DELETE CASCADE,
+    FOREIGN KEY (communityId) REFERENCES community(communityId) ON DELETE CASCADE,
+    UNIQUE(postId, communityId) 
 );
 CREATE TABLE IF NOT EXISTS comments(
     commentId INT AUTO_INCREMENT PRIMARY KEY,
@@ -54,9 +54,9 @@ CREATE TABLE IF NOT EXISTS comments(
     commentTime DATETIME,
     promos INT,
     userId INT,
-    FOREIGN KEY (postId) REFERENCES posts(postId),
-    FOREIGN KEY (userId) REFERENCES users(userId),
-    FOREIGN KEY (communityId) REFERENCES community(communityId),
+    FOREIGN KEY (postId) REFERENCES posts(postId) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES users(userId) ON DELETE CASCADE,
+    FOREIGN KEY (communityId) REFERENCES community(communityId) ON DELETE CASCADE,
     UNIQUE (postId, communityId, commentId)
 );
 CREATE TABLE IF NOT EXISTS commentLike (
@@ -64,19 +64,19 @@ CREATE TABLE IF NOT EXISTS commentLike (
     postId INT, 
     communityId INT,
     userId INT,
-    FOREIGN KEY (commentId) REFERENCES comments(commentId),
-    FOREIGN KEY (communityId) REFERENCES community(communityId),
-    FOREIGN KEY (postId) REFERENCES posts(postId),
-    FOREIGN KEY (userId) REFERENCES users(userId),
+    FOREIGN KEY (commentId) REFERENCES comments(commentId) ON DELETE CASCADE,
+    FOREIGN KEY (communityId) REFERENCES community(communityId) ON DELETE CASCADE,
+    FOREIGN KEY (postId) REFERENCES posts(postId) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES users(userId) ON DELETE CASCADE,
     PRIMARY KEY (commentId, postId, communityId, userId)
 );
 CREATE TABLE IF NOT EXISTS postLike(
     postId INT,
     communityId INT,
     userId INT,
-    FOREIGN KEY (communityId) REFERENCES community(communityId),
-    FOREIGN KEY (postId) REFERENCES posts(postId),
-    FOREIGN KEY (userId) REFERENCES users(userId),
+    FOREIGN KEY (communityId) REFERENCES community(communityId) ON DELETE CASCADE,
+    FOREIGN KEY (postId) REFERENCES posts(postId) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES users(userId) ON DELETE CASCADE,
     PRIMARY KEY (postId, communityId, userId)
 );
 
@@ -89,9 +89,9 @@ CREATE TABLE IF NOT EXISTS comments(
     commentTime DATETIME,
     promos INT,
     userId INT,
-    FOREIGN KEY (postId) REFERENCES posts(postId),
-    FOREIGN KEY (userId) REFERENCES users(userId),
-    FOREIGN KEY (communityId) REFERENCES community(communityId),
+    FOREIGN KEY (postId) REFERENCES posts(postId) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES users(userId) ON DELETE CASCADE,
+    FOREIGN KEY (communityId) REFERENCES community(communityId) ON DELETE CASCADE,
     UNIQUE (postId, communityId, commentId)
 );
 CREATE TABLE IF NOT EXISTS replies(
@@ -103,9 +103,9 @@ CREATE TABLE IF NOT EXISTS replies(
     commentTime DATETIME,
     promos INT,
     userId INT,
-    FOREIGN KEY (postId) REFERENCES posts(postId),
-    FOREIGN KEY (userId) REFERENCES users(userId),
-    FOREIGN KEY (communityId) REFERENCES community(communityId),
+    FOREIGN KEY (postId) REFERENCES posts(postId) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES users(userId) ON DELETE CASCADE,
+    FOREIGN KEY (communityId) REFERENCES community(communityId) ON DELETE CASCADE,
     UNIQUE (postId, communityId, commentId)
 );
 
