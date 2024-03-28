@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar {
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+.main-content {
+    width: 80%;
+    padding: 20px;
+}
+
+.search-form {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 80%;
+    padding: 10px;
+}
+
+.search-button {
+    padding: 10px;
+}
+
+.user-list,
+.post-list {
+    margin-bottom: 20px;
+}
+
+.user-list-item,
+.post-list-item {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+.delete-button,
+.edit-button {
+    padding: 5px 10px;
+    margin-right: 5px;
+}

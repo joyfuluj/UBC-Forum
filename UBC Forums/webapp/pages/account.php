@@ -42,10 +42,18 @@
         </ul>
     </header>
     <div class="container">
-
-        <div class="column" id="sidebar" style="<?php echo ($user_privilege == 1) ? 'display: none;' : 'display: block;'; ?>">
-            <h1 style="text-decoration: underline;">Admin Panel</h1>
-        </div>
+        <?php
+            if($user_privilege == 2)
+            {
+               echo 
+               '<div class="column" id="sidebar">
+                    <h1 style="text-decoration: underline;">Admin Panel</h1>
+                    <br>
+                    <a id = "adminDashboard" href="adminDashboard.php">Admin</a>                
+                </div>';
+            }
+        ?>
+        
 
         <div class="column" id="recent_posts">
             <h1 style="text-decoration: underline; padding-bottom: 0.5em;"><?php echo $user_name . "'s Posts"; ?></h1>
