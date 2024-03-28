@@ -16,6 +16,7 @@
 
     // Echo the $user_id into a JavaScript variable
     echo "<script>let userId = $user_id;</script>";
+    echo "<script>let userPrivilege = $user_privilege;</script>";
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +43,7 @@
     </header>
     <div class="container">
 
-        <div class="column" id="sidebar">
+        <div class="column" id="sidebar" style="<?php echo ($user_privilege == 1) ? 'display: none;' : 'display: block;'; ?>">
             <h1 style="text-decoration: underline;">Admin Panel</h1>
         </div>
 

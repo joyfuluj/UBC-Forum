@@ -85,9 +85,6 @@ async function addPosts()
                             <p>${text}</p>
                         </div>
                         <div class='postOptions'>
-                            Promos: ${post.promos}
-                            <button class='promo' onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
-                            <button class='commentButton' onClick='handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
                         </div>
                     </div>`
                 );
@@ -109,9 +106,6 @@ async function addPosts()
                             </a>
                         </div>
                         <div class='postOptions'>
-                            <button class='promo' onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
-                            <p class='numPromo' id='promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
-                            <button class='commentButton' onClick='handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
                         </div>
                     </div>`
                 );
