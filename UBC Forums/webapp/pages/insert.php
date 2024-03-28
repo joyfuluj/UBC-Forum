@@ -46,6 +46,11 @@ ini_set('display_errors', 1);
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['communities'])) {
         $communityName = $_POST["communities"];
         $postDesc = $_POST["postDesc"];
+        if($_POST["title"]){
+            $title = $_POST["title"];
+        }else{
+            $title = "Untitled";
+        }
         if ($postDesc xor $targetFile) {
             $sql = "SELECT communityId FROM community WHERE communityName = ?";
             if ($statement = mysqli_prepare($conn, $sql)) {
@@ -57,9 +62,9 @@ ini_set('display_errors', 1);
                         $communityId = $row['communityId'];
                     }
                 }
-                $sql = "INSERT INTO posts (communityId, userId, postTime) VALUES (?, 1, NOW())";
+                $sql = "INSERT INTO posts (communityId, userId, postTime, promos, postTitle) VALUES (?, 1, NOW(), 0, ?)";
                 if ($statement = mysqli_prepare($conn, $sql)) {
-                    mysqli_stmt_bind_param($statement, 'i', $communityId);
+                    mysqli_stmt_bind_param($statement, 'is', $communityId, $title);
                     mysqli_stmt_execute($statement);
                     $postType="";
                     $fileName="";

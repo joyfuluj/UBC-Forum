@@ -22,8 +22,9 @@
             <?php if (isset($_GET['nocomm'])) echo "<p style=\"position: absolute; top: 60px;left: 60px;font-size: 15px;color: red;\">Please set the community.</p>"; ?>
             <input type="text" id="textPost" name="postDesc" style="<?php if(isset($_GET['nopost'])) echo 'border: 1px solid red;'; ?>"value="<?php if($_GET['postDesc']) echo $_GET['postDesc']; ?>">
             <?php if (isset($_GET['nopost'])) echo "<p style=\"position: absolute; top: 100px;left: 60px;font-size: 15px;color: red;\">Please enter something here or post the image file.</p>"; ?>
-            <?php if (isset($_GET['posted'])) echo "<p style=\"position: absolute; top: 60px;left: 60px;font-size: 15px;color: red;\">Successfully posted!</p>"; ?>
+            <?php if (isset($_GET['posted'])) echo "<p style=\"position: absolute; top: 60px;left: 230px;font-size: 15px;color: red;\">Successfully posted!</p>"; ?>
             <?php if (isset($_GET['both'])) echo "<p style=\"position: absolute; top: 60px;left: 60px;font-size: 15px;color: red;\">Please post either text or image!</p>"; ?>
+            <input type="text" id="title" name="title" style="position: absolute; top: 65px;left: 50px; height:30px" placeholder="Put your title here">
             <select id="community" name="communities" style="top: 25px; left: 10px">
             <option value="" disabled selected>Choose a Community</option>
             <option value="Travel">Travel</option>
