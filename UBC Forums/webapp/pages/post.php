@@ -6,10 +6,11 @@
     <title>UBC Forums - Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="../styles/reset.css">
     <link rel="stylesheet" type="text/css" href="../styles/header.css">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
-    <link rel="stylesheet" type="text/css" href="../styles/breadcrumb.css">
     <link rel="stylesheet" type="text/css" href="../styles/post.css">
+    <link rel="stylesheet" type="text/css" href="../styles/breadcrumb.css">
 
 </head>
 <body>
@@ -29,7 +30,7 @@
             <?php if (isset($_GET['posted'])) echo "<p class = 'error'>Successfully posted!</p>"; ?>
             <?php if (isset($_GET['both'])) echo "<p class = 'error'>Please post either text or image!</p>"; ?>
             <input type="text" id="title" name="title" placeholder="Put your title here">
-            <select id="community" name="communities">
+            <select id="communitySelect" name="communities">
                 <option value="" disabled selected>Choose a Community</option>
                 <option value="Travel">Travel</option>
                 <option value="Game">Game</option>
