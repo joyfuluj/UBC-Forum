@@ -55,7 +55,6 @@ header div a:hover
     background: transparent;
     border: 3pt solid var(--OffWhite);
 }
-
 header form, select
 {
     padding:  0.5vh 0.5vw;
