@@ -55,7 +55,23 @@ header#header div a:hover
     background: transparent;
     border: 3pt solid var(--OffWhite);
 }
-
+header#header div a:hover
+{
+    color: var(--OffWhite);
+    background: transparent;
+    border: 3pt solid var(--OffWhite);
+}
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 header#header form, select
 {
     padding:  0.5vh 0.5vw;
