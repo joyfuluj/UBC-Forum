@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../styles/reset.css">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <link rel="stylesheet" type="text/css" href="../styles/login-register.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../scripts/notify.js"></script>
 </head>
 <!--Body-->
 <body>

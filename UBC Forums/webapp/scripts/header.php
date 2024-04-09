@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
     <div>
-        <a href="../pages/index.php">UBC Forums</a>
+        <a href="../pages/index.php" id="name">UBC Forums</a>
         <form id = 'searchBarForm'action="../pages/index.php" method="GET" >
             <select id="community" name="community" style="width: 15%">
             <option value="">All</option>
