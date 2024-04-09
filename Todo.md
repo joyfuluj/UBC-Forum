@@ -8,7 +8,6 @@ System Requirements:
 
     MINOR (Additional):
         - Search and analysis for topics/items.
-        - Hot threads/hot item tracking.
         - Activity by date.
         - Alerts on page changes.
         - Styling flourishes.
