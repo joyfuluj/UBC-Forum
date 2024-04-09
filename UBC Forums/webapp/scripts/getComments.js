@@ -51,10 +51,6 @@ async function addComments(postId, communityId){
                 <div class = 'commentContent'>
                     <p>${comment.commentContent}</p>
                 </div>
-                <div class = 'commentOptions'>
-                    Reply: <button id = '${comment.commentId}-${comment.postId}-${comment.communityId}' class = 'likeButton'></button>
-                    <button 
-                </div>
             </div>`
             );
             
