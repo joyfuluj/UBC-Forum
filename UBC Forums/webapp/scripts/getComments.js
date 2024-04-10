@@ -18,8 +18,6 @@ async function getNewComments(postId, communityId) {
     const response = await fetch(url);
     if (response.ok) {
         let result = await response.json();
-        console.log(result);
-
         if(result.length > 0){
             newComments.push(...result);
             addNewComments();
@@ -65,7 +63,6 @@ function addNewComments(){
 async function handleLoadComments(postId, communityId){
     commentNum=0;
     setInterval(() => {
-        console.log(lastFetch);
         getNewComments(postId, communityId);
     }, 10000);
     let newComment = $("#sideOptions");
