@@ -1,3 +1,4 @@
+
 #posts
 {
     border-radius: var(--DefaultBR);
@@ -154,4 +155,40 @@
     display: block;
     float: left;
     margin: 0;
+}
+
+@media (max-width: 600px) {
+    #posts {
+        width: 90vw;
+        height: 80vh;
+        margin: 0 5vw;
+    }
+    .post, .textPost {
+        max-width: 100%;
+        min-width: 100%;
+        margin: 2%;
+    }
+    .textPost .postContent {
+        padding: 2px 7px;
+        margin: 7px 0 0 0;
+    }
+    .postHeader {
+        height: 40px;
+        padding: 5px 1% 5px 1%;
+        margin: 5px 0;
+    }
+    .postDetails {
+        height: 300px;
+    }
+    .postContent {
+        max-height: 35vh;
+    }
+    .postOptions {
+        padding: 10px 1% 10px 1%;
+    }
+    .promo, .commentButton {
+        height: 15px;
+        width: 15px;
+        margin: 0 3px;
+    }
 }
