@@ -19,12 +19,26 @@
         <a href="../pages/index.php" id="name">UBC Forums</a>
         <form id = 'searchBarForm'action="../pages/index.php" method="GET" >
             <select id="community" name="community" style="width: 15%">
+            <!-- Fetch all communities from database-->
             <option value="">All</option>
-            <option value="1">Travel</option>
-            <option value="2">Games</option>
-            <option value="3">Nature</option>
-            <option value="4">School</option>
-            <option value="5">Sports</option>
+            <?php
+                include_once('connection.php');
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                  
+                $sql = "SELECT * FROM community";
+                $prep = $conn->prepare($sql);
+                if ($prep->execute() === false) {
+                    die("Failed: " . $prep->error);
+                }
+                $result = $prep->get_result();
+                foreach($result as $row)
+                {
+                    echo '<option value="'.$row['communityId'].'">'.$row['communityName'].'</option>';
+                }
+
+            ?>
             </select><br>
             <input type='text' id="search_input" name="search" placeholder='Search' />
             <input type="submit" id="search_button" value="Search" style="border: 2pt solid var(--Coral); width:15%;"/>
