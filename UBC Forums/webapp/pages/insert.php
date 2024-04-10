@@ -40,7 +40,7 @@ include_once('../scripts/connection.php');
         
 
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['communities'])) {
-            $communityName = $_POST["communities"];
+            $communityId = $_POST["communities"];
             $postDesc = $_POST["postDesc"];
             if($_POST["title"]){
                 $title = $_POST["title"];
@@ -48,16 +48,17 @@ include_once('../scripts/connection.php');
                 $title = "Untitled";
             }
             if ($postDesc xor $targetFile) {
-                $sql = "SELECT communityId FROM community WHERE communityName = ?";
-                if ($statement = mysqli_prepare($conn, $sql)) {
-                    mysqli_stmt_bind_param($statement, 's', $communityName);
-                    mysqli_stmt_execute($statement);
-                    $communityId=0;
-                    if($result = mysqli_stmt_get_result($statement)){
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $communityId = $row['communityId'];
-                        }
-                    }
+                // $sql = "SELECT communityId FROM community WHERE communityName = ?";
+                // if ($statement = mysqli_prepare($conn, $sql)) {
+                //     mysqli_stmt_bind_param($statement, 's', $communityName);
+                //     echo $communityName."kore";
+                //     mysqli_stmt_execute($statement);
+                //     $communityId=0;
+                //     if($result = mysqli_stmt_get_result($statement)){
+                //         while ($row = mysqli_fetch_assoc($result)) {
+                //             $communityId = $row['communityId'];
+                //         }
+                //     }
                     $sql = "INSERT INTO posts (communityId, userId, postTime, promos, postTitle) VALUES (?, ?, NOW(), 0, ?)";
                     if ($statement = mysqli_prepare($conn, $sql)) {
                         mysqli_stmt_bind_param($statement, 'iss', $communityId, $userId, $title);
@@ -108,9 +109,9 @@ include_once('../scripts/connection.php');
                     }else{
                         echo "Error with storing first info.";
                     }
-                }else{
-                    echo "Couldn't find the community.";
-                }
+                // }else{
+                //     echo "Couldn't find the community.";
+                // }
             }else if($postDesc&&$targetFile){
                 $postDesc = $_POST["postDesc"];
                 header("Location: post.php?both&postDesc=$postDesc");

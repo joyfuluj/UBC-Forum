@@ -32,14 +32,23 @@
             <?php if (isset($_GET['posted'])) echo "<p class = 'error'>Successfully posted!</p>"; ?>
             <?php if (isset($_GET['both'])) echo "<p class = 'error'>Please post either text or image!</p>"; ?>
             <input type="text" id="title" name="title" placeholder="Put your title here">
-            <select id="communitySelect" name="communities">
-                <option value="" disabled selected>Choose a Community</option>
-                <option value="Travel">Travel</option>
-                <option value="Game">Game</option>
-                <option value="Nature">Nature</option>
-                <option value="School">School</option>
-                <option value="Sports">Sports</option>
-            </select>
+                <select id="communitySelect" name="communities">
+                    <option value="" disabled selected>Choose a Community</option>
+                    <?php
+                    include_once('../scripts/connection.php');
+                    $sql = "SELECT communityId, communityName FROM community";
+                    if ($statement = mysqli_prepare($conn, $sql)) {
+                        mysqli_stmt_execute($statement);
+                        mysqli_stmt_bind_result($statement, $communityId, $communityName);
+                        while (mysqli_stmt_fetch($statement)) {
+                            echo "<option value=\"$communityId\">$communityName</option>";
+                        }
+                        mysqli_stmt_close($statement);
+                    } else {
+                        echo 'Error preparing statement: ' . mysqli_error($conn);
+                    }
+                    ?>
+                </select>
             <input type="text" id="textPost" name="postDesc" style="<?php if(isset($_GET['nopost'])) echo 'border: 1px solid red;'; ?>"value="<?php if($_GET['postDesc']) echo $_GET['postDesc']; ?>">
             <input type="file" name="image" id="uploadImg">
             <?php if (isset($_GET['invalid'])) echo "<p class ='error'>Only images are valid.</p>"; ?>

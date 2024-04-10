@@ -20,11 +20,20 @@
         <form id = 'searchBarForm'action="../pages/index.php" method="GET" >
             <select id="community" name="community" style="width: 15%">
             <option value="">All</option>
-            <option value="1">Travel</option>
-            <option value="2">Games</option>
-            <option value="3">Nature</option>
-            <option value="4">School</option>
-            <option value="5">Sports</option>
+        <?php
+            include_once('../scripts/connection.php');
+            $sql = "SELECT communityId, communityName FROM community";
+            if ($statement = mysqli_prepare($conn, $sql)) {
+                mysqli_stmt_execute($statement);
+                mysqli_stmt_bind_result($statement, $communityId, $communityName);
+                while (mysqli_stmt_fetch($statement)) {
+                    echo "<option value=\"$communityId\">$communityName</option>";
+                }
+                mysqli_stmt_close($statement);
+            } else {
+                echo 'Error preparing statement: ' . mysqli_error($conn);
+            }
+        ?>
             </select><br>
             <input type='text' id="search_input" name="search" placeholder='Search' />
             <input type="submit" id="search_button" value="Search" style="border: 2pt solid var(--Coral); width:15%;"/>
