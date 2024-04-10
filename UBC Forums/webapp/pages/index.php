@@ -38,7 +38,7 @@
             </div>
             <div id = "sideOptions">
                 
-                </div>
+            </div>
             </section>
             <section id = "posts">
                 

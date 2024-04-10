@@ -152,35 +152,56 @@ async function addPosts(){
             FOREIGN KEY (communityID) REFERENCES community(communityID)
             PRIMARY KEY (postId, communityID)
             */
-function getTestPosts(){
+function getTestPosts()
+{
     let post = {
         postId: 1,
         communityId: 1,
-        postTitle: "Test Post",
-        postTime: "2020-11-11",
-        userId: "Test Author",
-        postType: "txt",
+        postTitle: "John's first post",
+        postTime: "2024-04-03 12:23:13",
+        userId: 1,
+        postType: "jpg",
+        promos: 0,
+    };
+    posts.push(post);
+    post = {
+        postId: 2,
+        communityId: 2,
+        postTitle: "John's second post",
+        postTime: "2024-04-04 10:44:03",
+        userId: 1,
+        postType: "png",
         promos: 0,
     };
     posts.push(post);
     post = {
         postId: 3,
-        communityId: 1,
-        postTitle: "Test Post",
-        postTime: "2020-11-11",
-        userId: "Test Author",
-        postType: "png",
-        promos: 1244,
+        communityId: 3,
+        postTitle: "Jane's first post",
+        postTime: "2024-04-06 02:51:58",
+        userId: 2,
+        postType: "jpg",
+        promos: 0,
     };
     posts.push(post);
     post = {
-        postId: 2,
-        communityId: 1,
-        postTitle: "Test Post",
-        postTime: "2020-11-11",
-        userId: "Test Author",
-        postType: "jpg",
-        promos: 124488880000,
+        postId: 4,
+        communityId: 4,
+        postTitle: "Jane's second post",
+        postTime: "2024-04-07 01:17:20",
+        userId: 2,
+        postType: "png",
+        promos: 0,
+    };
+    posts.push(post);
+    post = {
+        postId: 5,
+        communityId: 5,
+        postTitle: "John's third post",
+        postTime: "2024-04-09 07:21:28",
+        userId: 1,
+        postType: "txt",
+        promos: 0,
     };
     posts.push(post);
     

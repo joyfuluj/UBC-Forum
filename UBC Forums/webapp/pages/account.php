@@ -55,7 +55,6 @@
                 </div>';
             }
         ?>
-        
 
         <div class="column" id="recent_posts">
             <h1 style="text-decoration: underline; padding-bottom: 0.5em;"><?php echo $user_name . "'s Posts"; ?></h1>
@@ -148,6 +147,34 @@
                         <input type="password" id="new_password1" name="new_password1" placeholder="New password" style="margin-bottom: 0.5em;"><br>
                         <input type="password" id="new_password2" name="new_password2" placeholder="Re-enter new password" style="margin-bottom: 0.5em;"><br>
                         <input type="submit" value="Change Password">
+                    </form><br><br>
+                </div>
+
+                <!-- Delete Account -->
+                <div id="delete_account">
+                    <h4 style="margin-bottom: 0.5em;">Delete Account</h4>
+                    <div id="delError" style="color: red; font-size: 12pt; text-align: center;">
+                        <?php 
+                            if(isset($_GET['delError'])) 
+                            {
+                                echo $_GET['delError'];
+                                unset($_GET['delError']);
+                            }
+                        ?>
+                    </div>
+                    <div id="delMsg" style="color: green; font-size: 12pt; text-align: center;">
+                        <?php
+                            if(isset($_GET['delMsg'])) 
+                            {
+                                echo $_GET['delMsg'];
+                                unset($_GET['delMsg']);
+                            }
+                        ?>
+                    </div>
+                    <form id="delete-account-form" action="../scripts/deleteAccount_authenticate.php" method="post" style="margin-bottom: 0.5em;">
+                        <input type="password" id="password1" name="password1" placeholder="Current password" style="margin-bottom: 0.5em;"><br>
+                        <input type="password" id="password2" name="password2" placeholder="Re-enter current password" style="margin-bottom: 0.5em;"><br>
+                        <input type="submit" value="Delete Account">
                     </form>
                 </div>
             </div>
@@ -155,5 +182,6 @@
     </div>
     <script src="../scripts/getOwnPosts.js"></script>
     <script src="../scripts/updatePassword-validation.js"></script>
+    <script src="../scripts/deleteAccount-validation.js"></script>
 </body>
 </html>
