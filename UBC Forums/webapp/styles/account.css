@@ -58,7 +58,8 @@ body
     margin-right: 2em;
     background: linear-gradient(to bottom, #FF8A5B, #FCEADE);
 }
-/* Specifies styling for profile pictures border / outside div */
+
+/* Specifies styling for profile pictures */
 #user_info #pic
 {
     position: relative;
@@ -71,8 +72,8 @@ body
     background-color: var(--Cream);
     border-radius: 1em;
 }
-/* Specifies styling for profile pictures */
-#info h1{
+#info h1
+{
     font-size: 1.5em;
     overflow-wrap: break-word;
     text-wrap: wrap;
@@ -85,11 +86,8 @@ body
     height: 200px;
     border-radius: 1em; 
 }
-#user_info #options form input[type="file"]
-{
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-}
+
+/* Styling for user options (non-admin)*/
 #options
 {
     padding: 0.5em;
@@ -97,6 +95,39 @@ body
     border-radius: 1em;
     background-color: var(--Cream);
 }
+#user_info #options form input[type="file"]
+{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+#user_info #options form input[type="submit"]
+{
+    padding: 0.5em;
+    color: #000;
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--CoralRed), var(--Coral));
+    border: 3pt solid transparent;
+    border-radius: var(--DefaultBR);
+    background-clip: padding-box; 
+}
+#user_info #options form input[type="submit"]:hover
+{
+    color: var(--OffWhite);
+    background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
+    border: 3pt solid var(--OffWhite);
+}
+#user_info #options form input[type="password"]
+{
+    width: 95%;
+    margin-right: 1em;
+    padding: 0.25em;
+    color: #000;
+    text-decoration: none;
+    border: 3pt solid transparent;
+    border-radius: var(--DefaultBR);
+}
+
+/* Styling for user options (admin)*/
 #admin-options
 {
     padding: 0.5em;
@@ -125,6 +156,8 @@ body
     background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
     border: 3pt solid var(--OffWhite);
 }
+
+/*Styling for recent user posts*/ 
 .deleteButton
 {
     float: left;
@@ -136,10 +169,16 @@ body
     box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
     border-radius: var(--DefaultBR);
 }
+.mobile
+{
+    display: none;
+}
 .deleteButton:hover
 {
     color: black;
     background-color: var(--OffWhite);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 #user_info #options form input[type="submit"]
 {
@@ -197,6 +236,9 @@ body
 }
 
 @media (max-width: 600px) {
+    .mobile{
+        display: block;
+    }
     .container{
         box-sizing: border-box;
         width: 100vw;
@@ -207,10 +249,11 @@ body
     }
     #user_info{
         display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        position:absolute;
+        width: 100vw;
+        align-self: unset;
+        top: 20%;
+        
     }
     h1{
         font-size: 1.3em;
@@ -223,5 +266,11 @@ body
         width: 90vw;
         height: 75vh;
         margin: 0;
+    }
+    .toggleButton{
+        border-radius: var(--DefaultBR);
+        background-color: var(--Coral);
+        color: var(--OffWhite);
+        margin: 10px;
     }
 }

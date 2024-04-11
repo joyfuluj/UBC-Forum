@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
     <div>
-        <a href="../pages/index.php" id="name" class="noMob">UBC Forums</a>
+        <a href="../pages/index.php" id="name">Home</a>
         <form id = 'searchBarForm'action="../pages/index.php" method="GET" >
             <select id="community" name="community" style="width: 60px">
             <!-- Fetch all communities from database-->
@@ -69,7 +69,7 @@
             } 
             else if ($user_privilege == 2) 
             {
-                echo '<a href="../pages/post.php">Post</a>';
+                echo '<a href="../pages/post.php" class="noMob">Post</a>';
 
                 echo '<a href="../pages/account.php" class="noMob">' . $user_fname . ' ' . $user_lname . ' (Admin)</a>';
                 echo '<a href="../scripts/logout.php" class="noMob">Logout</a>';
