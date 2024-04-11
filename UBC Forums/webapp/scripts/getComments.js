@@ -52,7 +52,7 @@ function addNewComments(){
             let postContent;
             postContent = 
             $(`
-            <div id = 'comment-${comment.commentId}-${comment.postId}-${comment.communityId}' class = 'comment'>
+            <div role='complementary' id = 'comment-${comment.commentId}-${comment.postId}-${comment.communityId}' class = 'comment'>
                 <div class = 'commentHeader'>
                     <div class = 'commentDetails'>
                         <h4>${username}</h4>
@@ -162,7 +162,7 @@ async function addComments(postId, communityId){
             let postContent;
             postContent = 
             $(`
-            <div id = 'comment-${comment.commentId}-${comment.postId}-${comment.communityId}' class = 'comment'>
+            <div role='complementary' id = 'comment-${comment.commentId}-${comment.postId}-${comment.communityId}' class = 'comment'>
                 <div class = 'commentHeader'>
                     <div class = 'commentDetails'>
                         <h4>${username}</h4>

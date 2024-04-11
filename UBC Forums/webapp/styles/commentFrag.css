@@ -36,7 +36,7 @@
     box-sizing: border-box;
     padding: 5px;
     vertical-align: text-top;
-    width: 95%;
+    width: 100%;
     height: 60%;
     align-self: center;
     resize: none;
@@ -44,18 +44,14 @@
     overflow-x: hidden;
     overflow-y: auto;
     border-radius: var(--DefaultBR);
-    float : left;
-    clear: right;
 }
-#newComment
-{
+#newComment{
+    display: block;
     margin-top: 5px;
     margin-right:2.5% ;
-    height: 25%;
+    height: 25px;
     width: 25%;
     align-self:flex-end;
-    clear: left;
-    float: right;
     border-radius: var(--DefaultBR);
     background-color: var(--AquaBlue);
 
@@ -71,4 +67,12 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
     
+}
+@media(max-width: 600px){
+    #commentInput{
+        height: 80%;
+    }
+    #newComment{
+        height: 20px;
+    }
 }

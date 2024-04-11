@@ -36,7 +36,7 @@ hr{
     border-radius: var(--DefaultBR);
     border: none;
     height: 20px;
-    width: 20px;
+    width: 80px;
     margin: 0 5px;
     cursor: pointer;
     box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1)
@@ -76,10 +76,8 @@ hr{
     }
     #sideOptions{
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
         align-items: center;
-        height: 10%;
+        height: 20%;
     }
     #sideMenuContent{
         height: 70%;
