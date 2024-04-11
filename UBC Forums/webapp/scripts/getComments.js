@@ -1,7 +1,70 @@
 let comments = [];
 let commentNum = 0;
+let lastFetch = formatDate(new Date());
+let newComments = []
+
+function formatDate(date) {
+    let year = date.getFullYear();
+    let month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-indexed in JavaScript
+    let day = date.getDate().toString().padStart(2, '0');
+    let hours = date.getHours().toString().padStart(2, '0');
+    let minutes = date.getMinutes().toString().padStart(2, '0');
+    let seconds = date.getSeconds().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+async function getNewComments(postId, communityId) {
+    let url = `../pages/newCommentData.php?postId=${postId}&communityId=${communityId}&lastFetch=${lastFetch}`;
+    const response = await fetch(url);
+    if (response.ok) {
+        let result = await response.json();
+        if(result.length > 0){
+            newComments.push(...result);
+            addNewComments();
+        }
+        lastFetch = formatDate(new Date());
+    } else {
+        console.error('HTTP error', response.status);
+    }
+}
+function addNewComments(){
+
+    if(newComments.length > 0){
+        let commentFeed = $("#sideMenuContent");
+
+        newComments.forEach(async comment => {
+            let username = await fetch(`../pages/getUsername.php?userId=${comment.userId}`);
+            username = await username.json();
+            username = username.username;
+            let postContent;
+            
+            postContent = 
+            $(`
+            <div id = 'comment-${comment.commentId}-${comment.postId}-${comment.communityId}' class = 'comment'>
+                <div class = 'commentHeader'>
+                    <div class = 'commentDetails'>
+                        <h4>${username}</h4>
+                        <h5>${comment.commentTime}</h5>
+                    </div>
+                </div>
+                <div class = 'commentContent'>
+                    <p>${comment.commentContent}</p>
+                </div>
+            </div>`
+            );
+            
+            commentFeed.append(postContent);
+        });
+        newComments = [];
+    }
+}
+
+
 async function handleLoadComments(postId, communityId){
     commentNum=0;
+    setInterval(() => {
+        getNewComments(postId, communityId);
+    }, 10000);
     let newComment = $("#sideOptions");
     let commentFeed = $("#sideMenuContent");
     newComment.empty();

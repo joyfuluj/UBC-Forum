@@ -161,11 +161,14 @@ INSERT INTO `community` (`communityId`, `communityName`, `communityDesc`, `owner
 VALUES (NULL, 'Sports', 'Get ready to cheer on your favorite teams and athletes in our dynamic Sports community! Whether you''re a die-hard fan, an amateur athlete, or just love the thrill of competition, this forum is your arena for all things sports-related. From intense match analyses to friendly debates about the latest sporting events, join us as we celebrate the passion, athleticism, and camaraderie that define the world of sports. Game on!', 1, NOW());
 
 
-INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "Cool post", 1, 1,0, "txt", NOW());
-INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "Cool post", 1, 1,0, "jpg", NOW());
-INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "Cool post", 1, 1,0, "png", NOW());
+INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "John's first post", 1, 1,0, "jpg", "2024-04-3 12:23:13");
+INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "John's second post", 2, 1,0, "png", "2024-04-4 10:44:03");
+INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "Jane's first post", 3, 2,0, "jpg", "2024-04-6 2:51:58");
+INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "Jane's second post", 4, 2,0, "png", "2024-04-7 1:17:20");
+INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "John's third post", 5, 1,0, "txt", "2024-04-9 7:21:28");
 
 INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 1, 1, 'Great post!', NOW(), 0, 2);
-INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 1, 1, 'Nice work!', NOW(), 0, 1);
-INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 2, 1, 'Awesome!', NOW(), 0, 2);
-INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 3, 1, 'Keep it up!', NOW(), 0, 1);
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 2, 2, 'Nice work!', NOW(), 0, 2);
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 3, 3, 'Awesome!', NOW(), 0, 1);
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 4, 4, 'Keep it up!', NOW(), 0, 1);
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 5, 5, 'Excellent!', NOW(), 0, 2);
