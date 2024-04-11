@@ -101,3 +101,30 @@ header#header form input#search_button:hover
     transition: background-color 0.3s;
     background-color: #ff8a5b;
 }
+.mobile{
+    display: none;
+}
+/*this is overwritten in header.js cause I cant figure out why it wont apply*/
+#menuBar{
+    display: none;
+}
+@media (max-width: 600px) {
+    .noMob{
+        display: none;
+    }
+    .mobile{
+        display: block;
+    }
+    
+    header#header form, select
+    {
+        padding:  0.5vh 0.5vw;
+        width: 70%;
+        color: #000;
+        border-radius: var(--DefaultBR);
+        background-color: var(--Cream);
+        display: flex;
+        align-items:normal;
+    }
+    
+}

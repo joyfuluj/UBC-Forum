@@ -23,7 +23,7 @@
 
                 $result = $prep->get_result();
                 $rows = array();
-                echo "<h3 style='margin: 0; color: var(--OffWhite);'>{$result->num_rows} USERS FOUND</h3><br>";
+                echo "<h3 style='margin-top: 0; margin-bottom: 1em; color: var(--Cream);'>{$result->num_rows} USERS FOUND</h3><br>";
 
                 while ($row = $result->fetch_assoc()) 
                 {
@@ -34,9 +34,9 @@
                     //TODO: Add delete user functionality
                     echo
                     "<div class='admin-user'>
-                        <br><h3 style='margin: 0; text-decoration: underline;'>Username: {$row['username']}</h3><br>
-                        <h4 style='margin: 0;'>Name: {$row['firstName']} {$row['lastName']}</h4><br>
-                        <h4 style='margin: 0;'>Email: {$row['email']}</h4><br>
+                        <h4 style='margin: 0; text-decoration: underline;'>User: {$row['username']}</h4><br>
+                        <h5 style='margin: 0;'>Name: {$row['firstName']} {$row['lastName']}</h5><br>
+                        <h5 style='margin: 0;'>Email: {$row['email']}</h5><br>
                         <button class='delete-user' onclick='deleteUser({$row['userId']})'>Delete</button>
                     </div>";
                 }
@@ -50,10 +50,10 @@
                 } 
                 else 
                 {
-                    $sql = "SELECT * FROM posts WHERE postTitle LIKE ? OR postContent LIKE ?";
+                    $sql = "SELECT * FROM posts WHERE postTitle LIKE ?";
                     $prep = $conn->prepare($sql);
                     $searchTerm = "%" . $searchTerm . "%";
-                    $prep->bind_param("ss", $searchTerm, $searchTerm);
+                    $prep->bind_param("s", $searchTerm);
                 }
 
                 if ($prep->execute() === false) 
@@ -62,7 +62,7 @@
                 }
                 $result = $prep->get_result();
                 $rows = array();
-                echo "<h3 style='margin: 0; color: var(--OffWhite);'>{$result->num_rows} POSTS FOUND</h3><br>";
+                echo "<h3 style='margin-top: 0; margin-bottom: 1em; color: var(--Cream);'>{$result->num_rows} POSTS FOUND</h3><br>";
 
                 while ($row = $result->fetch_assoc()) 
                 {
@@ -73,8 +73,8 @@
                     //TODO: Add delete post functionality
                     echo
                     "<div class='admin-post'>
-                        <br><h3 style='margin: 0; text-decoration: underline;'>{$row['postTitle']}</h3><br>
-                        <h4 style='margin: 0;'>{$row['postTime']}</h4><br>
+                        <br><h4 style='margin: 0; text-decoration: underline;'>{$row['postTitle']}</h4><br>
+                        <h5 style='margin: 0;'>{$row['postTime']}</h5><br>
                         <button class='delete-post' onclick='deletePost({$row['postId']}, {$row['communityId']})'>Delete</button>
                     </div>";
                 }
@@ -97,9 +97,9 @@
                 {
                     echo
                     "<div class='admin-user'>
-                        <br><h3 style='margin: 0; text-decoration: underline;'>Username: {$row['username']}</h3><br>
-                        <h4 style='margin: 0;'>Name: {$row['firstName']} {$row['lastName']}</h4><br>
-                        <h4 style='margin: 0;'>Email: {$row['email']}</h4><br>
+                        <br><h4 style='margin: 0; text-decoration: underline;'>User: {$row['username']}</h4><br>
+                        <h5 style='margin: 0;'>Name: {$row['firstName']} {$row['lastName']}</h5><br>
+                        <h5 style='margin: 0;'>Email: {$row['email']}</h5><br>
                         <button class='delete-user' onclick='deleteUser({$row['userId']})'>Delete</button>
                     </div>";
                 }

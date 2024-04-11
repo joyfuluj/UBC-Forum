@@ -58,10 +58,15 @@ function addNewComments(){
         newComments = [];
     }
 }
-
+function isMobileSite() {
+    return window.innerWidth <= 800;
+}
 
 async function handleLoadComments(postId, communityId){
     commentNum=0;
+    if (isMobileSite()) {
+        $("#sideMenu").show();
+    }
     setInterval(() => {
         getNewComments(postId, communityId);
     }, 10000);

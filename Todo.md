@@ -1,6 +1,6 @@
 Adam:
     - Error handling. (bad navigation)
-    - Activity by date. (Maybe)
+    - Activity by date. (Maybe New Search Bar done)
     - Responsive layout for mobile.
     - Accessibility. (Alt text for images, screen reader support?)
     - Remaining Visual Bugs for posts
