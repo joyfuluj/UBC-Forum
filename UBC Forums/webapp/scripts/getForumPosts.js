@@ -53,8 +53,8 @@ async function addPosts(){
                 postContent = 
                 $(`
                 ${post.pin == 0 || post.pin === null ?
-                    `<div id = 'post-${post.postId}-${post.communityId}' class = 'textPost'>`:
-                    `<div id = 'post-${post.postId}-${post.communityId}' class = 'pinTextPost'>`
+                    `<div role='article'id = 'post-${post.postId}-${post.communityId}' class = 'textPost'>`:
+                    `<div role='article'id = 'post-${post.postId}-${post.communityId}' class = 'pinTextPost'>`
                 }
                     <div class = 'postHeader'>
                         <h3>${post.postTitle}</h3>
@@ -66,7 +66,7 @@ async function addPosts(){
                     <div class = 'postContent'>
                         <p>${text}</p>
                     </div>
-                    <div class = 'postOptions'>
+                    <div role='aside'class = 'postOptions'>
                         <button class = 'promo' onClick = 'handlePromo(${post.postId}, ${post.communityId})'>^</button>
                         <p class = 'numPromo' id = 'promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
                         ${

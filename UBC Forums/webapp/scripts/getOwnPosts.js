@@ -122,7 +122,6 @@ function deletePost(postId, communityId)
     }
 }
 
-
 async function addPosts() 
 {
     let feed = $("#posts");
@@ -138,7 +137,7 @@ async function addPosts()
             {
                 let text = await getTextPosts(`../posts/${post.postId}-${post.communityId}.${post.postType}`);
                 postContent = $(`
-                    <div id='post-${post.postId}-${post.communityId}' class='textPost'>
+                    <div role='article' id='post-${post.postId}-${post.communityId}' class='textPost'>
                         <div class='postHeader'>
                             <h3>${post.postTitle}</h3>
                             <div class='postDetails'>
@@ -159,7 +158,7 @@ async function addPosts()
             else 
             {
                 postContent = $(`
-                    <div id='post-${post.postId}-${post.communityId}' class='post'>
+                    <div role='article' id='post-${post.postId}-${post.communityId}' class='post'>
                         <div class='postHeader'>
                             <h3>${post.postTitle}</h3>
                             <div class='postDetails'>

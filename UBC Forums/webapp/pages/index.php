@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+    if(isset($_SESSION['user_id']) && isset($_SESSION['user_privilege']))
+    {
+        $user_id = $_SESSION['user_id'];
+        $user_privilege = $_SESSION['user_privilege'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +29,7 @@
 
 <body>
     <!--Header import-->
-    <header id ="header">
+    <header role = 'menu' id ="header">
         <?php include_once('../scripts/header.php'); ?>
         <ul class="breadcrumb">
             <li id=current>Home</li>
@@ -31,27 +37,22 @@
     </header>
     <!--Body-->
     <div class = 'bodyDiv'>
-        <section id = "sideMenu">
-            <button id = 'loadDefault' onClick = 'loadDefaults()'>X</button>
+        <section role='aside' id = "sideMenu">
+            <button id = 'loadDefault' onClick = 'loadDefaults()'>Close</button>
             <div id = "sideMenuContent">
                 <h3>Dashboard Options</h3>
             </div>
             <div id = "sideOptions">
                 
             </div>
-            </section>
-            <section id = "posts">
+        </section>
+        <section role='main' id = "posts">
                 
                 
-                </section>
+        </section>
                 
             </div>
             
-            <!--Footer-->
-            <footer>
-                <nav>
-                    </nav>
-            </footer>
 </body>
             <!--<script src="../scripts/header.js"></script>-->
             <script src = "../scripts/promotePost.js"></script>

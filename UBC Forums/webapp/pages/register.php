@@ -24,7 +24,7 @@
         <main>
             <h1>Register for UBC Forums</h1>
             <div class="fields">
-                <div id="error" style="color: red; font-size: 12pt; text-align: center; margin-bottom: 1em;">
+                <div role='aside'id="error" style="color: red; font-size: 12pt; text-align: center; margin-bottom: 1em;">
                     <?php 
                         if(isset($_GET['error'])) 
                         {
@@ -33,7 +33,7 @@
                         }
                     ?>
                 </div>
-                <form id="register-form" action="../scripts/register_authenticate.php" method="POST" novalidate>
+                <form role='form'id="register-form" action="../scripts/register_authenticate.php" method="POST" novalidate>
                     <div id="fname-error"></div>
                     <input type="text" id="fname" name="fname" placeholder="Enter your first name" required>
                     <div id="lname-error"></div>

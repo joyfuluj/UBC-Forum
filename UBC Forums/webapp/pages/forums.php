@@ -25,12 +25,12 @@
     <!--Header import-->
     <header id="header">
         <?php include_once('../scripts/header.php'); ?>
-        <ul class="breadcrumb">
+        <ul role='navigation'class="breadcrumb">
         <li><a href="index.php">Home</a></li>/
         <li id=current>Forums</li>
         </ul>
     </header>
-    <div id="sort">
+    <div role='navigation'id="sort">
         <select id="sortSelection" name="sort" onchange="redirectToSamePage();">
                     <option value="" disabled selected>Sort by</option>
                     <option value="popular">popular</option>
@@ -69,8 +69,8 @@
                 });
             }
         </script>
-    <div id="mainWrapper">
-        <div id="main">
+    <div role='main'id="mainWrapper">
+        <div role='main' id="main">
             <?php
             ini_set('display_errors', 1);
             include_once('../scripts/connection.php');

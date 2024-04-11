@@ -15,9 +15,9 @@
 
 <!DOCTYPE html>
 <html>
-    <div>
+    <div role='navigation'>
         <a href="../pages/index.php" id="name">Home</a>
-        <form id = 'searchBarForm'action="../pages/index.php" method="GET" >
+        <form role='search'id = 'searchBarForm'action="../pages/index.php" method="GET" >
             <select id="community" name="community" style="width: 60px">
             <!-- Fetch all communities from database-->
             <option value="">All</option>
@@ -43,7 +43,7 @@
             
             <input type='text' id="search_input" name="search" placeholder='Search' />
 
-            <select id="filter" name="filter" style="width: 90px">
+            <select role="Select Options to filter by" id="filter" name="filter" style="width: 90px">
             <!-- Fetch all communities from database-->
             <option value="">Newest</option>
             <option value="1">Oldest</option>
@@ -76,7 +76,7 @@
             }
         ?>
     </div>
-    <div id = 'menuBar'>
+    <div role='navigation' id = 'menuBar'>
         <a href="../pages/forums.php">Forums</a>
         <?php
             if (!isset($user_privilege) || $user_privilege == 0) 
