@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
     <div>
-        <a href="../pages/index.php" id="name" class="noMob">UBC Forums</a>
+        <a href="../pages/index.php" id="name">Home</a>
         <form id = 'searchBarForm'action="../pages/index.php" method="GET" >
             <select id="community" name="community" style="width: 60px">
             <!-- Fetch all communities from database-->
@@ -54,7 +54,7 @@
             <input type="submit" id="search_button" value=">" style="border: 2pt solid var(--Coral); width:15%;"/>
         </form>
         <button id="menu" class="mobile" onclick="toggleMenu()">🔻</button>
-        <a href="../pages/index.php" class="noMob">Forums</a>
+        <a href="../pages/forums.php" class="noMob">Forums</a>
         <?php
             if (!isset($user_privilege) || $user_privilege == 0) 
             {
@@ -69,7 +69,7 @@
             } 
             else if ($user_privilege == 2) 
             {
-                echo '<a href="../pages/post.php">Post</a>';
+                echo '<a href="../pages/post.php" class="noMob">Post</a>';
 
                 echo '<a href="../pages/account.php" class="noMob">' . $user_fname . ' ' . $user_lname . ' (Admin)</a>';
                 echo '<a href="../scripts/logout.php" class="noMob">Logout</a>';
@@ -77,7 +77,7 @@
         ?>
     </div>
     <div id = 'menuBar'>
-        <a href="../pages/index.php">Forums</a>
+        <a href="../pages/forums.php">Forums</a>
         <?php
             if (!isset($user_privilege) || $user_privilege == 0) 
             {
