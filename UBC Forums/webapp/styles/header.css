@@ -108,6 +108,9 @@ header#header form input#search_button:hover
 #menuBar{
     display: none;
 }
+#menu{
+    background-color: transparent;
+}
 @media (max-width: 600px) {
     .noMob{
         display: none;

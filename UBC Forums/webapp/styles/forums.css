@@ -81,12 +81,13 @@ table{
 }
 .create{
     background-color: #ea526f;
+    float: right;
+    margin-right:8%;
     color: white;
     cursor: pointer;
-    font-size: 200%;
+    font-size: 1.5em;
     width: 10%; 
     border: none;
-    margin-left: 80%;
     border-radius: 5%;
     padding: 0.2em 0.2em 0.2em 0.2em;
 }
@@ -125,7 +126,7 @@ table{
     padding: 0.5%;
 }
 #comDate{
-    margin-left: 80%;
+    float: right;
     margin-top: 1%;
 
 }
@@ -160,7 +161,7 @@ hr{
     cursor: pointer;
     border-radius: 10%;
     font-size: 150%;
-    margin-left: 90%;
+    float: right;
     padding: 0.2em 0.5em 0.2em 0.5em;
     box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
 }
@@ -172,4 +173,10 @@ hr{
 }
 #joined,#withdrawed{
     color: red;
+}
+@media (max-width: 600px) {
+    .create{
+        width: 20%;
+        margin-right: 10%;
+    }
 }
