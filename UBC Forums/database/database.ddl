@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS community (
 CREATE TABLE IF NOT EXISTS memberOf (
     communityId INT,
     userId INT,
-    type ENUM('member', 'moderator'),
+    type ENUM('member', 'moderator', 'admin'),
     joinDate DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (communityId, userId),
     FOREIGN KEY (userId) REFERENCES users(userId),

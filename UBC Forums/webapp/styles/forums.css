@@ -17,6 +17,13 @@ table{
     height: 100vh;
     width: 100%;
 }
+#seePosts{
+    background: none;
+    color: blueviolet;
+    text-decoration: underline;
+    /* display: none;
+    overflow: hidden; */
+}
 #createForumWrapper{
     padding: 2%;
     /* border: 1pt solid black; */
@@ -88,9 +95,12 @@ table{
     align-items: flex-start;
 }
 #comName{
+    background: none;
+    color: black;
     font-size: 200%;
     font-weight: bold;
-    margin-top: 1%;
+    margin-top: 2%;
+    padding: 0;
 }
 .active, .showMore:hover {
     background-color: rgb(118, 242, 165);

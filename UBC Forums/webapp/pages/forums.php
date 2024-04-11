@@ -116,10 +116,10 @@
                 $dateCreated = $row['dateCreated'];
                 echo "<div class=\"community\">";
                 echo "<table><tr>";
-                echo "<td id=\"nameColumn\"><p id=\"comName\">$communityName</p></td>";
+                echo "<td id=\"nameColumn\"><a href=\"forumDetails.php?communityName=$communityName\" id=\"comName\">$communityName</a></td>";
                 echo "<td id=\"dateColumn\"><p id=\"comDate\">Date created:<br>$dateCreated</p></td>";
                 echo "</tr></table>";
-                echo "</div>";
+                echo "</div>";                
                 if (isset($_GET['joined'])){
                     if($communityId == $_GET['communityId'])
                         echo "<p id='joined'>Successfully joined the forum!</p>";
@@ -148,6 +148,21 @@
                         }
                     }
                 }
+                echo "<a href=\"forumDetails.php\" id=\"seePosts\">View Forum</a>";
+                // $sql_4 = "SELECT type FROM memberOf WHERE userId = ?";
+                // if ($statement = mysqli_prepare($conn, $sql_4)) {
+                //     mysqli_stmt_bind_param($statement, 'i', $userId);
+                //     mysqli_stmt_execute($statement);
+                //     if($result_4 = mysqli_stmt_get_result($statement)){
+                //         while ($row_4 = mysqli_fetch_assoc($result_4)) {
+                //             $type = $row_4['type'];
+                //             if ($type == 'admin' || 'moderator')
+                //             echo "<a href=\"\" id=\"seePosts\">View Forum</a>";
+                //         }
+                //     }
+                // }
+            
+                
                 echo "</div>";
                 echo "</form>";
                 echo "<hr>";

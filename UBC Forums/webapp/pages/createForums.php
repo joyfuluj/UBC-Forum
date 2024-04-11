@@ -17,7 +17,7 @@ if(isset($_POST['forumName']) && isset($_POST['forumDescription'])) {
         if (mysqli_affected_rows($conn) > 0) {
             ini_set('display_errors', 1);
             $communityId = mysqli_insert_id($conn);
-            $sql = "INSERT INTO memberOf (userId, communityId, type, joinDate) VALUES (?, ?, 'moderator', NOW())";
+            $sql = "INSERT INTO memberOf (userId, communityId, type, joinDate) VALUES (?, ?, 'admin', NOW())";
             if ($statement = mysqli_prepare($conn, $sql)) {
                 mysqli_stmt_bind_param($statement, 'ii', $userId, $communityId);
                 ini_set('display_errors', 1);
