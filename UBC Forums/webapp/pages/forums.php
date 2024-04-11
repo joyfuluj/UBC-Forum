@@ -18,6 +18,8 @@
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <link rel="stylesheet" type="text/css" href="../styles/forums.css">
     <link rel="stylesheet" type="text/css" href="../styles/breadcrumb.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../scripts/notify.js"></script>
 </head>
 <body>
     <!--Header import-->
@@ -148,7 +150,7 @@
                         }
                     }
                 }
-                echo "<a href=\"forumDetails.php\" id=\"seePosts\">View Forum</a>";
+                echo "<a href=\"forumDetails.php?communityName=$communityName\" id=\"seePosts\">View Forum</a>";
                 echo "</div>";
                 echo "</form>";
                 echo "<hr>";

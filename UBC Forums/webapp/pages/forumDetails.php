@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/commentFrag.css">
     <link rel="stylesheet" type="text/css" href="../styles/breadcrumb.css">
     <link rel="stylesheet" type="text/css" href="../styles/forumDetails.css">
+    <script src="../scripts/notify.js"></script>
 </head>
 
 <body>
