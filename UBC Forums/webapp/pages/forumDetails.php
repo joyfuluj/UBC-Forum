@@ -63,7 +63,7 @@
             <?php echo "<h1>Posts about ".$commName."</h1>"?>
     
         </div>
-        <div id="right">
+        <div id="right" class = 'noMobile'>
 <?php
 $sql = "SELECT type FROM memberOf WHERE userId = ? and communityId = ?";
 if ($statement = mysqli_prepare($conn, $sql)) {

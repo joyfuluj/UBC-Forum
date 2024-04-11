@@ -41,7 +41,7 @@
     border-radius: var(--DefaultBR);
 }
 #sort{
-    margin-left: 87%;
+    float: right;
     width: 20%;
     margin-bottom: 2%;
 }
@@ -79,4 +79,16 @@ table{
 }
 #assigned{
     color: red;
+}
+@media (max-width: 600px) {
+    #posts h1{
+        font-size: 1.3em;
+    }
+    #right{
+        display: none !important;
+
+    }
+    #posts{
+        width: 90%;
+    }
 }
