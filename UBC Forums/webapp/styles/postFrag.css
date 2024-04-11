@@ -1,3 +1,4 @@
+
 #posts
 {
     border-radius: var(--DefaultBR);
@@ -11,12 +12,41 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+.pinPost{
+    background: linear-gradient(to bottom, #FFD700, #FF6347);
+    box-sizing: border-box;
+    float: inline-start;
+    max-height: 80vh;
+    max-width: 95%;
+    min-width: 60%;
+    margin: 5%;
+    padding: 0px 2px;
+    border-radius: var(--DefaultBR);
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+}
+.pinTextPost{
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #FFD700, #FF6347);    display: flex;
+    float: inline-start;
+    clear: both;
+    max-height: 95%;
+    width: 95%;
+    margin: 5%;
+    padding: 0 2px;
+    border-radius: var(--DefaultBR);
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
 .post
 {
     box-sizing: border-box;
     background: linear-gradient(to bottom right, var(--Coral), var(--CoralRed));
     float: inline-start;
-    
    
     max-height: 80vh;
     max-width: 95%;
@@ -75,24 +105,26 @@
     width: 100%;
     height: 50px;
     display: flex;
-    justify-content: space-between;
-    align-items:normal;
+    flex-wrap: wrap;
+    justify-content:space-between;
     padding: 10px 1% 10px 1%;
     margin: 10px 0;
-}
-
-.postDetails{
-    display: flex;
-    flex-direction: column;
-    max-width: 45%;
-    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 .postHeader h3{
-    display: block;
+    display: flex;
     margin: 0;
     padding: 0;
     color: var(--OffWhite);
 }
+.postDetails{
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    height: 10px;
+}
+
 .postContent{
     display: inline-block;
     margin: 0 1px;
@@ -154,4 +186,37 @@
     display: block;
     float: left;
     margin: 0;
+}
+
+@media (max-width: 600px) {
+    #posts {
+        width: 90vw;
+        height: 80vh;
+        margin: 0 5vw;
+    }
+    .post, .textPost {
+        max-width: 100%;
+        min-width: 100%;
+        margin: 2%;
+    }
+    .textPost .postContent {
+        padding: 2px 7px;
+        margin: 7px 0 0 0;
+    }
+    .postHeader {
+        display: flex;
+        height: 40px;
+        padding: 5px 1% 5px 1%;
+        margin: 5px 0;
+    }
+    
+    .postHeader h3 {
+        font-size: 0.90em;
+    }
+    .postContent {
+        max-height: 35vh;
+    }
+    .postOptions {
+        padding: 10px 1% 10px 1%;
+    }
 }

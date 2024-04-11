@@ -33,38 +33,33 @@ body
 /* Specifies generic styling for all columns */
 .column 
 {
+    flex-direction: column;
     padding: 20px;
     border-radius: 1em;
+    width: 100%;
 }
 
 /* Specifies styling for left column */
-#sidebar 
-{
-    flex: 1;
-    margin-left: 2em;
-    background: linear-gradient(to bottom, var(--Coral), var(--Cream));
-    height: 80vh;
-}
-
-/* Specifies styling for middle column */
 #recent_posts 
-{
+{   
+    box-sizing: border-box;
     flex: 2;
     background-color: var(--Cream);
-    margin-left: 2em;
-    margin-right: 2em;
-    height: 80vh;
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 /* Specifies styling for right column */
 #user_info 
 {
+    width: 25%;
+    box-sizing: border-box;
     flex: 1;
     margin-right: 2em;
     background: linear-gradient(to bottom, #FF8A5B, #FCEADE);
-    height: fit-content;
 }
-/* Specifies styling for profile pictures border / outside div */
+
+/* Specifies styling for profile pictures */
 #user_info #pic
 {
     position: relative;
@@ -77,7 +72,12 @@ body
     background-color: var(--Cream);
     border-radius: 1em;
 }
-/* Specifies styling for profile pictures */
+#info h1
+{
+    font-size: 1.5em;
+    overflow-wrap: break-word;
+    text-wrap: wrap;
+}
 #user_info #pic img 
 {
     position: relative;
@@ -86,17 +86,19 @@ body
     height: 200px;
     border-radius: 1em; 
 }
-#user_info #options form input[type="file"]
-{
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-}
+
+/* Styling for user options (non-admin)*/
 #options
 {
     padding: 0.5em;
     border: 3pt solid var(--OffWhite);
     border-radius: 1em;
     background-color: var(--Cream);
+}
+#user_info #options form input[type="file"]
+{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 #user_info #options form input[type="submit"]
 {
@@ -125,115 +127,86 @@ body
     border-radius: var(--DefaultBR);
 }
 
-#posts
+/* Styling for user options (admin)*/
+#admin-options
 {
-    border-radius: var(--DefaultBR);
-    width: 100%;
-    height: 100vh;
-    margin: 0;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    padding: 0.5em;
+    border: 3pt solid var(--OffWhite);
+    border-radius: 1em;
+    background-color: var(--Coral);
+    margin-top: 1em;
 }
-.post
+#admin-form #type
 {
-    box-sizing: border-box;
-    background: linear-gradient(to bottom right, var(--Coral), var(--CoralRed));
-    float: inline-start;
-    width: 95%;
-    margin: 5%;
-    padding: 0px 2px;
-    border-radius: var(--DefaultBR);
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-content: center;
-}
-.textPost
-{
-    box-sizing: border-box;
-
-    background: linear-gradient(to bottom right, var(--Coral), var(--CoralRed));
-    display: flex;
-    float: inline-start;
-    clear: both;
-    max-height: 95%;
-    width: 95%;
-    margin: 5%;
-    padding: 0 2px;
-    border-radius: var(--DefaultBR);
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-}
-.textPost .postContent
-{
-    display: inline;
-    padding: 4px 15px;
-    margin: 15px 0 0 0;
-    text-align: left;
     background-color: var(--Cream);
+}
+#admin-search-button, .delete-user, .delete-post
+{
+    padding: 0.5em;
+    color: #000;
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--CoralRed), var(--Coral));
+    border: 3pt solid transparent;
     border-radius: var(--DefaultBR);
-    max-height: 100%;
-    overflow: scroll;
-    justify-content: center;
-    vertical-align:top;
-    align-items: center;
+    background-clip: padding-box; 
 }
-.postContent p {
-    padding: 0;
-    margin: 0;
-}
-.postContent img{
-    max-height: 100%;
-    max-width: 100%;
-    vertical-align: middle;
-}
-.postHeader{
-    box-sizing: border-box;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items:normal;
-    padding: 10px 1% 10px 1%;
-    margin: 10px 0;
-}
-
-.postDetails{
-    display: flex;
-    flex-direction: column;
-    max-width: 45%;
-    height: 400px;
-}
-.postHeader h3{
-    display: block;
-    margin: 0;
-    padding: 0;
+#admin-search-button:hover, .delete-user:hover, .delete-post:hover
+{
     color: var(--OffWhite);
+    background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
+    border: 3pt solid var(--OffWhite);
 }
-.postContent{
-    display: inline-block;
-    margin: 0 1px;
-    text-align: center;
-    background-color: var(--Cream);
-    max-width: 100%;
-    max-height: 45vh;
+
+/*Styling for recent user posts*/ 
+.deleteButton
+{
+    float: left;
+    cursor: pointer;
+    padding: 0.5em;
+    margin-right: 5px;
+    color: var(--OffWhite);
+    background-color: red;
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
+    border-radius: var(--DefaultBR);
 }
-.postOptions{
-    box-sizing: border-box;
-    width: 100%;
-    min-height: 5%;
-    display: inline-block;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 1% 20px 1%;
-    margin: 0;
+.mobile
+{
+    display: none;
 }
+.deleteButton:hover
+{
+    color: black;
+    background-color: var(--OffWhite);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+#user_info #options form input[type="submit"]
+{
+    padding: 0.5em;
+    color: #000;
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--CoralRed), var(--Coral));
+    border: 3pt solid transparent;
+    border-radius: var(--DefaultBR);
+    background-clip: padding-box; 
+}
+#user_info #options form input[type="submit"]:hover
+{
+    color: var(--OffWhite);
+    background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
+    border: 3pt solid var(--OffWhite);
+}
+#user_info #options form input[type="password"]
+{
+    width: 95%;
+    margin-right: 1em;
+    padding: 0.25em;
+    color: #000;
+    text-decoration: none;
+    border: 3pt solid transparent;
+    border-radius: var(--DefaultBR);
+}
+
 .promo{
     float: left;
     text-align: center;
@@ -255,32 +228,49 @@ body
     background-color: var(--CoralRed);
     box-shadow: none;
 }
-
-.commentButton
-{
-    float: right;
-    cursor: pointer;
-    padding: 5px;
-    margin-right: 5px;
-    background-color: var(--Coral);
-    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
-    border-radius: var(--DefaultBR);
-}
-.commentButton:hover
-{
-    background-color: var(--OffWhite);
-}
-.commentButton:active
-{
-    background-color: var(--CoralRed);
-    box-shadow: none;
-}
 .numPromo
 {
     display: block;
     float: left;
     margin: 0;
 }
-#adminDashboard{
-    margin-top: 10%;
+
+@media (max-width: 600px) {
+    .mobile{
+        display: block;
+    }
+    .container{
+        box-sizing: border-box;
+        width: 100vw;
+    }
+    #recent_posts{
+        width: 100%;
+        margin: 0;
+    }
+    #user_info{
+        display: none;
+        position:absolute;
+        width: 100vw;
+        align-self: unset;
+        top: 20%;
+        
+    }
+    h1{
+        font-size: 1.3em;
+    }
+
+    .post{
+        width: 100%;
+    }
+    #posts{
+        width: 90vw;
+        height: 75vh;
+        margin: 0;
+    }
+    .toggleButton{
+        border-radius: var(--DefaultBR);
+        background-color: var(--Coral);
+        color: var(--OffWhite);
+        margin: 10px;
+    }
 }

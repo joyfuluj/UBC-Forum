@@ -140,3 +140,22 @@ h1
     color: var(--CoralRed);
     border-color: var(--CoralRed);
 }
+@media (max-width: 768px) { 
+    body { 
+        justify-content: flex-start; 
+        padding: 2em; 
+    }
+
+    .login-container, .register-container { 
+        width: 100%;
+    }
+
+.fields input[type="text"], .fields input[type="email"], .fields input[type="password"] { 
+    padding-left: 1em; 
+    padding-right: 1em; 
+}
+
+.fields button[type="submit"], .nav-link { 
+    padding-left: 1em; 
+    padding-right: 1em; 
+} }

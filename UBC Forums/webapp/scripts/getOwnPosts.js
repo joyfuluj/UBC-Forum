@@ -15,7 +15,8 @@ async function requestPosts(userId)
     let params = new URLSearchParams(window.location.search);
     let community = params.get('community');
     let search = params.get('search');
-    let url = `../pages/postData.php?userId=${encodeURIComponent(userId)}&pageNum=${encodeURIComponent(pageNum)}`;
+    let filter = params.get('filter');
+    let url = `../pages/ownPostData.php?userId=${encodeURIComponent(userId)}&pageNum=${encodeURIComponent(pageNum)}`;
     
     if (userId) 
     {
@@ -58,6 +59,70 @@ async function getTextPosts(text)
     }
 }
 
+function deleteUser(userId) 
+{
+    if (window.confirm("Are you sure you want to delete this user?")) 
+    {
+        fetch('../scripts/deleteUser.php', 
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `userId=${userId}`
+            
+        }).then(response => 
+            {
+            if (response.ok) 
+            {
+                console.log("User deleted");
+            } 
+            else 
+            {
+                console.log("User not deleted");
+            }
+            location.reload();
+        });
+    } 
+    else 
+    {
+        console.log("User deletion cancelled");
+    }
+}
+
+function deletePost(postId, communityId)
+{
+    // Show confirmation dialog
+    if (window.confirm("Are you sure you want to delete this post?")) 
+    {
+        fetch('../scripts/deletePost.php', 
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `postId=${postId}&communityId=${communityId}`
+            
+        }).then(response => 
+            {
+            if (response.ok) 
+            {
+                console.log("Post deleted");
+            } else 
+            {
+                console.log("Post not deleted");
+            }
+            location.reload();
+        });
+    } else {
+        // If the user clicks "Cancel", log a message or perform some other actions
+        console.log("Post deletion cancelled");
+    }
+}
+
+
 async function addPosts() 
 {
     let feed = $("#posts");
@@ -85,6 +150,8 @@ async function addPosts()
                             <p>${text}</p>
                         </div>
                         <div class='postOptions'>
+                            <button class = 'deleteButton' onClick = 'deletePost(${post.postId}, ${post.communityId})'>Delete Post</button>
+                            <button class = 'commentButton' onClick = 'handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
                         </div>
                     </div>`
                 );
@@ -106,6 +173,8 @@ async function addPosts()
                             </a>
                         </div>
                         <div class='postOptions'>
+                            <button class = 'deleteButton' onClick = 'deletePost(${post.postId}, ${post.communityId})'>Delete Post</button>
+                            <button class = 'commentButton' onClick = 'handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
                         </div>
                     </div>`
                 );
@@ -122,15 +191,17 @@ async function addPosts()
     }
 }
 
-function handlePromo(postId, communityId) 
+window.onload = async function() 
 {
-    promote(postId, communityId);
-    console.log(`Promo clicked for post ${postId} in community ${communityId}`);
-}
-
-window.onload = function() 
-{
+    // Load posts
     loadPosts(userId); 
+
+    // Preload comments for each post
+    $(".commentButton").each(async function() {
+        let postId = $(this).data('post-id');
+        let communityId = $(this).data('community-id');
+        await requestComments(postId, communityId);
+    });
 
     let feed = $("#posts");
     feed.scroll(function() 
@@ -140,4 +211,5 @@ window.onload = function()
         }
     });
 };
+
 

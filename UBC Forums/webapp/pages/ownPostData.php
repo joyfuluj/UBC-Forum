@@ -21,42 +21,18 @@ if($_SERVER['REQUEST_METHOD'] == 'GET')
   {
       $user_id = $_GET['userId'];
   };
-  if(isset($_GET['filter']))
-  {
-    $filter = $_GET['filter'];
-  };
   
-  switch($filter)
-  {
-    case 1:
-      $sort = "postTime ASC";
-      break;
-    case 2:
-      $sort = "promos DESC";
-      break;
-    case 3:
-      $sort = "promos ASC";
-      break;
-    default:
-      $sort = "postTime DESC";
-      break;
-  }
-  if(isset($_GET['pin'])){
-    $pin = true;
-  }
-
   if(isset($search) && isset($community) && $community != "" && $search != ""){
-    
-    $sql = "SELECT * FROM posts WHERE communityId = ? AND postTitle LIKE ? ORDER BY ".$sort." LIMIT 5 OFFSET ?";
+    $sql = "SELECT * FROM posts WHERE communityId = ? AND postTitle LIKE ? ORDER BY postTime ASC LIMIT 5 OFFSET ?";
     $prep = $conn->prepare($sql);
     $search = "%".$search."%";
-    $prep -> bind_param("ssis", $community, $search, $pageNum, $sort);
+    $prep -> bind_param("ssi", $community, $search, $pageNum);
     if ($prep->execute() === false) {
       die("Failed: " . $prep->error);
     }
   }
   else if(isset($search) && $search != ""){
-    $sql = "SELECT * FROM posts WHERE postTitle LIKE ? ORDER BY ".$sort." LIMIT 5 OFFSET ?";
+    $sql = "SELECT * FROM posts WHERE postTitle LIKE ? ORDER BY postTime ASC LIMIT 5 OFFSET ?";
     $prep = $conn->prepare($sql);
     $search = "%".$search."%";
     $prep -> bind_param("si", $search, $pageNum);
@@ -64,17 +40,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET')
       die("Failed: " . $prep->error);
     }
   }
-  else if(isset($community) && $community != "" && $pin == true){
-    $sql = "SELECT * FROM posts WHERE communityId = ? ORDER BY pin DESC LIMIT 5 OFFSET ?";
-    $prep = $conn->prepare($sql);
-    $prep -> bind_param("si", $community, $pageNum);
-    if ($prep->execute() === false) 
-    {
-      die("Failed: " . $prep->error);
-    }
-  }
   else if(isset($community) && $community != ""){
-    $sql = "SELECT * FROM posts WHERE communityId = ? ORDER BY ".$sort." LIMIT 5 OFFSET ?";
+    $sql = "SELECT * FROM posts WHERE communityId = ? ORDER BY postTime ASC LIMIT 5 OFFSET ?";
     $prep = $conn->prepare($sql);
     $prep -> bind_param("si", $community, $pageNum);
     if ($prep->execute() === false) 
@@ -84,7 +51,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET')
   }
   else if(isset($user_id) && $user_id != "")
   {
-    $sql = "SELECT * FROM posts WHERE userId = ? ORDER BY ".$sort." LIMIT 5 OFFSET ?";
+    $sql = "SELECT * FROM posts WHERE userId = ? ORDER BY postTime ASC LIMIT 5 OFFSET ?";
     $prep = $conn->prepare($sql);
     $prep -> bind_param("ii", $user_id, $pageNum);
     if ($prep->execute() === false) 
@@ -94,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET')
   }
   else
   {
-    $sql = "SELECT * FROM posts ORDER BY ".$sort." LIMIT 5 OFFSET ?";
+    $sql = "SELECT * FROM posts ORDER BY postTime ASC LIMIT 5 OFFSET ?";
     $prep = $conn->prepare($sql);
     $prep -> bind_param("i", $pageNum);
     if ($prep->execute() === false) {
