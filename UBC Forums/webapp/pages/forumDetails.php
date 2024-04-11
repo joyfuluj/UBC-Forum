@@ -16,6 +16,8 @@
     }
     if(isset($_GET['commFrom']))
         $commFrom = $_GET['commFrom'];
+    $userNumber = $_SESSION['user_id'];
+
 ?>
 
 <!DOCTYPE html>
@@ -72,13 +74,13 @@
 <?php
 $sql = "SELECT type FROM memberOf WHERE userId = ? and communityId = ?";
 if ($statement = mysqli_prepare($conn, $sql)) {
-    mysqli_stmt_bind_param($statement, 'ii', $_SESSION['user_id'], $commId);
+    mysqli_stmt_bind_param($statement, 'ii', $userId, $commId);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
     while ($row = mysqli_fetch_assoc($result)) {
         $type= $row['type'];
     }
-    if(mysqli_num_rows($result) == 0 || $type == 'member') {
+    if(mysqli_num_rows($result) == 0 || $type == 'member' || $type == 'moderator') {
         echo "<h1 '>Related forums</h1>";
                 ini_set('display_errors', 1);
                 include_once('../scripts/connection.php');
@@ -107,10 +109,10 @@ if ($statement = mysqli_prepare($conn, $sql)) {
                                 echo "<td rowspan=\"2\"id=\"nameColumn\"><p><a href=\"forumDetails.php?communityName=$community&commFrom=$commName\" id=\"comName\">$community</a></p></td>";
                                 echo "<form action=\"joinForum.php\" method=\"post\">";
                                 echo "<input type=\"hidden\" name=\"communityId\" id=\"communityId\" value=\"$includeId\">";
-                                echo "<input type=\"hidden\" name=\"userId\" id=\"userId\" value=\"" . $_SESSION['user_id'] . "\">";  
+                                echo "<input type=\"hidden\" name=\"userId\" id=\"userId\" value=\"" . $userId . "\">";  
                                 $sql_2 = "SELECT type FROM memberOf WHERE userId = ? AND communityId = ?";
                                 if ($statement = mysqli_prepare($conn, $sql_2)) {
-                                    mysqli_stmt_bind_param($statement, 'ii', $_SESSION['user_id'], $includeId);
+                                    mysqli_stmt_bind_param($statement, 'ii', $userId, $includeId);
                                     mysqli_stmt_execute($statement);
                                     $result_2 = mysqli_stmt_get_result($statement);
                                     if(mysqli_num_rows($result_2) > 0) {
@@ -138,35 +140,34 @@ if ($statement = mysqli_prepare($conn, $sql)) {
                     }
                 }
     }else{
-        while ($row = mysqli_fetch_assoc($result)) {
-            $type = $row['type'];
-            if($_SESSION['user_privilege'] == 2 || $type == 'admin'){
-                echo "<h1>Members:</h1>";
-                ini_set('display_errors', 1);
-                include_once('../scripts/connection.php');
-                $sql = "SELECT users.userId,username FROM users JOIN memberOf ON users.userId = memberOf.userId WHERE memberOf.communityId = ?";            
-                if(isset($_GET['sort'])){
-                    $sort = $_GET['sort'];
-                    if($sort == 'alphabet'){
-                        $sql = "SELECT users.userId,username FROM users JOIN memberOf ON users.userId = memberOf.userId WHERE memberOf.communityId = ? ORDER BY username ASC";            
-                    }
-                    elseif($sort == 'newest'){
-                        $sql = "SELECT users.userId, username FROM users JOIN memberOf ON users.userId = memberOf.userId WHERE memberOf.communityId = ? ORDER BY users.userId DESC";
-                    }
-                    elseif($sort == 'oldest'){
-                        $sql = "SELECT users.userId, username FROM users JOIN memberOf ON users.userId = memberOf.userId WHERE memberOf.communityId = ? ORDER BY users.userId ASC";
-                    }
+        if($_SESSION['user_privilege'] == 2 || $type == 'admin'){
+            ini_set('display_errors', 1);
+            include_once('../scripts/connection.php');
+            $sql = "SELECT users.userId,username FROM users JOIN memberOf ON users.userId = memberOf.userId WHERE memberOf.communityId = ?";            
+            if(isset($_GET['sort'])){
+                $sort = $_GET['sort'];
+                if($sort == 'alphabet'){
+                    $sql = "SELECT users.userId,username FROM users JOIN memberOf ON users.userId = memberOf.userId WHERE memberOf.communityId = ? ORDER BY username ASC";            
                 }
-                if ($statement = mysqli_prepare($conn, $sql)) {
-                    mysqli_stmt_bind_param($statement, 's', $commId);
-                    mysqli_stmt_execute($statement);
-                    if($result = mysqli_stmt_get_result($statement)){
+                elseif($sort == 'newest'){
+                    $sql = "SELECT users.userId, username FROM users JOIN memberOf ON users.userId = memberOf.userId WHERE memberOf.communityId = ? ORDER BY users.userId DESC";
+                }
+                elseif($sort == 'oldest'){
+                    $sql = "SELECT users.userId, username FROM users JOIN memberOf ON users.userId = memberOf.userId WHERE memberOf.communityId = ? ORDER BY users.userId ASC";
+                }
+            }
+            if ($statement = mysqli_prepare($conn, $sql)) {
+                mysqli_stmt_bind_param($statement, 's', $commId);
+                mysqli_stmt_execute($statement);
+                if($result = mysqli_stmt_get_result($statement)){
+                    if (mysqli_num_rows($result) > 0) {
+                        echo "<h1>Members:</h1>";
                         while ($row = mysqli_fetch_assoc($result)) {
                             $userName = $row['username'];
                             $userId = $row['userId'];
                             error_reporting(E_ALL);
                             ini_set('display_errors', 1);
-                            if($userId != $_SESSION['user_id']){
+                            if($userId != $userId){
                                 echo "<div class=\"names\">";
                                 echo "<table id=><tr>";
                                 echo "<td rowspan=\"2\"id=\"nameColumn\"><p>User name: <strong>$userName</strong></p></td>";
@@ -202,8 +203,9 @@ if ($statement = mysqli_prepare($conn, $sql)) {
                                 echo "</tr></table>";
                                 echo "</div>"; 
                             }
-                            
                         }
+                    }else{
+                        echo "<h1>We need to let people know about this forum!</h1>";
                     }
                 }
             }
@@ -217,6 +219,8 @@ if ($statement = mysqli_prepare($conn, $sql)) {
     </div>
     <script>
         let community = '<?php echo $commId; ?>';
+        
+        let userNum = '<?php echo $userNumber?>';
     </script>
     <script src = "../scripts/promotePost.js"></script>
     <script src = "../scripts/getForumposts.js"></script>

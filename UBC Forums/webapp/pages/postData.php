@@ -21,6 +21,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET')
   {
       $user_id = $_GET['userId'];
   };
+  if(isset($_GET['pin'])){
+    $pin = true;
+  }
   
   if(isset($search) && isset($community) && $community != "" && $search != ""){
     $sql = "SELECT * FROM posts WHERE communityId = ? AND postTitle LIKE ? ORDER BY postTime ASC LIMIT 5 OFFSET ?";
@@ -37,6 +40,15 @@ if($_SERVER['REQUEST_METHOD'] == 'GET')
     $search = "%".$search."%";
     $prep -> bind_param("si", $search, $pageNum);
     if ($prep->execute() === false) {
+      die("Failed: " . $prep->error);
+    }
+  }
+  else if(isset($community) && $community != "" && $pin == true){
+    $sql = "SELECT * FROM posts WHERE communityId = ? ORDER BY pin DESC LIMIT 5 OFFSET ?";
+    $prep = $conn->prepare($sql);
+    $prep -> bind_param("si", $community, $pageNum);
+    if ($prep->execute() === false) 
+    {
       die("Failed: " . $prep->error);
     }
   }

@@ -9,7 +9,7 @@ async function loadPosts(){
 }
 async function requestPosts() {
     if(community != null){
-        const response = await fetch(`../pages/postData.php?community=${encodeURIComponent(community)}&pageNum=${encodeURIComponent(pageNum)}`);
+        const response = await fetch(`../pages/postData.php?community=${encodeURIComponent(community)}&pageNum=${encodeURIComponent(pageNum)}&pin`);
         if (response.ok) {
             communityPosts = await response.json();
             pageNum +=1;
@@ -52,7 +52,10 @@ async function addPosts(){
                 text = await getTextPosts(`../posts/${post.postId}-${post.communityId}.${post.postType}`);
                 postContent = 
                 $(`
-                <div id = 'post-${post.postId}-${post.communityId}' class = 'textPost'>
+                ${post.pin == 0 || post.pin === null ?
+                    `<div id = 'post-${post.postId}-${post.communityId}' class = 'textPost'>`:
+                    `<div id = 'post-${post.postId}-${post.communityId}' class = 'pinTextPost'>`
+                }
                     <div class = 'postHeader'>
                         <h3>${post.postTitle}</h3>
                         <div class = 'postDetails'>
@@ -66,6 +69,18 @@ async function addPosts(){
                     <div class = 'postOptions'>
                         <button class = 'promo' onClick = 'handlePromo(${post.postId}, ${post.communityId})'>^</button>
                         <p class = 'numPromo' id = 'promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
+                        ${
+                            // Check if the user is a Forum Admin
+                            isAdmin(userNum, community) ? (
+                                `<div>
+                                    ${post.pin == 0 || post.pin === null ?
+                                        `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pin</button>` :
+                                        `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pinned</button>`
+                                    }
+                                    <button class='deleteButton' onClick='deletePosts(${post.postId}, ${post.communityId})'>Delete</button>
+                                </div>`
+                            ) : ''
+                        }
                     </div>
                 </div>`
                 );
@@ -75,7 +90,10 @@ async function addPosts(){
                 
                 postContent = 
                 $(`
-                <div id='post-${post.postId}-${post.communityId}' class='post'>
+                ${post.pin == 0 || post.pin === null ?
+                    `<div id='post-${post.postId}-${post.communityId}' class='post'>`:
+                    `<div id='post-${post.postId}-${post.communityId}' class='pinPost'>`
+                }
                     <div class='postHeader'>
                         <h3>${post.postTitle}</h3>
                         <div class='postDetails'>
@@ -91,13 +109,18 @@ async function addPosts(){
                     <div class='postOptions'>
                         <button class='promo' onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
                         <p class='numPromo' id='promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
-                        
-                        ${post.pin === 1 ?
-                            `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Unpin</button>` :
-                            `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pin</button>`
+                        ${
+                            // Check if the user is a Forum Admin
+                            isAdmin(userNum, community) ? (
+                                `<div>
+                                    ${post.pin == 0 || post.pin === null ?
+                                        `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pin</button>` :
+                                        `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pinned</button>`
+                                    }
+                                    <button class='deleteButton' onClick='deletePosts(${post.postId}, ${post.communityId})'>Delete</button>
+                                </div>`
+                            ) : ''
                         }
-                        
-                        <button class='deleteButton' onClick='deletePosts(${post.postId}, ${post.communityId})'>Delete</button>
                     </div>
                 </div>
             `);
@@ -111,7 +134,37 @@ async function addPosts(){
         morePosts = false;
     }
 }
-function pinPosts(postId, communityId){
+async function isAdmin(userNum, community) {
+    console.log(userNum)
+    console.log(community)
+    fetch('../scripts/checkAdmin.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `userIdNum=${userNum}&communityId=${community}`
+    }).then(response => {
+        if (response.ok) {
+            return response.text();
+        } else {
+            console.log("Error:", response.statusText);
+            throw new Error('Server returned error: ' + response.status);
+        }
+    }).then(data => {
+        if (data === "true") {
+            console.log("true")
+            return true;
+        } else if (data === "false") {
+            console.log("false")
+            return false;
+        } else {
+            console.log("Unexpected response:", data);
+        }
+    }).catch(error => {
+        console.error('Fetch error:', error);
+    });
+}
+function pinPosts(postId, pin){
     fetch('../scripts/pinPost.php', 
         {
             method: 'POST',
@@ -125,10 +178,10 @@ function pinPosts(postId, communityId){
             {
             if (response.ok) 
             {
-                console.log("Post deleted");
+                console.log("Post pinned");
             } else 
             {
-                console.log("Post not deleted");
+                console.log("Post not pinned");
             }
             location.reload();
         });

@@ -11,12 +11,41 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+.pinPost{
+    background: linear-gradient(to bottom, #FFD700, #FF6347);
+    box-sizing: border-box;
+    float: inline-start;
+    max-height: 80vh;
+    max-width: 95%;
+    min-width: 60%;
+    margin: 5%;
+    padding: 0px 2px;
+    border-radius: var(--DefaultBR);
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+}
+.pinTextPost{
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #FFD700, #FF6347);    display: flex;
+    float: inline-start;
+    clear: both;
+    max-height: 95%;
+    width: 95%;
+    margin: 5%;
+    padding: 0 2px;
+    border-radius: var(--DefaultBR);
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
 .post
 {
     box-sizing: border-box;
     background: linear-gradient(to bottom right, var(--Coral), var(--CoralRed));
     float: inline-start;
-    
    
     max-height: 80vh;
     max-width: 95%;
