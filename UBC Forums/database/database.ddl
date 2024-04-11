@@ -157,6 +157,7 @@ INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `
 INSERT INTO `posts` (`postId`, `postTitle`, `communityId`, `userId`, `promos`, `postType`, `postTime`) VALUES (NULL, "John's third post", 5, 1,0, "txt", "2024-04-9 7:21:28");
 
 INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 1, 1, 'Great post!', NOW(), 0, 2);
-INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 1, 1, 'Nice work!', NOW(), 0, 1);
-INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 2, 1, 'Awesome!', NOW(), 0, 2);
-INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 3, 1, 'Keep it up!', NOW(), 0, 1);
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 2, 2, 'Nice work!', NOW(), 0, 2);
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 3, 3, 'Awesome!', NOW(), 0, 1);
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 4, 4, 'Keep it up!', NOW(), 0, 1);
+INSERT INTO `comments` (`commentId`, `postId`, `communityId`, `commentContent`, `commentTime`, `promos`, `userId`) VALUES (NULL, 5, 5, 'Excellent!', NOW(), 0, 2);

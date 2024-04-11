@@ -33,8 +33,10 @@ body
 /* Specifies generic styling for all columns */
 .column 
 {
+    flex-direction: column;
     padding: 20px;
     border-radius: 1em;
+    height: fit-content;
 }
 
 /* Specifies styling for left column */
@@ -43,7 +45,6 @@ body
     flex: 1;
     margin-left: 2em;
     background: linear-gradient(to bottom, var(--Coral), var(--Cream));
-    height: 80vh;
 }
 
 /* Specifies styling for middle column */
@@ -53,7 +54,6 @@ body
     background-color: var(--Cream);
     margin-left: 2em;
     margin-right: 2em;
-    height: 80vh;
 }
 
 /* Specifies styling for right column */
@@ -62,7 +62,6 @@ body
     flex: 1;
     margin-right: 2em;
     background: linear-gradient(to bottom, #FF8A5B, #FCEADE);
-    height: fit-content;
 }
 /* Specifies styling for profile pictures border / outside div */
 #user_info #pic
@@ -260,7 +259,7 @@ body
 {
     float: right;
     cursor: pointer;
-    padding: 5px;
+    padding: 0.5em;
     margin-right: 5px;
     background-color: var(--Coral);
     box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
@@ -275,12 +274,42 @@ body
     background-color: var(--CoralRed);
     box-shadow: none;
 }
+.deleteButton
+{
+    float: left;
+    cursor: pointer;
+    padding: 0.5em;
+    margin-right: 5px;
+    color: var(--OffWhite);
+    background-color: red;
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
+    border-radius: var(--DefaultBR);
+}
+.deleteButton:hover
+{
+    color: black;
+    background-color: var(--OffWhite);
+}
 .numPromo
 {
     display: block;
     float: left;
     margin: 0;
 }
-#adminDashboard{
-    margin-top: 10%;
+#sidebar #admin-search #admin-form button, #sidebar .admin-user button, #sidebar .admin-post button
+{
+    padding: 0.5em;
+    color: #000;
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--CoralRed), var(--Coral));
+    border: 3pt solid transparent;
+    border-radius: var(--DefaultBR);
+    background-clip: padding-box; 
 }
+#sidebar #admin-search #admin-form button:hover, #sidebar .admin-user button:hover, #sidebar .admin-post button:hover
+{
+    color: var(--OffWhite);
+    background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
+    border: 3pt solid var(--OffWhite);
+}
+

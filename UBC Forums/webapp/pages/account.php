@@ -47,12 +47,31 @@
         <?php
             if($user_privilege == 2)
             {
-               echo 
-               '<div class="column" id="sidebar">
-                    <h1 style="text-decoration: underline;">Admin Panel</h1>
-                    <br>
-                    <a id = "adminDashboard" href="adminDashboard.php">Admin</a>                
-                </div>';
+                echo 
+                '<div class="column" id="sidebar">
+                    <h1 style="text-decoration: underline;">Admin Panel</h1><br>
+                    <div id="admin-search" style="margin-top: 1em">
+                        <form id="admin-form" method="GET" action ="">
+                            <select id="type" name="searchType" style="width: auto;">
+                            <option value="1">Users</option>
+                            <option value="2">Posts</option>
+                            </select>
+                            <input id="admin-search-input" type="text" name="search" placeholder="Search..." style="margin-top: 1em; margin-bottom: 1em; padding: 0.5em; border-radius: 0.75em; width: 75%;">
+                            <button id="admin-search-button" type="submit" style="width: auto;">Search</button>
+                        </form>
+                    </div>';
+
+                if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['search'])) 
+                {
+                    // Store the output of the adminDashboard.php file in a variable and print it to account.php
+                    ob_start();
+                    include('../pages/adminDashboard.php');
+                    $admin_dashboard_output = ob_get_clean();
+
+                    echo $admin_dashboard_output;
+                }
+
+                echo '</div>';
             }
         ?>
 
@@ -180,6 +199,7 @@
             </div>
         </div>
     </div>
+    <script src="../scripts/getOwnComments.js"></script>
     <script src="../scripts/getOwnPosts.js"></script>
     <script src="../scripts/updatePassword-validation.js"></script>
     <script src="../scripts/deleteAccount-validation.js"></script>
