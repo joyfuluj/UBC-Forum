@@ -169,22 +169,23 @@
                 </form>
             </div>
 
-            <div id="admin-options">
+            
                 <?php
                     if($user_privilege == 2)
                     {
                         echo 
-                        '<h3 style="text-decoration: underline; margin: 0;">Admin Panel</h3><br>
-                        <div id="admin-search" style="margin-top: 1em">
-                            <form id="admin-form" method="GET" action ="">
-                                <select id="type" name="searchType" style="width: auto;">
-                                <option value="1">Users</option>
-                                <option value="2">Posts</option>
-                                </select>
-                                <input id="admin-search-input" type="text" name="search" placeholder="Search..." style="margin-top: 1em; margin-bottom: 1em; padding: 0.5em; border-radius: 0.75em; width: 75%;">
-                                <button id="admin-search-button" type="submit" style="width: auto;">Search</button>
-                            </form>
-                        </div>';
+                        '<div id="admin-options">
+                            <h3 style="text-decoration: underline; margin: 0;">Admin Panel</h3><br>
+                            <div id="admin-search" style="margin-top: 1em">
+                                <form id="admin-form" method="GET" action ="">
+                                    <select id="type" name="searchType" style="width: auto;">
+                                    <option value="1">Users</option>
+                                    <option value="2">Posts</option>
+                                    </select>
+                                    <input id="admin-search-input" type="text" name="search" placeholder="Search..." style="margin-top: 1em; margin-bottom: 1em; padding: 0.5em; border-radius: 0.75em; width: 75%;">
+                                    <button id="admin-search-button" type="submit" style="width: auto;">Search</button>
+                                </form>
+                            </div>';
 
                         if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['search'])) 
                         {

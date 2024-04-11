@@ -58,7 +58,8 @@ body
     margin-right: 2em;
     background: linear-gradient(to bottom, #FF8A5B, #FCEADE);
 }
-/* Specifies styling for profile pictures border / outside div */
+
+/* Specifies styling for profile pictures */
 #user_info #pic
 {
     position: relative;
@@ -71,8 +72,8 @@ body
     background-color: var(--Cream);
     border-radius: 1em;
 }
-/* Specifies styling for profile pictures */
-#info h1{
+#info h1
+{
     font-size: 1.5em;
     overflow-wrap: break-word;
     text-wrap: wrap;
@@ -85,11 +86,8 @@ body
     height: 200px;
     border-radius: 1em; 
 }
-#user_info #options form input[type="file"]
-{
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-}
+
+/* Styling for user options (non-admin)*/
 #options
 {
     padding: 0.5em;
@@ -97,49 +95,10 @@ body
     border-radius: 1em;
     background-color: var(--Cream);
 }
-#admin-options
+#user_info #options form input[type="file"]
 {
-    padding: 0.5em;
-    border: 3pt solid var(--OffWhite);
-    border-radius: 1em;
-    background-color: var(--Coral);
-    margin-top: 1em;
-}
-#admin-form #type
-{
-    background-color: var(--Cream);
-}
-#admin-search-button, .delete-user, .delete-post
-{
-    padding: 0.5em;
-    color: #000;
-    text-decoration: none;
-    background: linear-gradient(90deg, var(--CoralRed), var(--Coral));
-    border: 3pt solid transparent;
-    border-radius: var(--DefaultBR);
-    background-clip: padding-box; 
-}
-#admin-search-button:hover, .delete-user:hover, .delete-post:hover
-{
-    color: var(--OffWhite);
-    background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
-    border: 3pt solid var(--OffWhite);
-}
-.deleteButton
-{
-    float: left;
-    cursor: pointer;
-    padding: 0.5em;
-    margin-right: 5px;
-    color: var(--OffWhite);
-    background-color: red;
-    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
-    border-radius: var(--DefaultBR);
-}
-.deleteButton:hover
-{
-    color: black;
-    background-color: var(--OffWhite);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 #user_info #options form input[type="submit"]
 {
@@ -168,32 +127,52 @@ body
     border-radius: var(--DefaultBR);
 }
 
-.promo{
-    float: left;
-    text-align: center;
-    background-color: var(--AquaBlue);
+/* Styling for user options (admin)*/
+#admin-options
+{
+    padding: 0.5em;
+    border: 3pt solid var(--OffWhite);
+    border-radius: 1em;
+    background-color: var(--Coral);
+    margin-top: 1em;
+}
+#admin-form #type
+{
+    background-color: var(--Cream);
+}
+#admin-search-button, .delete-user, .delete-post
+{
+    padding: 0.5em;
+    color: #000;
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--CoralRed), var(--Coral));
+    border: 3pt solid transparent;
     border-radius: var(--DefaultBR);
-    border: none;
-    height: 20px;
-    width: 20px;
-    margin: 0 5px;
-    cursor: pointer;
-    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1)
+    background-clip: padding-box; 
 }
-.promo:hover
+#admin-search-button:hover, .delete-user:hover, .delete-post:hover
 {
-    background-color: var(--OffWhite);
+    color: var(--OffWhite);
+    background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
+    border: 3pt solid var(--OffWhite);
 }
-.promo:active
+
+/*Styling for recent user posts*/ 
+.deleteButton
 {
-    background-color: var(--CoralRed);
-    box-shadow: none;
-}
-.numPromo
-{
-    display: block;
     float: left;
-    margin: 0;
+    cursor: pointer;
+    padding: 0.5em;
+    margin-right: 5px;
+    color: var(--OffWhite);
+    background-color: red;
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
+    border-radius: var(--DefaultBR);
+}
+.deleteButton:hover
+{
+    color: black;
+    background-color: var(--OffWhite);
 }
 
 @media (max-width: 600px) {
