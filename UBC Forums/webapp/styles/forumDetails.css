@@ -49,7 +49,7 @@
     padding: 5%;
     font-size: 110%;
 }
-#assign{
+#assign, #unassign{
     background: greenyellow;
     color: black;
     cursor: pointer;
@@ -76,4 +76,7 @@ table{
     border-bottom: dashed black;
     width: 100%;
     padding: 4%;
+}
+#assigned{
+    color: red;
 }
