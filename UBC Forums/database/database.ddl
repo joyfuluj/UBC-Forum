@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS posts (
     promos INT,
     postType VARCHAR(10), 
     postTime DATETIME,
+    pin INT,
     FOREIGN KEY (userId) REFERENCES users(userId) ON DELETE CASCADE,
     FOREIGN KEY (communityId) REFERENCES community(communityId) ON DELETE CASCADE,
     UNIQUE(postId, communityId) 

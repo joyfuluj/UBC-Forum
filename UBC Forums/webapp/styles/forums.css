@@ -149,6 +149,7 @@ hr{
     font-size: 150%;
     margin-left: 87%;
     padding: 0.2em 0.5em 0.2em 0.5em;
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
 }
 .active, #join:hover {
     background-color: rgb(246, 79, 79);
@@ -161,6 +162,7 @@ hr{
     font-size: 150%;
     margin-left: 90%;
     padding: 0.2em 0.5em 0.2em 0.5em;
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
 }
 .buttons{
     display: flex;
