@@ -18,8 +18,9 @@ async function requestPosts() {
     let params = new URLSearchParams(window.location.search);
     let community = params.get('community');
     let search = params.get('search');
+    let filter = params.get('filter');
     if(community != null && search != null){
-        const response = await fetch(`../pages/postData.php?community=${encodeURIComponent(community)}&search=${encodeURIComponent(search)}&pageNum=${encodeURIComponent(pageNum)}`);
+        const response = await fetch(`../pages/postData.php?community=${encodeURIComponent(community)}&search=${encodeURIComponent(search)}&pageNum=${encodeURIComponent(pageNum)}&filter=${encodeURIComponent(filter)}`);  
         if (response.ok) {
             posts = await response.json();
             pageNum +=1;
@@ -28,7 +29,7 @@ async function requestPosts() {
         }
     }
     else if(community != null){
-        const response = await fetch(`../pages/postData.php?community=${encodeURIComponent(community)}&pageNum=${encodeURIComponent(pageNum)}`);
+        const response = await fetch(`../pages/postData.php?community=${encodeURIComponent(community)}&pageNum=${encodeURIComponent(pageNum)}&filter=${encodeURIComponent(filter)}`);
         if (response.ok) {
             posts = await response.json();
             pageNum +=1;
@@ -36,7 +37,7 @@ async function requestPosts() {
             console.error('HTTP error', response.status);
         }
     }else if(search != null){
-        const response = await fetch(`../pages/postData.php?search=${encodeURIComponent(search)}&pageNum=${encodeURIComponent(pageNum)}`);
+        const response = await fetch(`../pages/postData.php?search=${encodeURIComponent(search)}&pageNum=${encodeURIComponent(pageNum)}&filter=${encodeURIComponent(filter)}`);
         if (response.ok) {
             posts = await response.json();
             pageNum +=1;
@@ -45,7 +46,7 @@ async function requestPosts() {
         }
 
     }else{
-        const response = await fetch(`../pages/postData.php?pageNum=${encodeURIComponent(pageNum)}`);;
+        const response = await fetch(`../pages/postData.php?pageNum=${encodeURIComponent(pageNum)}&filter=${encodeURIComponent(filter)}`);;
         if (response.ok) {
             posts = await response.json();
             pageNum +=1;

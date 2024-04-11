@@ -85,6 +85,7 @@ async function addPosts()
                             <p>${text}</p>
                         </div>
                         <div class='postOptions'>
+                        
                         </div>
                     </div>`
                 );
@@ -106,6 +107,7 @@ async function addPosts()
                             </a>
                         </div>
                         <div class='postOptions'>
+
                         </div>
                     </div>`
                 );

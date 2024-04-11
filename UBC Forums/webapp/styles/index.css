@@ -63,3 +63,25 @@ hr{
     height: 15%;
     width: 100%;
 }
+
+@media (max-width: 600px){
+    #sideMenu{
+        position: fixed;
+        display: none;
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%);
+        width: 80%;
+        margin: 0;
+    }
+    #sideOptions{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        height: 10%;
+    }
+    #sideMenuContent{
+        height: 70%;
+    }
+}
