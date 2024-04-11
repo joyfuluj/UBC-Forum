@@ -54,7 +54,7 @@
             <input type="submit" id="search_button" value=">" style="border: 2pt solid var(--Coral); width:15%;"/>
         </form>
         <button id="menu" class="mobile" onclick="toggleMenu()">🔻</button>
-        <a href="../pages/index.php" class="noMob">Forums</a>
+        <a href="../pages/forums.php" class="noMob">Forums</a>
         <?php
             if (!isset($user_privilege) || $user_privilege == 0) 
             {
