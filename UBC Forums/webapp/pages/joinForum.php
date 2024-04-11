@@ -40,7 +40,6 @@ else{
         } else {
             echo 'Error storing membership: ' . mysqli_stmt_error($statement);
         }
-        echo "YAY";
         mysqli_stmt_close($statement);
     } else {
         echo 'Error preparing statement: ' . mysqli_error($conn);

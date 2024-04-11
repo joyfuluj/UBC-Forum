@@ -2,7 +2,7 @@
     include_once('../scripts/connection.php');
     session_start();
     $communityName = $_GET['communityName'];
-    $commName = urlencode($communityName);
+    $commName = urldecode($communityName);
     $commId ="";
     $sql = "SELECT communityId FROM community WHERE communityName = ?";
     if ($statement = mysqli_prepare($conn, $sql)) {
@@ -14,6 +14,8 @@
             }
         }
     }
+    if(isset($_GET['commFrom']))
+        $commFrom = $_GET['commFrom'];
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +42,9 @@
         <ul class="breadcrumb">
         <li><a href="index.php">Home</a></li>/
         <li><a href="forums.php">Forums</a></li>/
+        <?php if($commFrom): ?>
+        <li><a href="forumDetails.php?communityName=<?php echo $commFrom?>"><?php echo$commFrom?></a></li>/
+        <?php endif; ?>
         <li id=current><?php echo $commName?></li>
         </ul>
     </header>
@@ -69,7 +74,70 @@ $sql = "SELECT type FROM memberOf WHERE userId = ? and communityId = ?";
 if ($statement = mysqli_prepare($conn, $sql)) {
     mysqli_stmt_bind_param($statement, 'ii', $_SESSION['user_id'], $commId);
     mysqli_stmt_execute($statement);
-    if($result = mysqli_stmt_get_result($statement)){
+    $result = mysqli_stmt_get_result($statement);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $type= $row['type'];
+    }
+    if(mysqli_num_rows($result) == 0 || $type == 'member') {
+        echo "<h1 '>Related forums</h1>";
+                ini_set('display_errors', 1);
+                include_once('../scripts/connection.php');
+                $sql = "SELECT communityId,communityName FROM community WHERE communityName LIKE ?";            
+                if(isset($_GET['sort'])){
+                    $sort = $_GET['sort'];
+                    if($sort == 'alphabet'){
+                        $sql = "SELECT communityId,communityName FROM community WHERE communityName LIKE ? ORDER BY communityName ASC";            
+                    }
+                    elseif($sort == 'newest'){
+                        $sql = "SELECT communityId,communityName FROM community WHERE communityName LIKE ? ORDER BY dateCreated DESC";                                }
+                    elseif($sort == 'oldest'){
+                        $sql = "SELECT communityId,communityName FROM community WHERE communityName LIKE ? ORDER BY dateCreated ASC";                                }
+                }
+                if ($statement = mysqli_prepare($conn, $sql)) {
+                    $include = '%'.$commName.'%';
+                    mysqli_stmt_bind_param($statement, 's', $include);
+                    mysqli_stmt_execute($statement);
+                    if($result = mysqli_stmt_get_result($statement)){
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $includeId = $row['communityId'];
+                            $community = $row['communityName'];
+                            if($community != $commName){
+                                echo "<div class=\"names\">";
+                                echo "<table id=><tr>";
+                                echo "<td rowspan=\"2\"id=\"nameColumn\"><p><a href=\"forumDetails.php?communityName=$community&commFrom=$commName\" id=\"comName\">$community</a></p></td>";
+                                echo "<form action=\"joinForum.php\" method=\"post\">";
+                                echo "<input type=\"hidden\" name=\"communityId\" id=\"communityId\" value=\"$includeId\">";
+                                echo "<input type=\"hidden\" name=\"userId\" id=\"userId\" value=\"" . $_SESSION['user_id'] . "\">";  
+                                $sql_2 = "SELECT type FROM memberOf WHERE userId = ? AND communityId = ?";
+                                if ($statement = mysqli_prepare($conn, $sql_2)) {
+                                    mysqli_stmt_bind_param($statement, 'ii', $_SESSION['user_id'], $includeId);
+                                    mysqli_stmt_execute($statement);
+                                    $result_2 = mysqli_stmt_get_result($statement);
+                                    if(mysqli_num_rows($result_2) > 0) {
+                                        while ($row_2 = mysqli_fetch_assoc($result_2)) {
+                                            $type = $row_2['type'];
+                                            if ($type == 'admin') {
+                                                $role = 'Forum Admin';
+                                            } elseif($type == 'moderator') {
+                                                $role = 'Moderator';
+                                            }else{$role = 'Member';}
+                                            echo "<p id='role'>You are ".$role." of this forum.<p>";
+                                            echo "<td><input type=\"submit\" id=\"withdraw\" name=\"action\" value=\"Withdraw\"></td>";
+                                            echo "</tr>";
+                                            echo "</table>";
+                                        }
+                                    } else {
+                                        echo "<td><input type=\"submit\" id=\"join\" name=\"action\" value=\"Join\"></td></tr>";
+                                    }
+                                }
+
+                                echo "</div>";
+                                echo "</form>";
+                            }
+                        }
+                    }
+                }
+    }else{
         while ($row = mysqli_fetch_assoc($result)) {
             $type = $row['type'];
             if($_SESSION['user_privilege'] == 2 || $type == 'admin'){

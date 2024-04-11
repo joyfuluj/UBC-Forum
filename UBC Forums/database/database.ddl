@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS community (
     communityId INT AUTO_INCREMENT PRIMARY KEY,
-    communityName VARCHAR(20) UNIQUE,
+    communityName VARCHAR(30) UNIQUE,
     communityDesc VARCHAR(600),
     ownerId INT NOT NULL,
     dateCreated DATE DEFAULT '2000-01-01',

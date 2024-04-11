@@ -1,3 +1,6 @@
+h1{
+    border-bottom: solid #ea526f;
+}
 #mainWrapper{
     display: flex;
     height: 100vh;
@@ -49,6 +52,14 @@
     padding: 5%;
     font-size: 110%;
 }
+#comName{
+    background: none;
+    color: black;
+    font-size: 200%;
+    margin-top: 2%;
+    padding: 0;
+    font-size: 150%;
+}
 #assign, #unassign{
     background: greenyellow;
     color: black;
@@ -57,6 +68,29 @@
     font-size: 150%;
     /* margin-left: 150%; */
 
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
+}
+#join{
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    border-radius: 10%;
+    font-size: 150%;
+    margin-left: 30%;
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
+}
+#role{
+    color: green;
+}
+#withdraw{
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    border-radius: 8%;
+    font-size: 150%;
+    margin-left: 30%;
     padding: 0.2em 0.5em 0.2em 0.5em;
     box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
 }
@@ -73,7 +107,7 @@
     vertical-align: top;
 }
 table{
-    border-bottom: dashed black;
+    border-bottom: solid orange;
     width: 100%;
     padding: 4%;
 }
