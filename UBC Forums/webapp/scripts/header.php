@@ -77,7 +77,7 @@
         ?>
     </div>
     <div id = 'menuBar'>
-        <a href="../pages/index.php">Forums</a>
+        <a href="../pages/forums.php">Forums</a>
         <?php
             if (!isset($user_privilege) || $user_privilege == 0) 
             {

@@ -109,10 +109,10 @@ if ($statement = mysqli_prepare($conn, $sql)) {
                                 echo "<td rowspan=\"2\"id=\"nameColumn\"><p><a href=\"forumDetails.php?communityName=$community&commFrom=$commName\" id=\"comName\">$community</a></p></td>";
                                 echo "<form action=\"joinForum.php\" method=\"post\">";
                                 echo "<input type=\"hidden\" name=\"communityId\" id=\"communityId\" value=\"$includeId\">";
-                                echo "<input type=\"hidden\" name=\"userId\" id=\"userId\" value=\"" . $userId . "\">";  
+                                echo "<input type=\"hidden\" name=\"userId\" id=\"userId\" value=\"" . $userNumber . "\">";  
                                 $sql_2 = "SELECT type FROM memberOf WHERE userId = ? AND communityId = ?";
                                 if ($statement = mysqli_prepare($conn, $sql_2)) {
-                                    mysqli_stmt_bind_param($statement, 'ii', $userId, $includeId);
+                                    mysqli_stmt_bind_param($statement, 'ii', $userNumber, $includeId);
                                     mysqli_stmt_execute($statement);
                                     $result_2 = mysqli_stmt_get_result($statement);
                                     if(mysqli_num_rows($result_2) > 0) {
@@ -132,7 +132,6 @@ if ($statement = mysqli_prepare($conn, $sql)) {
                                         echo "<td><input type=\"submit\" id=\"join\" name=\"action\" value=\"Join\"></td></tr>";
                                     }
                                 }
-
                                 echo "</div>";
                                 echo "</form>";
                             }
