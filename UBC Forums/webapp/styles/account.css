@@ -40,14 +40,6 @@ body
 }
 
 /* Specifies styling for left column */
-#sidebar 
-{
-    flex: 1;
-    margin-left: 2em;
-    background: linear-gradient(to bottom, var(--Coral), var(--Cream));
-}
-
-/* Specifies styling for middle column */
 #recent_posts 
 {   
     box-sizing: border-box;
@@ -105,6 +97,50 @@ body
     border-radius: 1em;
     background-color: var(--Cream);
 }
+#admin-options
+{
+    padding: 0.5em;
+    border: 3pt solid var(--OffWhite);
+    border-radius: 1em;
+    background-color: var(--Coral);
+    margin-top: 1em;
+}
+#admin-form #type
+{
+    background-color: var(--Cream);
+}
+#admin-search-button, .delete-user, .delete-post
+{
+    padding: 0.5em;
+    color: #000;
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--CoralRed), var(--Coral));
+    border: 3pt solid transparent;
+    border-radius: var(--DefaultBR);
+    background-clip: padding-box; 
+}
+#admin-search-button:hover, .delete-user:hover, .delete-post:hover
+{
+    color: var(--OffWhite);
+    background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
+    border: 3pt solid var(--OffWhite);
+}
+.deleteButton
+{
+    float: left;
+    cursor: pointer;
+    padding: 0.5em;
+    margin-right: 5px;
+    color: var(--OffWhite);
+    background-color: red;
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
+    border-radius: var(--DefaultBR);
+}
+.deleteButton:hover
+{
+    color: black;
+    background-color: var(--OffWhite);
+}
 #user_info #options form input[type="submit"]
 {
     padding: 0.5em;
@@ -132,7 +168,6 @@ body
     border-radius: var(--DefaultBR);
 }
 
-
 .promo{
     float: left;
     text-align: center;
@@ -154,44 +189,11 @@ body
     background-color: var(--CoralRed);
     box-shadow: none;
 }
-
-.deleteButton
-{
-    float: left;
-    cursor: pointer;
-    padding: 0.5em;
-    margin-right: 5px;
-    color: var(--OffWhite);
-    background-color: red;
-    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
-    border-radius: var(--DefaultBR);
-}
-.deleteButton:hover
-{
-    color: black;
-    background-color: var(--OffWhite);
-}
 .numPromo
 {
     display: block;
     float: left;
     margin: 0;
-}
-#sidebar #admin-search #admin-form button, #sidebar .admin-user button, #sidebar .admin-post button
-{
-    padding: 0.5em;
-    color: #000;
-    text-decoration: none;
-    background: linear-gradient(90deg, var(--CoralRed), var(--Coral));
-    border: 3pt solid transparent;
-    border-radius: var(--DefaultBR);
-    background-clip: padding-box; 
-}
-#sidebar #admin-search #admin-form button:hover, #sidebar .admin-user button:hover, #sidebar .admin-post button:hover
-{
-    color: var(--OffWhite);
-    background: linear-gradient(to bottom right, #25ced1, #ff8a5b);
-    border: 3pt solid var(--OffWhite);
 }
 
 @media (max-width: 600px) {

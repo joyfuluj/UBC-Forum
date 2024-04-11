@@ -45,37 +45,6 @@
         </ul>
     </header>
     <div class="container">
-        <?php
-            if($user_privilege == 2)
-            {
-                echo 
-                '<div class="column" id="sidebar">
-                    <h1 style="text-decoration: underline;">Admin Panel</h1><br>
-                    <div id="admin-search" style="margin-top: 1em">
-                        <form id="admin-form" method="GET" action ="">
-                            <select id="type" name="searchType" style="width: auto;">
-                            <option value="1">Users</option>
-                            <option value="2">Posts</option>
-                            </select>
-                            <input id="admin-search-input" type="text" name="search" placeholder="Search..." style="margin-top: 1em; margin-bottom: 1em; padding: 0.5em; border-radius: 0.75em; width: 75%;">
-                            <button id="admin-search-button" type="submit" style="width: auto;">Search</button>
-                        </form>
-                    </div>';
-
-                if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['search'])) 
-                {
-                    // Store the output of the adminDashboard.php file in a variable and print it to account.php
-                    ob_start();
-                    include('../pages/adminDashboard.php');
-                    $admin_dashboard_output = ob_get_clean();
-
-                    echo $admin_dashboard_output;
-                }
-
-                echo '</div>';
-            }
-        ?>
-
         <div class="column" id="recent_posts">
             <h1 style="text-decoration: underline; padding-bottom: 0.5em;"><?php echo $user_name . "'s Posts"; ?></h1>
             <section id="posts" style="padding: 0;">
@@ -170,7 +139,7 @@
                     </form><br><br>
                 </div>
 
-                <!-- Delete Account -->
+                    <!-- Delete Account -->
                 <div id="delete_account">
                     <h4 style="margin-bottom: 0.5em;">Delete Account</h4>
                     <div id="delError" style="color: red; font-size: 12pt; text-align: center;">
@@ -191,12 +160,45 @@
                             }
                         ?>
                     </div>
-                    <form id="delete-account-form" action="../scripts/deleteAccount_authenticate.php" method="post" style="margin-bottom: 0.5em;">
-                        <input type="password" id="password1" name="password1" placeholder="Current password" style="margin-bottom: 0.5em;"><br>
-                        <input type="password" id="password2" name="password2" placeholder="Re-enter current password" style="margin-bottom: 0.5em;"><br>
-                        <input type="submit" value="Delete Account">
-                    </form>
                 </div>
+                
+                <form id="delete-account-form" action="../scripts/deleteAccount_authenticate.php" method="post" style="margin-bottom: 0.5em;">
+                    <input type="password" id="password1" name="password1" placeholder="Current password" style="margin-bottom: 0.5em;"><br>
+                    <input type="password" id="password2" name="password2" placeholder="Re-enter current password" style="margin-bottom: 0.5em;"><br>
+                    <input type="submit" value="Delete Account">
+                </form>
+            </div>
+
+            <div id="admin-options">
+                <?php
+                    if($user_privilege == 2)
+                    {
+                        echo 
+                        '<h3 style="text-decoration: underline; margin: 0;">Admin Panel</h3><br>
+                        <div id="admin-search" style="margin-top: 1em">
+                            <form id="admin-form" method="GET" action ="">
+                                <select id="type" name="searchType" style="width: auto;">
+                                <option value="1">Users</option>
+                                <option value="2">Posts</option>
+                                </select>
+                                <input id="admin-search-input" type="text" name="search" placeholder="Search..." style="margin-top: 1em; margin-bottom: 1em; padding: 0.5em; border-radius: 0.75em; width: 75%;">
+                                <button id="admin-search-button" type="submit" style="width: auto;">Search</button>
+                            </form>
+                        </div>';
+
+                        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['search'])) 
+                        {
+                            // Store the output of the adminDashboard.php file in a variable and print it to account.php
+                            ob_start();
+                            include('../pages/adminDashboard.php');
+                            $admin_dashboard_output = ob_get_clean();
+
+                            echo $admin_dashboard_output;
+                        }
+
+                        echo '</div>';
+                    }
+                ?>
             </div>
         </div>
     </div>
