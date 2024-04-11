@@ -126,5 +126,8 @@ header#header form input#search_button:hover
         display: flex;
         align-items:normal;
     }
+    #menuBar{
+        background: unset !important; 
+    }
     
 }

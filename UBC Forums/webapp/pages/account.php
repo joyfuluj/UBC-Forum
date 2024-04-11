@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/breadcrumb.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../scripts/notify.js"></script>
+    <script src="../scripts/accountOption.js"></script>
 
 </head>
 <body>
@@ -43,6 +44,8 @@
         <li><a href="index.php">Home</a></li>/
         <li id=current>Account</li>
         </ul>
+        <button class = 'mobile toggleButton'onClick='toggleOptions()'>Options</button>
+
     </header>
     <div class="container">
         <div class="column" id="recent_posts">
@@ -54,6 +57,9 @@
 
         <!-- Account Information -->
         <div class="column" id="user_info">
+            <div class = 'optionsDiv'>
+                <button class = 'mobile toggleButton'onClick='toggleOptions()'>Back</button>
+            </div>
             <div id="info">
                 <h1 style="text-decoration: underline;"><?php echo $user_name; ?></h1>
                 <div id="pic">

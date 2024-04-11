@@ -136,6 +136,10 @@ body
     box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1);
     border-radius: var(--DefaultBR);
 }
+.mobile
+{
+    display: none;
+}
 .deleteButton:hover
 {
     color: black;
@@ -197,6 +201,9 @@ body
 }
 
 @media (max-width: 600px) {
+    .mobile{
+        display: block;
+    }
     .container{
         box-sizing: border-box;
         width: 100vw;
@@ -207,10 +214,12 @@ body
     }
     #user_info{
         display: none;
-        position: fixed;
+        position:absolute;
+        width: 100vw;
+        align-self: unset;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -27%);
     }
     h1{
         font-size: 1.3em;
@@ -223,5 +232,11 @@ body
         width: 90vw;
         height: 75vh;
         margin: 0;
+    }
+    .toggleButton{
+        border-radius: var(--DefaultBR);
+        background-color: var(--Coral);
+        color: var(--OffWhite);
+        margin: 10px;
     }
 }
