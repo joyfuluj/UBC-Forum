@@ -3,6 +3,13 @@ let commentNum = 0;
 let lastFetch = formatDate(new Date());
 let newComments = []
 
+async function getSessionData() 
+{
+    let response = await fetch('../pages/getSession.php');
+    let data = await response.json();
+    return data;
+}
+
 function formatDate(date) {
     let year = date.getFullYear();
     let month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-indexed in JavaScript
@@ -32,12 +39,17 @@ function addNewComments(){
     if(newComments.length > 0){
         let commentFeed = $("#sideMenuContent");
 
-        newComments.forEach(async comment => {
+        newComments.forEach(async comment =>
+        {
             let username = await fetch(`../pages/getUsername.php?userId=${comment.userId}`);
             username = await username.json();
             username = username.username;
-            let postContent;
+
+            let sessionData = await getSessionData();
+            let session_userId = sessionData.user_id;
+            let session_privilege = sessionData.user_privilege;
             
+            let postContent;
             postContent = 
             $(`
             <div id = 'comment-${comment.commentId}-${comment.postId}-${comment.communityId}' class = 'comment'>
@@ -46,6 +58,9 @@ function addNewComments(){
                         <h4>${username}</h4>
                         <h5>${comment.commentTime}</h5>
                     </div>
+                    ${session_userId == comment.userId || session_privilege == 2 ? `<div class='commentDelete'>
+                        <button class = 'deleteButton' onClick = 'deleteComment(${comment.commentId}, ${comment.postId}, ${comment.communityId})'>Delete</button>
+                    </div>` : ''}
                 </div>
                 <div class = 'commentContent'>
                     <p>${comment.commentContent}</p>
@@ -97,16 +112,54 @@ async function requestComments(postId, communityId) {
     }
 }
 
+function deleteComment(commentId, postId, communityId)
+{
+    // Show confirmation dialog
+    if (window.confirm("Are you sure you want to delete this comment?")) 
+    {
+        fetch('../scripts/deleteComment.php', 
+        {
+            method: 'POST',
+            headers: 
+            {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `commentId=${commentId}&postId=${postId}&communityId=${communityId}`
+            
+        }).then(response => 
+            {
+            if (response.ok) 
+            {
+                console.log("Comment deleted");
+            } else 
+            {
+                console.log("Comment not deleted");
+            }
+            location.reload();
+        });
+    } 
+    else 
+    {
+        // If the user clicks "Cancel", log a message or perform some other actions
+        console.log("Comment deletion cancelled");
+    }
+}
+
 async function addComments(postId, communityId){
     let commentFeed = $("#sideMenuContent");
     let newComment = $("#sideOptions");
     if(comments.length > 0){
-        comments.forEach(async comment => {
+        comments.forEach(async comment => 
+        {
             let username = await fetch(`../pages/getUsername.php?userId=${comment.userId}`);
             username = await username.json();
             username = username.username;
-            let postContent;
+
+            let sessionData = await getSessionData();
+            let session_userId = sessionData.user_id;
+            let session_privilege = sessionData.user_privilege;
             
+            let postContent;
             postContent = 
             $(`
             <div id = 'comment-${comment.commentId}-${comment.postId}-${comment.communityId}' class = 'comment'>
@@ -115,6 +168,9 @@ async function addComments(postId, communityId){
                         <h4>${username}</h4>
                         <h5>${comment.commentTime}</h5>
                     </div>
+                    ${session_userId == comment.userId || session_privilege == 2 ? `<div class='commentDelete'>
+                        <button class = 'deleteButton' onClick = 'deleteComment(${comment.commentId}, ${comment.postId}, ${comment.communityId})'>Delete</button>
+                    </div>` : ''}
                 </div>
                 <div class = 'commentContent'>
                     <p>${comment.commentContent}</p>

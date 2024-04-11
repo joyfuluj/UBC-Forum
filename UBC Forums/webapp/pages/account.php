@@ -48,6 +48,8 @@
 
     </header>
     <div class="container">
+
+        <!-- Recent User Posts -->
         <div class="column" id="recent_posts">
             <h1 style="text-decoration: underline; padding-bottom: 0.5em;"><?php echo $user_name . "'s Posts"; ?></h1>
             <section id="posts" style="padding: 0;">
@@ -57,11 +59,14 @@
 
         <!-- Account Information -->
         <div class="column" id="user_info">
+<<<<<<< Updated upstream
             <div class = 'optionsDiv'>
                 <button class = 'mobile toggleButton'onClick='toggleOptions()'>Back</button>
             </div>
+=======
+            <h1 style="text-decoration: underline;"><?php echo $user_name; ?></h1>
+>>>>>>> Stashed changes
             <div id="info">
-                <h1 style="text-decoration: underline;"><?php echo $user_name; ?></h1>
                 <div id="pic">
                     <?php 
                         $sql = "SELECT profilePic FROM users WHERE userId = ?";
