@@ -4,26 +4,29 @@
     https://cosc360.ok.ubc.ca/joyu0218/UBC%20Forums/webapp/pages/index.php
 ### Admin account
     username: jdoe102
+    or email: jane@gmail.com
     password: janedoepw
 ### User Account
     username: jdoe101
+    or email: john@gmail.com
     password: johndoepw
 
 ## Registration
-### Step One: go to the registration page
+### Step One: go to the registration page (Top Right of Header)
 
-### Step Two: put in your info
+### Step Two: Enter your info
 #### The requirements for each will be alerted upon failure to meet each.
     This is to help reinforce users automatic usage of strong passwords, as the annoyance makes them lol
 #### Step Three: Hit submit
     After submission, you will be asked to log in again with a little message saying sign up was successful
 
 ## Logging in
-### Step One: Navigate to the login page from the header bar
-### Step Two: input your username and password
-    if they are correct you will be returned to the home page and your session started
+### Step One: Navigate to the login page from the header bar or registration page
+### Step Two: Input your username/email and password
+    If they are correct you will be returned to the home page and your session started
 
-## Navigating the Account Dashboard
+## Understanding the Account Dashboard
+    To reach the account dashboard, click your account name in the top right of the header.
     The left column is reserved for the users personal posts, All accounts can view their posts and accompanying comments, post deletion is also a feature.
     The right column displays some of the users account info, and houses all available account settings:
 ### Regular Accounts
@@ -38,7 +41,8 @@
     When browsing posts on the homepage dashboard, they have the option to delete any and all comments they come across.
 
 ## Navigating the posts
-The home page and forum pages can both be used to view posts in specificity 
+The home page and forum pages can both be used to view posts in specificity.
+The search bar can be used to help filter posts on the homepage. 
 
 ## Commenting on a post:
 ### Step One: click the comment button on a post
@@ -77,5 +81,5 @@ The home page and forum pages can both be used to view posts in specificity
 ### Step Four: Press join/withdraw
     You can join/withdraw the related forums.
 
-
-##
+## Logging Out
+    When you want to end your session on UBC Forums, navigate to the top right of the header where a logout button should be displayed beside your account dashboard link.

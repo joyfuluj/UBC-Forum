@@ -55,8 +55,5 @@
 #### Trying to comment while not logged in
 ![alt text](Project%20Documents/ErrorHandling/commentNotLoggedIn.png)
 
-
-
-
 # Other Errors
 Other Errors are hard to show as they are often redirects, such as not being logged in but accessing a restricted site, but we welcome any bug/penetration testing!
