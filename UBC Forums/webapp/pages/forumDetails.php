@@ -223,7 +223,7 @@ if ($statement = mysqli_prepare($conn, $sql)) {
         let privilege = '<?php echo $_SESSION['user_privilege']?>'
     </script>
     <script src = "../scripts/promotePost.js"></script>
-    <script src = "../scripts/getForumposts.js"></script>
+    <script src = "../scripts/getForumPosts.js"></script>
     <script src="../scripts/notify.js"></script>
     </html>
             
