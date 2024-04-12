@@ -5,14 +5,25 @@
 
     MAJOR (Foundational):
         - Hand-styled layout with contextual menus. (i.e. when a user has logged on to the site, menus reflect the change). 
-        - 2 or 3-column layout using appropriate design principles. (i.e. highlighting nav links when hovered over, etc) 
+            Menus are responsive to user changes, eg they can seee their own comments after posting
+
+        - 2 or 3-column layout using appropriate design principles. (i.e. highlighting nav links when hovered over, etc) (Everyone)
+            We used a two colum layout for our desktop site and a one column for our mobile, just to improve user experience
+
         - Form validation with JavaScript. (Everyone)
+            All forms are properly validated
+
         - Server-side scripting with PHP. (Everyone)
+            all user input is sanitized before usage
+
         - Data storage in MySQL. (Everyone)
+            All user data apart from posts/profile pictures are stored in the database directly
         - Appropriate security for data. (Everyone)
+            all user inputs are sanitized and passwords are properly hashed before being stored
         - Site must maintain state. (user state being logged on, etc) (Everyone)
+            Site utilizes sessions to make sure that the user isnt logged out until they leave for an extended period.
         - Responsive design philosophy. (minimum requirements for different non-mobile display sizes) (Adam)
-            relative units are used where appropriate and the website is very capable of resizing
+            relative units are used where appropriate and the website is very capable of resizing as well as becoming a mobile site
         - AJAX (or similar) utilization for asynchronous updates. (meaning that if a discussion thread is updated, another user who is viewing the same thread will not have to refresh the page to see the update) (Adam)
             The page progressively fetches posts and comments according to the filter being used and are fetched in groups of 25 as the user scrolls so that it doesnt flood the site with every post in the database, and inserts new posts that you had missed due to the sort so that new posts are always shown to the user
         - User images (thumbnail) and profile stored in a database. (Tanner)
@@ -28,17 +39,17 @@
 
     MINOR (Additional):
         - Search and analysis for topics/items. (Adam)
-            The search bar finds all near matches in a title for a given string
+            The search bar finds all near matches in a title for a given string using "LIKE" functionality
         - Hot threads/hot item tracking. (Adam)
-            The user can filter by promos
+            The user can filter by promos using a request to the server for new posts that are loaded with AJAX
         - Activity by date. (Adam)
             The user can filter by date Ascending or Descending
         - Collapsible items/treads without page reloading. (Adam)
-            Comment sections are collapsable by the user 
-        - Alerts on page changes. (Joy and Adam)
+            Comment sections are collapsable by the user using Javascript to begin/stop requesting comments from a specific post
+        - Alerts on page changes. (Joy)
             Page will give alerts for new, unviewed posts by flashing the home button
         - Styling flourishes. (Adam)
-            While The entire team did help with Styling It was up to me to refine it so that it was consistent and visual bugs were absent
+            While The entire team did help with Styling It was up to me to refine it, so that it was consistent and visual bugs were close to absent
         - Responsive layout for mobile. (Adam)
             By Using media queries and scripts to make our menus into overlays I was able to create a well built mobile site!
         - Tracking comment history from a user’s perspective. (Tanner)
@@ -60,7 +71,7 @@
         - AJAX posts marked as threads, so users may interact with each other live.(Adam)
             All comment sections are live updated with the most recent comments using polling and progressively loading comments as the user scrolls
         - Collapsable threads. (Adam)
-            Comments sections, and option menus in mobile sites are collapsable. The User can clear the comments by clicking the close button
+            Comments sections, and option menus in mobile sites are collapsable. The User can clear the comments by clicking the close button using javascript to fetch the comments of the clicked comments button
 
 ### Registered Users:
     MAJOR:
@@ -69,7 +80,7 @@
         - Allow Users to log out (Tanner)
             Users can log out from the header using a simple PHP script
         - Allow Users to delete their accounts (Tanner)
-            Users can deleted their account from the Account page
+            Users can deleted their account from the Account page 
         - Allow users to like content. (Adam and Tanner)
                 Users can "Promo" content to give it a boost on popular sorting
         - Allow Users to sort posts by popular, user interaction, and date (Adam)
@@ -94,7 +105,7 @@
         - FAdmin should be able to invite people to moderate. 
 
         - FAdmin should be able to remove moderators that are newer than them.
-        
+
         - FAdmin should be able to pin posts.
 
 
@@ -102,38 +113,33 @@
 # Additional functionality
 
 ## Search and analysis for topics/items
+
 ## Hot threads/hot item tracking
+    Items can be searched based on the number of promos in a way to find hot/popular items
 ## Visual display of updates, etc (site usage charts, etc)
+    The site Flashes the home button to alert the user to new posts available in the feed
 ## Activity by date
+    the site sorts comments/posts by date automatically and the 
 ## Tracking (including utilizing tracking API or your own with visualization tools)
+    We did not utilize an external tracking API, but we did implement member tracking for communities in order to best understand usage
 ## Collapsible items/treads without page reloading
+    comment sections are collapsed back into the post after clicking the close button
 ## Alerts on page changes
+    The server alerts the client on changes in the feed by flashing the home button
 ## Admin view reports on usage (with filtering)
+    Admin can view and delete any activity on the site, so they can use the forums page to sort and view usage, there are no specific reports as we did not know what we would be reporting on
 ## Styling flourishes
+    Styling is insanely cool and awesome, I mean look at the mobile site. Clearly the best
 ## Responsive layout for mobile
+    Our site is completely compatible with mobile. having its own dedicated sit design
 ## Tracking comment history from a user’s perspective
+    Users can view any of their posts/comments from their profile page
 ## Accessibility
+    The site is properly Setup for Landmark roles for screen readers, and the usage of user titles helps to describe content for said posts, allowing screen readers to scrape posts semi consistently. there could be some improvements as we did not have the full time to experiment with screen readers but we gave it a good effort I think. We also used a bright and highly contrasting color pallete to improve usage for our color blind users
 
+# Extra Marks
 
-## Adams Contributions
-
-### Styling
-
-### Mobile Friendly Design
-
-### Accessability
-
-### Post Fetching
-
-### Comment Fetching
-
-### Comment AJAX Updating
-
-### Search Functionality and post filtering
-
-### Admin Functionality
-
-### Promo Server Script
+Our Team believes we deserve the highest possible grade, as not only are all of our sites abilities fully functional, but we also took great consideration for scalability and efficiency. Our site doesnt store any posts or images in the database, allowing us to easily scale and implement new features for our users to edit their own posts and such. The AJAX Adam implemented also loads posts progressivly, stopping the server from overserving a client, and stopping a clients machine from being flooded as the posts database and comments database grows. 
 
 
 
