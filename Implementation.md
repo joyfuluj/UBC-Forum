@@ -141,7 +141,7 @@
 # Additional functionality
 
 ## Search and analysis for topics/items
-
+    Posts are searchable by using the titles, and can be filtered while searched
 ## Hot threads/hot item tracking
     Items can be searched based on the number of promos in a way to find hot/popular items
 ## Visual display of updates, etc (site usage charts, etc)
@@ -174,6 +174,7 @@
 # Extra Marks and special Features
 
 Our Team believes we deserve the highest possible grade, as not only are all of our sites abilities fully functional, but we also took great consideration for scalability and efficiency. Our site doesnt store any posts or images in the database, allowing us to easily scale and implement new features for our users to edit their own posts and such. The AJAX Adam implemented also loads posts progressivly, stopping the server from overserving a client, and stopping a clients machine from being flooded as the posts database and comments database grows. 
+
 
 ## AJAX Post and comment fetching
  
