@@ -34,10 +34,29 @@
 # Visual Representations of Error Handling
 ### Below we have attached a collection of screenshots showing off some of the common errors that users may run into as they learn the flow of the website. 
 ### We have also tried to showcase how we have handled other requests: such as having sql queries return empty-handed, and critical interactions requiring browser confirmations.
+
+#### Registration Error Handling
 ![Update Profile Pic Validation](Project%20Documents/ErrorHandling/RegisterErrors.png)
+
+#### Login Error Handling
 ![Update Profile Pic Validation](Project%20Documents/ErrorHandling/LoginErrors.png)
+#### Invalid Image Validation
 ![Update Profile Pic Validation](Project%20Documents/ErrorHandling/PostOnlyImages.png)
+#### Proper Post form validation
 ![Update Profile Pic Validation](Project%20Documents/ErrorHandling/EmptyCommunityError.png)
+#### Cant post both text and image Validation
 ![Update Profile Pic Validation](Project%20Documents/ErrorHandling/InvalidPost.png)
+#### Deletion confirmation
 ![Update Profile Pic Validation](Project%20Documents/ErrorHandling/JavascriptConfirmation.png)
+#### Search form No results handling
 ![Update Profile Pic Validation](Project%20Documents/ErrorHandling/NoPostsFound.png)
+#### Trying to promote a post while not logged in
+![alt text](Project%20Documents/ErrorHandling/notLoggedInError.png)
+#### Trying to comment while not logged in
+![alt text](Project%20Documents/ErrorHandling/commentNotLoggedIn.png)
+
+
+
+
+# Other Errors
+Other Errors are hard to show as they are often redirects, such as not being logged in but accessing a restricted site, but we welcome any bug/penetration testing!
