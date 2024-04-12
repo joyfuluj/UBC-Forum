@@ -66,28 +66,23 @@ async function addPosts(){
                     <div class = 'postContent'>
                         <p>${text}</p>
                     </div>
-                    <div class = 'postOptions'>
-                        <button class = 'promo' onClick = 'handlePromo(${post.postId}, ${post.communityId})'>^</button>
-                        <p class = 'numPromo' id = 'promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
-                        ${
-                            // Check if the user is a Forum Admin
-                            isAdmin(userNum, community) ? (
-                                `<div>
-                                    ${post.pin == 0 || post.pin === null ?
-                                        `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pin</button>` :
-                                        `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pinned</button>`
-                                    }
-                                    <button class='deleteButton' onClick='deletePosts(${post.postId}, ${post.communityId})'>Delete</button>
-                                </div>`
-                            ) : ''
+                    <div class='postOptions'>
+                        <button class='promo' onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
+                        <p class='numPromo' id='promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
+                        
+                        ${post.pin == 0 || post.pin === null ?
+
+                            `<button id='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pin</button>`:
+                            `<button id='unpinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Unpin</button>`
                         }
+                        <button id='deleteButton' onClick='deletePosts(${post.postId}, ${post.communityId})'>Delete</button>
                     </div>
                 </div>`
                 );
             
             }
             else{
-                
+                isAdmin(userNum,community);
                 postContent = 
                 $(`
                 ${post.pin == 0 || post.pin === null ?
@@ -109,18 +104,13 @@ async function addPosts(){
                     <div class='postOptions'>
                         <button class='promo' onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
                         <p class='numPromo' id='promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
-                        ${
-                            // Check if the user is a Forum Admin
-                            isAdmin(userNum, community) ? (
-                                `<div>
-                                    ${post.pin == 0 || post.pin === null ?
-                                        `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pin</button>` :
-                                        `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pinned</button>`
-                                    }
-                                    <button class='deleteButton' onClick='deletePosts(${post.postId}, ${post.communityId})'>Delete</button>
-                                </div>`
-                            ) : ''
+                        
+                        ${post.pin == 0 || post.pin === null ?
+
+                            `<button id='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pin</button>`:
+                            `<button id='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Unpin</button>`
                         }
+                        <button id='deleteButton' onClick='deletePosts(${post.postId}, ${post.communityId})'>Delete</button>
                     </div>
                 </div>
             `);
@@ -134,7 +124,7 @@ async function addPosts(){
         morePosts = false;
     }
 }
-async function isAdmin(userNum, community) {
+function isAdmin(userNum, community) {
     console.log(userNum)
     console.log(community)
     fetch('../scripts/checkAdmin.php', {
@@ -151,11 +141,20 @@ async function isAdmin(userNum, community) {
             throw new Error('Server returned error: ' + response.status);
         }
     }).then(data => {
+        var pinButton = document.getElementById("pinButton");
+        // var unpinButton = document.getElementById("unpinButton");
+        var deleteButton = document.getElementById("deleteButton");
         if (data === "true") {
             console.log("true")
+            pinButton.style.display = "block";
+            // unpinButton.style.display = "block";
+            deleteButton.style.display = "block";
             return true;
         } else if (data === "false") {
             console.log("false")
+            pinButton.style.display = "none";
+            // unpinButton.style.display = "none";
+            deleteButton.style.display = "none";
             return false;
         } else {
             console.log("Unexpected response:", data);
