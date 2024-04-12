@@ -271,8 +271,9 @@ body
         display: none;
         position:absolute;
         width: 100vw;
-        align-self: unset;
-        top: 20%;
+        align-self: center;
+        margin: 0;
+        top: 10%;
         
     }
     h1{
