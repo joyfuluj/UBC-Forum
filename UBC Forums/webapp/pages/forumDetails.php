@@ -220,6 +220,7 @@ if ($statement = mysqli_prepare($conn, $sql)) {
         let community = '<?php echo $commId; ?>';
         
         let userNum = '<?php echo $userNumber?>';
+        let privilege = '<?php echo $_SESSION['user_privilege']?>'
     </script>
     <script src = "../scripts/promotePost.js"></script>
     <script src = "../scripts/getForumposts.js"></script>
