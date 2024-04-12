@@ -80,7 +80,7 @@ if ($statement = mysqli_prepare($conn, $sql)) {
     while ($row = mysqli_fetch_assoc($result)) {
         $type= $row['type'];
     }
-    if(mysqli_num_rows($result) == 0 || $type == 'member' || $type == 'moderator') {
+    if(mysqli_num_rows($result) == 1 || $type == 'member' || $type == 'moderator') {
         echo "<h1 '>Related forums</h1>";
                 ini_set('display_errors', 1);
                 include_once('../scripts/connection.php');
