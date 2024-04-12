@@ -1,8 +1,15 @@
-
-
 let posts = [];
 let pageNum = 0;
 let morePosts = true; 
+
+async function getSessionData() 
+{
+    let response = await fetch('../pages/getSession.php');
+    let data = await response.json();
+    return data;
+}
+
+
 async function loadSearch(communityId, userId){
     await requestSearch().then(() =>{
         addPosts()
@@ -65,83 +72,93 @@ async function getTextPosts(text){
         let result = await postText.text();
         return result;
     }
+}
 
+async function userHasPromoted(postId, communityId, userId)
+{
+    let response = await fetch(`../scripts/getPromoted.php?postId=${postId}&communityId=${communityId}&userId=${userId}`);
+    if(response.ok)
+    {
+        let text = await response.text();
+        return text == '1';
+    }
+    else
+    {
+        console.error('Fetch failed');
+        return false;
+    }
 }
 
 async function addPosts(){
     let feed = $("#posts");
     if(posts.length > 0 && morePosts == true){
-        posts.forEach(async post => {
-            let username = await fetch(`../pages/getUsername.php?userId=${post.userId}`);
-            username = await username.json();
+        for (const post of posts) {
+            let usernameResponse = await fetch(`../pages/getUsername.php?userId=${post.userId}`);
+            let username = await usernameResponse.json();
             username = username.username;
+
+            let sessionData = await getSessionData();
+            let session_userId = sessionData.user_id;
+
             let postContent;
             if(post.postType == "txt"){
-                //TODO: implement text reading from file
-                let text = "Failed to load";
-                text = await getTextPosts(`../posts/${post.postId}-${post.communityId}.${post.postType}`);
+                let text = await getTextPosts(`../posts/${post.postId}-${post.communityId}.${post.postType}`);
                 postContent = 
                 $(`
-                <div id = 'post-${post.postId}-${post.communityId}' class = 'textPost'>
-                    <div class = 'postHeader'>
+                <div id='post-${post.postId}-${post.communityId}' class='textPost'>
+                    <div class='postHeader'>
                         <h3>${post.postTitle}</h3>
-                        <div class = 'postDetails'>
+                        <div class='postDetails'>
                             <h4>${username}</h4>
                             <h5>${post.postTime}</h5>
                         </div>
                     </div>
-                    <div class = 'postContent'>
+                    <div class='postContent'>
                         <p>${text}</p>
                     </div>
-                    <div class = 'postOptions'>
-                        <button class = 'promo' onClick = 'handlePromo(${post.postId}, ${post.communityId})'>^</button>
-                        <p class = 'numPromo' id = 'promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
-                        <button class = 'commentButton' onClick = 'handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
-
+                    <div class='postOptions'>
+                        <button class=${await userHasPromoted(post.postId, post.communityId, session_userId) ? `'promo-promoted'` : `'promo'`} onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
+                        <p class='numPromo' id='promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
+                        <button class='commentButton' onClick='handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
                     </div>
                 </div>`
                 );
             
             }
             else{
-                
                 postContent = 
                 $(`
-                    <div id = 'post-${post.postId}-${post.communityId}' class = 'post'>
-                        <div class = 'postHeader'>
+                    <div id='post-${post.postId}-${post.communityId}' class='post'>
+                        <div class='postHeader'>
                             <h3>${post.postTitle}</h3>
-                            <div class = 'postDetails'>
+                            <div class='postDetails'>
                                 <h4>${username}</h4>
                                 <h5>${post.postTime}</h5>
                             </div>
                         </div>
-                        <div class = 'postContent'>
-                        <a class = 'blank' href = '../posts/${post.postId}-${post.communityId}.${post.postType}'>
-                            <img src="../posts/${post.postId}-${post.communityId}.${post.postType}">
-                        </a>
+                        <div class='postContent'>
+                            <a class='blank' href='../posts/${post.postId}-${post.communityId}.${post.postType}'>
+                                <img src="../posts/${post.postId}-${post.communityId}.${post.postType}">
+                            </a>
                         </div>
-                        <div class = 'postOptions'>
-                            
-                            <button class = 'promo' onClick = 'handlePromo(${post.postId}, ${post.communityId})'>^</button>
-                            <p class = 'numPromo' id = 'promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
-                            <button class = 'commentButton' onClick = 'handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
-
+                        <div class='postOptions'>
+                            <button class=${await userHasPromoted(post.postId, post.communityId, session_userId) ? `'promo-promoted'` : `'promo'`} onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
+                            <p class='numPromo' id='promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
+                            <button class='commentButton' onClick='handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
                         </div>
                     </div>`
                 );
-
-                
-
             }
             feed.append(postContent);
-        });
-    }else if(morePosts == true) {
+        }
+    } else if (morePosts == true) {
         feed.append(`
             <h3>No more posts!</h3>
         `);
         morePosts = false;
     }
 }
+
             /*
             postId INT AUTO_INCREMENT,
             postTitle VARCHAR(200),
@@ -207,13 +224,25 @@ function getTestPosts()
     posts.push(post);
     
 }
-function handlePromo(postId, communityId) {
+
+function handlePromo(postId, communityId) 
+{
     // Handle promo logic here
     promote(postId, communityId);
     console.log(`Promo clicked for post ${postId} in community ${communityId}`);
-    // Toggle the background color of the button
-    let promoButton = $(`#post-${postId}-${communityId} .promo`);
-    promoButton.toggleClass("promo-active");
+
+    // Toggle the background color of the button depending on currrent state
+    let promoButton = $(`#post-${postId}-${communityId} button`);
+    {
+        if (promoButton.hasClass('promo')) 
+        {
+            promoButton.removeClass('promo').addClass('promo-promoted');
+        } 
+        else if (promoButton.hasClass('promo-promoted')) 
+        {
+            promoButton.removeClass('promo-promoted').addClass('promo');
+        }
+    }
 }
 window.onload = function(){
     loadPosts();

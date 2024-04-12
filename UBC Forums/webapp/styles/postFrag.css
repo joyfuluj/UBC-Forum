@@ -1,4 +1,3 @@
-
 #posts
 {
     border-radius: var(--DefaultBR);
@@ -143,7 +142,8 @@
     padding: 20px 1% 20px 1%;
     margin: 0;
 }
-.promo{
+.promo
+{
     float: left;
     text-align: center;
     background-color: var(--AquaBlue);
@@ -155,15 +155,34 @@
     cursor: pointer;
     box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1)
 }
-.promo-active{
-    background-color: var(--Coral);
-}
-.promo:hover{
+.promo:hover
+{
     background-color: var(--OffWhite);
 }
-.promo:active{
-    background-color: var(--CoralRed);
-    box-shadow: none;
+.promo-active
+{
+    background-color: var(--Coral);
+}
+.promo-promoted
+{
+    float: left;
+    text-align: center;
+    background-color: var(--Coral);
+    border-radius: var(--DefaultBR);
+    border: none;
+    height: 20px;
+    width: 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 1)
+}
+.promo-promoted:hover
+{
+    background-color: var(--OffWhite);
+}
+.promo-promoted:active
+{
+    background-color: var(--AquaBlue);
 }
 
 .commentButton{

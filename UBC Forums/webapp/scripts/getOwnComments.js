@@ -164,9 +164,8 @@ function addComments(comments, commentsDiv)
                 <div class='commentDetails'>
                     <h4 style='margin: 0;'>${username}</h4>
                     <h4 style='margin: 0;'>${comment.commentTime}</h4>
-                </div>
-                ${session_userId == comment.userId || session_privilege == 2 ? `
-                <div class='commentDelete'>
+                </div> ${session_userId == comment.userId || session_privilege == 2 ? 
+                `<div class='commentDelete'>
                     <button class = 'deleteButton' onClick = 'deleteComment(${comment.commentId}, ${comment.postId}, ${comment.communityId})'>Delete</button>
                 </div>` : ''}
             </div>

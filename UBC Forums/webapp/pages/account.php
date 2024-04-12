@@ -60,9 +60,7 @@
             <div class = 'optionsDiv'>
                 <button class = 'mobile toggleButton'onClick='toggleOptions()'>Back</button>
             </div>
-=======
             <h1 style="text-decoration: underline;"><?php echo $user_name; ?></h1>
->>>>>>> Stashed changes
             <div id="info">
                 <div id="pic">
                     <?php 
