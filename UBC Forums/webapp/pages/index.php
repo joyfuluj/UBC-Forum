@@ -39,7 +39,7 @@
     <div class = 'bodyDiv'>
         <section role='aside' id = "sideMenu">
             <button id = 'loadDefault' onClick = 'loadDefaults()'>Close</button>
-            <div id = "sideMenuContent">
+            <div role='region'id = "sideMenuContent">
                 <h3>Dashboard Options</h3>
             </div>
             <div id = "sideOptions">
