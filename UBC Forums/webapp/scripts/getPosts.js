@@ -1,7 +1,7 @@
 let posts = [];
 let pageNum = 0;
 let morePosts = true; 
-
+let postsAdded = false;
 async function getSessionData() 
 {
     let response = await fetch('../pages/getSession.php');
@@ -92,6 +92,7 @@ async function userHasPromoted(postId, communityId, userId)
 async function addPosts(){
     let feed = $("#posts");
     if(posts.length > 0 && morePosts == true){
+        postsAdded = true;
         for (const post of posts) {
             let usernameResponse = await fetch(`../pages/getUsername.php?userId=${post.userId}`);
             let username = await usernameResponse.json();
@@ -152,9 +153,15 @@ async function addPosts(){
             feed.append(postContent);
         }
     } else if (morePosts == true) {
-        feed.append(`
+        if(!postsAdded){
+            feed.append(`
+                <h3>No Results found!</h3>
+            `);
+        }else{
+            feed.append(`
             <h3>No more posts!</h3>
-        `);
+            `);
+        }
         morePosts = false;
     }
 }
