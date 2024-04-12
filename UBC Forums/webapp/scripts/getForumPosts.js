@@ -53,8 +53,8 @@ async function addPosts(){
                 postContent = 
                 $(`
                 ${post.pin == 0 || post.pin === null ?
-                    `<div id = 'post-${post.postId}-${post.communityId}' class = 'textPost'>`:
-                    `<div id = 'post-${post.postId}-${post.communityId}' class = 'pinTextPost'>`
+                    `<div role='article'id = 'post-${post.postId}-${post.communityId}' class = 'textPost'>`:
+                    `<div role='article'id = 'post-${post.postId}-${post.communityId}' class = 'pinTextPost'>`
                 }
                     <div class = 'postHeader'>
                         <h3>${post.postTitle}</h3>
@@ -66,16 +66,21 @@ async function addPosts(){
                     <div class = 'postContent'>
                         <p>${text}</p>
                     </div>
-                    <div class='postOptions'>
-                        <button class='promo' onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
-                        <p class='numPromo' id='promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
-                        
-                        ${post.pin == 0 || post.pin === null ?
-
-                            `<button id='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pin</button>`:
-                            `<button id='unpinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Unpin</button>`
+                    <div role='aside'class = 'postOptions'>
+                        <button class = 'promo' onClick = 'handlePromo(${post.postId}, ${post.communityId})'>^</button>
+                        <p class = 'numPromo' id = 'promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
+                        ${
+                            // Check if the user is a Forum Admin
+                            isAdmin(userNum, community) ? (
+                                `<div>
+                                    ${post.pin == 0 || post.pin === null ?
+                                        `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pin</button>` :
+                                        `<button class='pinButton' onClick='pinPosts(${post.postId}, ${post.pin})'>Pinned</button>`
+                                    }
+                                    <button class='deleteButton' onClick='deletePosts(${post.postId}, ${post.communityId})'>Delete</button>
+                                </div>`
+                            ) : ''
                         }
-                        <button id='deleteButton' onClick='deletePosts(${post.postId}, ${post.communityId})'>Delete</button>
                     </div>
                 </div>`
                 );

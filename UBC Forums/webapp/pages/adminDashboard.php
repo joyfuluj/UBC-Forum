@@ -35,8 +35,8 @@
                     echo
                     "<div class='admin-user'>
                         <h4 style='margin: 0; text-decoration: underline;'>User: {$row['username']}</h4><br>
-                        <h5 style='margin: 0;'>Name: {$row['firstName']} {$row['lastName']}</h5><br>
-                        <h5 style='margin: 0;'>Email: {$row['email']}</h5><br>
+                        <h4 style='margin: 0;'>Name: {$row['firstName']} {$row['lastName']}</h4><br>
+                        <h4 style='margin: 0;'>Email: {$row['email']}</h4><br>
                         <button class='delete-user' onclick='deleteUser({$row['userId']})'>Delete</button>
                     </div>";
                 }
@@ -74,7 +74,7 @@
                     echo
                     "<div class='admin-post'>
                         <br><h4 style='margin: 0; text-decoration: underline;'>{$row['postTitle']}</h4><br>
-                        <h5 style='margin: 0;'>{$row['postTime']}</h5><br>
+                        <h4 style='margin: 0;'>{$row['postTime']}</h4><br>
                         <button class='delete-post' onclick='deletePost({$row['postId']}, {$row['communityId']})'>Delete</button>
                     </div>";
                 }
@@ -98,8 +98,8 @@
                     echo
                     "<div class='admin-user'>
                         <br><h4 style='margin: 0; text-decoration: underline;'>User: {$row['username']}</h4><br>
-                        <h5 style='margin: 0;'>Name: {$row['firstName']} {$row['lastName']}</h5><br>
-                        <h5 style='margin: 0;'>Email: {$row['email']}</h5><br>
+                        <h4 style='margin: 0;'>Name: {$row['firstName']} {$row['lastName']}</h4><br>
+                        <h4 style='margin: 0;'>Email: {$row['email']}</h4><br>
                         <button class='delete-user' onclick='deleteUser({$row['userId']})'>Delete</button>
                     </div>";
                 }
