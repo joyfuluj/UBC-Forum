@@ -165,7 +165,8 @@
     Styling is insanely cool and awesome, I mean look at the mobile site. Clearly the best
 
 ## Responsive layout for mobile
-    Our site is completely compatible with mobile. having its own dedicated sit design
+    Our site is completely compatible with mobile. having its own dedicated site design but the responsiveness doesnt stop there. The site can easily be resized to fit any screen size or browser size without a hitch
+
 
 ## Tracking comment history from a user’s perspective
     Users can view any of their posts/comments from their profile page
