@@ -74,7 +74,7 @@
 <?php
 $sql = "SELECT type FROM memberOf WHERE userId = ? and communityId = ?";
 if ($statement = mysqli_prepare($conn, $sql)) {
-    mysqli_stmt_bind_param($statement, 'ii', $userId, $commId);
+    mysqli_stmt_bind_param($statement, 'ii', $userNumber, $commId);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
     while ($row = mysqli_fetch_assoc($result)) {
@@ -166,10 +166,22 @@ if ($statement = mysqli_prepare($conn, $sql)) {
                             $userId = $row['userId'];
                             error_reporting(E_ALL);
                             ini_set('display_errors', 1);
-                            if($userId != $userId){
+                            if($userNumber != $userId){
                                 echo "<div class=\"names\">";
-                                echo "<table id=><tr>";
-                                echo "<td rowspan=\"2\"id=\"nameColumn\"><p>User name: <strong>$userName</strong></p></td>";
+                                // echo "<table id=><tr>";
+                                echo "<p id=\"nameColumn\">User name: <strong>$userName</strong></p>";
+                                if (isset($_GET['assigned'])){
+                                    if($userId == $_GET['userId'])
+                                        echo "<p id='assigned'>Successfully assign the moderator!</p>";
+                                }
+                                elseif(isset($_GET['deleted'])){
+                                    if($userId == $_GET['userId'])
+                                        echo "<p id='assigned'>Successfully deleted the member.</p>";
+                                }
+                                elseif(isset($_GET['unassigned'])){
+                                    if($userId == $_GET['userId'])
+                                        echo "<p id='assigned'>Successfully unassign the moderator.</p>";
+                                }
                                 $sql_2 = "SELECT type FROM memberOf WHERE userId = ? and communityId = ?";
                                 if ($statement = mysqli_prepare($conn, $sql_2)) {
                                     mysqli_stmt_bind_param($statement, 'ii', $userId, $commId);
@@ -177,30 +189,22 @@ if ($statement = mysqli_prepare($conn, $sql)) {
                                     if($result_2 = mysqli_stmt_get_result($statement)){
                                         while ($row_2 = mysqli_fetch_assoc($result_2)) {
                                             $type = $row_2['type'];
+                                            echo "<div id='buttons'>";
                                             if($type == 'moderator'){
-                                                echo "<td id=\"\"><a href=\"forumMember.php?action=unassign&userId=$userId&communityId=$commId\" id=\"assign\">Unassign</a></td></tr>";
+                                                echo "<a href=\"forumMember.php?action=unassign&userId=$userId&communityId=$commId\" id=\"assign\">Unassign</a>";
                                             }else{
-                                                echo "<td id=\"\"><a href=\"forumMember.php?action=assign&userId=$userId&communityId=$commId\" id=\"assign\">Assign</a></td></tr>";
+                                                echo "<a href=\"forumMember.php?action=assign&userId=$userId&communityId=$commId\" id=\"assign\">Assign</a>";
                                             }
                                         }
                                     }
                                 }
-                                if (isset($_GET['assigned'])){
-                                    if($userId == $_GET['userId'])
-                                        echo "<td id='assigned'>Successfully assign the moderator!</td>";
-                                }
-                                elseif(isset($_GET['deleted'])){
-                                    if($userId == $_GET['userId'])
-                                        echo "<td id='deleted'>Successfully deleted the member.</td>";
-                                }
-                                elseif(isset($_GET['unassigned'])){
-                                    if($userId == $_GET['userId'])
-                                        echo "<td id='assigned'>Successfully unassign the moderator.</td>";
-                                }
-                                echo "<td colspan=\"2\"><a href=\"forumMember.php?action=delete&userId=$userId&communityId=$commId\" id=\"delete\">Delete</a></td>";
-                                echo "<tr><td>";
-                                echo "</tr></table>";
-                                echo "</div>"; 
+                                
+                                echo "<a href=\"forumMember.php?action=delete&userId=$userId&communityId=$commId\" id=\"delete\">Delete</a>";
+                                // echo "<tr><td>";
+                                // echo "</tr></table>";
+                                
+                                echo "</div></div>"; 
+                                echo "<hr>";
                             }
                         }
                     }else{
