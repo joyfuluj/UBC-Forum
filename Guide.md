@@ -44,4 +44,24 @@ The home page and forum pages can both be used to view posts in specificity
 ### Step One: press the ^ button next to the promos count
     Did I really need to say it?
 
+## Viewing Forums
+### Step One: Press "Show More" button
+    You can view the discription and join/withdraw the forum
+
+## Creating Forums
+### Step One: Press "Create + " button to create a forum.
+### Step Two: Put the name and description.
+    You can create a forum
+
+## Viewing Forum details
+### Step One: Press the forum name
+    You can view the forum details
+### Step Two: Press pin/delete
+    You can pin/delete the posts.
+### Step Three : Press assign/unassign and delete
+    You can assign/unassign users to moderate or delete the user
+### Step Four: Press join/withdraw
+    You can join/withdraw the related forums.
+
+
 ##
