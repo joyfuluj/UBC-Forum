@@ -117,7 +117,7 @@ async function addPosts(){
                         <p>${text}</p>
                     </div>
                     <div class='postOptions'>
-                        <button class=${await userHasPromoted(post.postId, post.communityId, session_userId) ? `'promo-promoted'` : `'promo'`} onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
+                        <button data-promo-button class=${await userHasPromoted(post.postId, post.communityId, session_userId) ? `'promo-promoted'` : `'promo'`} onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
                         <p class='numPromo' id='promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
                         <button class='commentButton' onClick='handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
                     </div>
@@ -142,7 +142,7 @@ async function addPosts(){
                             </a>
                         </div>
                         <div class='postOptions'>
-                            <button class=${await userHasPromoted(post.postId, post.communityId, session_userId) ? `'promo-promoted'` : `'promo'`} onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
+                            <button data-promo-button class=${await userHasPromoted(post.postId, post.communityId, session_userId) ? `'promo-promoted'` : `'promo'`} onClick='handlePromo(${post.postId}, ${post.communityId})'>^</button>
                             <p class='numPromo' id='promo-${post.postId}-${post.communityId}'>Promos: ${post.promos}</p>
                             <button class='commentButton' onClick='handleLoadComments(${post.postId}, ${post.communityId})'>Comments</button>
                         </div>
@@ -232,7 +232,7 @@ function handlePromo(postId, communityId)
     console.log(`Promo clicked for post ${postId} in community ${communityId}`);
 
     // Toggle the background color of the button depending on currrent state
-    let promoButton = $(`#post-${postId}-${communityId} button`);
+    let promoButton = $(`#post-${postId}-${communityId} button[data-promo-button]`);
     {
         if (promoButton.hasClass('promo')) 
         {
