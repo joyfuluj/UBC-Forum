@@ -85,6 +85,7 @@ async function handleLoadComments(postId, communityId){
     setInterval(() => {
         getNewComments(postId, communityId);
     }, 10000);
+    
     let newComment = $("#sideOptions");
     let commentFeed = $("#sideMenuContent");
     newComment.empty();
@@ -92,8 +93,7 @@ async function handleLoadComments(postId, communityId){
     await requestComments(postId, communityId).then(() =>{
         if (comments.length <= 0) {
           return;
-        }
-        
+        } 
     });
     //getTestComments();
 }
@@ -195,6 +195,7 @@ async function addComments(postId, communityId){
 }
 function sendComment(postId, communityId){
     let content = $("#commentInput").val();
+    $("#commentInput").val("");
     if(content != ""){
         let url = 'postComment.php?postId=' + postId + '&communityId=' + communityId + '&commentContent=' + content; 
         fetch(url).then((response) => {
@@ -204,6 +205,9 @@ function sendComment(postId, communityId){
                         alert("Please Login to comment");
                         return;
                     }else{
+                        let lastFetch = new Date();
+                        lastFetch.setSeconds(lastFetch.getSeconds() + 1);
+                        lastFetch = formatDate(lastFetch);
                         handleLoadComments(postId, communityId);
                     }
                 });   

@@ -1,5 +1,7 @@
 # How to use our Site!
 ## Usable Credentials
+### URL:
+    https://cosc360.ok.ubc.ca/joyu0218/UBC%20Forums/webapp/pages/account.php
 ### Admin account
     username: jdoe102
     password: janedoepw
