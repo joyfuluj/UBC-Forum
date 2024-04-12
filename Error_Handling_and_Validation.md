@@ -30,3 +30,14 @@
 ### 1) Checks the file size of the image, if it exceeds 125 kilobytes, it won't be accepted, and an error message will display above the submission field. 
 ### 2) Determines the file extension of the photo against a pre-constructed array of accepted file extensions (.png, .jpg, .gif). If it is not an acceptable file type, an error message will be displayed above the submission field.  
 ![Update Profile Pic Validation](Project%20Documents/ErrorHandling/UpdateProfilePicValidation.png)
+
+# Visual Representations of Error Handling
+### Below we have attached a collection of screenshots showing off some of the common errors that users may run into as they learn the flow of the website. 
+### We have also tried to showcase how we have handled other requests: such as having sql queries return empty-handed, and critical interactions requiring browser confirmations.
+![Update Profile Pic Validation](Project%20Documents/ErrorHandling/RegisterErrors.png)
+![Update Profile Pic Validation](Project%20Documents/ErrorHandling/LoginErrors.png)
+![Update Profile Pic Validation](Project%20Documents/ErrorHandling/PostOnlyImages.png)
+![Update Profile Pic Validation](Project%20Documents/ErrorHandling/EmptyCommunityError.png)
+![Update Profile Pic Validation](Project%20Documents/ErrorHandling/InvalidPost.png)
+![Update Profile Pic Validation](Project%20Documents/ErrorHandling/JavascriptConfirmation.png)
+![Update Profile Pic Validation](Project%20Documents/ErrorHandling/NoPostsFound.png)

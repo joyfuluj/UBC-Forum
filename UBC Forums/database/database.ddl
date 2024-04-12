@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS memberOf (
     communityId INT,
     userId INT,
     type ENUM('member', 'moderator', 'admin'),
-    joinDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    joinDate DATETIME DEFAULT '2000-01-01 00:00:00',
     PRIMARY KEY (communityId, userId),
     FOREIGN KEY (userId) REFERENCES users(userId),
     FOREIGN KEY (communityId) REFERENCES community(communityId) ON DELETE CASCADE
