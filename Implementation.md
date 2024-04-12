@@ -98,15 +98,19 @@
             Site admins possess the ability to delete all posts, users, and comments on the wbesite.
 
         - FAdmin should be able to ban/kick users from forums.
+            Forum admins possess the ability to delete all members in the forum.
 
         - FAdmin should be able to view/remove posts on forums.
-        
+            Forum admins can view as well as delete the post in the forum.
     MINOR:
         - FAdmin should be able to invite people to moderate. 
+            Forum admins can view the member list and assign them to moderator.
 
         - FAdmin should be able to remove moderators that are newer than them.
+            Forum admins can unassign users from the moderator role.
 
         - FAdmin should be able to pin posts.
+            Forum admins can pin the posts to be seen first.
 
 
 
