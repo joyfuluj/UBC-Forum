@@ -16,7 +16,7 @@
         - AJAX (or similar) utilization for asynchronous updates. (meaning that if a discussion thread is updated, another user who is viewing the same thread will not have to refresh the page to see the update) (Adam)
             The page progressively fetches posts and comments according to the filter being used and are fetched in groups of 25 as the user scrolls so that it doesnt flood the site with every post in the database, and inserts new posts that you had missed due to the sort so that new posts are always shown to the user
         - User images (thumbnail) and profile stored in a database. (Tanner)
-
+            I opted to store the image files on the server, and the uniquely generated file paths to the database for access later. I also experimented with storing them as BLOBs, but I preferred the former.
         - Simple discussion (topics) grouping and display. (Adam)
             Comments are isolated between posts and posts are easily grouped within their communities/forums
         - Navigation breadcrumb strategy. (i.e. users can determine where they are in threads) (Joy)
@@ -50,7 +50,7 @@
 ### Unregistered Users:
     MAJOR:
         - Allow users to register with an email and password (Tanner)
-            Users can register on the register page
+            Users can register on the register page, all fields are validated with javascript.
         - Allow users to view content without an account (Everyone)
             Users can view popular and posts/comments without an account
 
@@ -66,9 +66,9 @@
     MAJOR:
         - Show User login state through manipulation of UI elements (Adam)
             Login Button is replaced by the username of the logged in user
-        - Allow Users to log out
-            Users can log out from the header
-        - Allow Users to delete their accounts
+        - Allow Users to log out (Tanner)
+            Users can log out from the header using a simple PHP script
+        - Allow Users to delete their accounts (Tanner)
             Users can deleted their account from the Account page
         - Allow users to like content. (Adam and Tanner)
                 Users can "Promo" content to give it a boost on popular sorting
@@ -77,12 +77,14 @@
         - Allow Users to comment on posts. (Adam)
             Users can comment on any posts
     MINOR:
-        - Allow Users to delete comments and posts
-            Users can delete their own posts from their dashboard
+        - Allow Users to delete comments and posts (Tanner)
+            Users can delete their own comments from anywhere on the site, and delete their posts from their account dashboard.
+            Site Admins can delete all comments.
 
 ### Administrators:
     MAJOR:
-        - SAdmin should be able to ban users from the site.
+        - SAdmin should be able to delete users from the site. (Tanner)
+            Site admins possess the ability to delete all posts, users, and comments on the wbesite.
 
         - FAdmin should be able to ban/kick users from forums.
 
