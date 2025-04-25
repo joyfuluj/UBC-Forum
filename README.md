@@ -1,3 +1,10 @@
+# UBC Forums (MyDiscussionForum Website)
+
+Watch Me! 👉 [Demo](https://youtu.be/TDteoTtE2fo)
+
+<img width="1439" alt="Image" src="https://github.com/user-attachments/assets/7766bd0f-ac44-4ace-9ac1-be367652876d" />
+
+# Description
 
 This project was completed for COSC360 Web Development By:
 
@@ -6,19 +13,17 @@ This project was completed for COSC360 Web Development By:
 - Joy Umejiego (81265373)
 
 
-Title: UBC Forums (MyDiscussionForum Website)
-
-Project Goal:
+## Project Goal ##
     Create a website for users to interact freely with other students and faculty at the university of british columbia. This application is similar to other forums such as Reddit and HackerNews.
 
-Project Deliverables:
+## Project Deliverables ##
 
 Terminology:
     - Forum admin is referred to as FAdmin.
     - Site admin is referred to as SAdmin.
     - User refers to any client acting outside of an admin context.
 
-System Requirements:
+## System Requirements ##
 
     MAJOR (Foundational):
         - Hand-styled layout with contextual menus. (i.e. when a user has logged on to the site, menus reflect the change). 
@@ -48,7 +53,7 @@ System Requirements:
         - Tracking comment history from a user’s perspective.
         - Accessibility. (Alt text for images, screen reader support?)
         
-User Requirements:
+## User Requirements ##
 
     Unregistered Users:
         MAJOR:
@@ -81,5 +86,3 @@ User Requirements:
             - FAdmin should be able to invite people to moderate. 
             - FAdmin should be able to remove moderators that are newer than them.
             - FAdmin should be able to pin posts.
-
-Demo Video: https://youtu.be/TDteoTtE2fo
